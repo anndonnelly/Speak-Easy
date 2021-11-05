@@ -48,6 +48,7 @@ def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':
         if request.headers.get('X-Forwarded-Proto') == 'http':
             url = request.url.replace('http://', 'https://', 1)
+            # because we're deploying with docker and not heroku build packs
             code = 301
             return redirect(url, code=code)
 
