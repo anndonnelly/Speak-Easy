@@ -13,4 +13,4 @@ class Distillery(db.Model):
     state=db.Column(db.String, nullable=False)
     latitude=db.Column(db.Integer)
     longitude=db.Column(db.Integer)
-    logo=db.Column(db.String)
+    logo=db.Column(db.Text)

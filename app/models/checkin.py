@@ -10,3 +10,4 @@ class Checkin(db.Model):
     user_id=db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     drink_id=db.Column(db.Integer, db.ForeignKey("drinks.id"), nullable=False)
     distillery_id=db.Column(db.Integer, db.ForeignKey("distilleries.id"), nullable=False)
+
