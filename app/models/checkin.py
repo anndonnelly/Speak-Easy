@@ -10,4 +10,16 @@ class Checkin(db.Model):
     user_id=db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     drink_id=db.Column(db.Integer, db.ForeignKey("drinks.id"), nullable=False)
     distillery_id=db.Column(db.Integer, db.ForeignKey("distilleries.id"), nullable=False)
+    user = db.relationship("User", back_populates="checkins")
+    distillery = db.relationship("Distillery", back_populates="checkin")
+    drink = db.relationship("Drink", back_populates="checkin")
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'review': self.review,
+            'rating': self.rating,
+            'location': self.location,
+            'user_id': self.user_id,
+            'drink_id': self.drink_id,
+        }

@@ -1,7 +1,5 @@
 from app.models import db, Distillery
 
-
-# Adds a demo user, you can add other users here if you want
 def seed_distilleries():
     still_austin = Distillery(
         email='austin.still@gmail.com', hashed_password='password', name="Still Austin Whiskey Co.", street="440 E St Elmo Rd", city="Austin", state="Texas", latitude="30° 13' 1.4592'' N", longitude="97° 45' 41.328'' W", logo="https://stillaustin.com/wp-content/uploads/2020/06/still-austin-whiskey-co-logo-square-primary-on-white.png")

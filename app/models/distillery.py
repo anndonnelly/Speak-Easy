@@ -14,3 +14,4 @@ class Distillery(db.Model):
     latitude=db.Column(db.Integer)
     longitude=db.Column(db.Integer)
     logo=db.Column(db.Text)
+    checkin=db.relationship("Checkin", back_populates="distillery")
