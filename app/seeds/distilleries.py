@@ -12,7 +12,7 @@ def seed_distilleries():
     blackland = Distillery(
         email='blacklanddistillery@gmail.com', hashed_password='password5', name="Blackland Distillery", street="2616 Weisenberger St", city="Fort Worth", state="Texas", latitude="32°45′26.42′′N", longitude="97°21′13.1′′W", logo="https://res.cloudinary.com/dis83syog/image/upload/v1636208188/SpeakEasy/images_h57umn.png")
     crowded_barrel = Distillery(
-        email='crowdedbarrel@gmail.com', hashed_password='password6', name="Crowded Barrel Whiskey Co", street="16221 Crystal Hills", city="Austin", state="Texas", latitude="30° 8' 42.0576'' N", longitude="-97° 57' 59.6484'' W", logo="https://crowdedbarrelwhiskey.com/wp-content/uploads/2021/03/cb_1-black-copy-small.jpg")
+        email='crowdedbarrel@gmail.com', hashed_password='password6', name="Crowded Barrel Whiskey Co.", street="16221 Crystal Hills", city="Austin", state="Texas", latitude="30° 8' 42.0576'' N", longitude="-97° 57' 59.6484'' W", logo="https://crowdedbarrelwhiskey.com/wp-content/uploads/2021/03/cb_1-black-copy-small.jpg")
     eight_wonder = Distillery(
         email='eightwonder@gmail.com', hashed_password='password7', name="8th Wonder Distillery", street="2202 Dallas St", city="Houston", state="Texas", latitude="29.7493° N", longitude="95.3555° W", logo="https://res.cloudinary.com/dis83syog/image/upload/v1636208595/SpeakEasy/download_uhzz8h.png")
     old_humble = Distillery(
@@ -28,7 +28,7 @@ def seed_distilleries():
     artisan = Distillery(
         email='artisandistillery@hotmail.com', hashed_password='password13', name="Artisan Distillery Craft Bar", street="402 Austin St", city="San Antonio", state="Texas", latitude="30.9470° N", longitude="-98.5094° W", logo="https://artisans.al/wp-content/uploads/2017/10/Artisan-Logo-Finale-01-1170x399.png")
     whitmeyer = Distillery(
-        email='whitmeyers@hotmail.com', hashed_password='password14', name="Whitmeyer's Distilling Co ", street="5301 Nolda St", city="Houston", state="Texas", latitude="29.7760° N", longitude="95.4161° W", logo="https://www.bourbonbanter.com/wp-content/uploads/2018/07/Whitmeyers-Distilling-Company-Header.jpg")
+        email='whitmeyers@hotmail.com', hashed_password='password14', name="Whitmeyer's Distilling Co.", street="5301 Nolda St", city="Houston", state="Texas", latitude="29.7760° N", longitude="95.4161° W", logo="https://www.bourbonbanter.com/wp-content/uploads/2018/07/Whitmeyers-Distilling-Company-Header.jpg")
     hill_country = Distillery(
         email='hillcountry@hotmail.com', hashed_password='password15', name="Hill Country Distillers", street="723 Front St", city="Comfort", state="Texas", latitude="29.9676° N", longitude="98.9064° W", logo="https://res.cloudinary.com/dis83syog/image/upload/v1636209253/SpeakEasy/images2_sartus.jpg")
     texas_tail = Distillery(
