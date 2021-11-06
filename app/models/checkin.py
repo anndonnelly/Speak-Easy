@@ -1,6 +1,6 @@
 from .db import db
 
-class Checkins(db.Model):
+class Checkin(db.Model):
     __tablename__ = "checkins"
 
     id=db.Column(db.Integer, primary_key=True)
