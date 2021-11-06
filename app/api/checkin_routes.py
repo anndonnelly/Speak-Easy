@@ -6,19 +6,20 @@ from app.models.checkin import Checkin, db
 
 checkin_routes = Blueprint("checkins", __name__, url_prefix="/checkins")
 
-@checkin_routes.route("/")
+@checkin_routes.route("")
 # @login_required
 def home():
     checkins = Checkin.query.all()
     return {
         "checkins": [checkin.to_dict() for checkin in checkins]
     }
+    # ? too nested?
 
 @checkin_routes.route("/<int:id>")
 # @login_required
 def one_checkin(id):
     checkin = Checkin.query.get(id)
-    return checkin.todict()
+    return checkin.to_dict()
     
 
 @checkin_routes.route("/new", methods=["POST"])
@@ -42,7 +43,7 @@ def checkin():
     else:
         return form.errors
 
-@checkin_routes.route("/<int:id>", methods=["PUT"])
+@checkin_routes.route("/<int:id>", methods=["PATCH"])
 # @login_required
 def checkin_edit(id):
     form = CheckinForm()
