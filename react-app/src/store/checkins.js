@@ -36,18 +36,18 @@ const deleteCheckinAction = (checkin) => {
 //THUNKS
 export const getCheckinsThunk = () => async (dispatch) => {
     
-  const response = await fetch("/checkins");
+  const response = await fetch("api/checkins");
   let checkins_obj = await response.json();
-  
+  let checkinObj = checkins_obj.checkins;
   if (response.ok) {
-    dispatch(getCheckinsAction(checkins_obj));
+    dispatch(getCheckinsAction(checkinObj));
   } else {
     return {ok:false}
   }
 };
 
 export const createCheckinsThunk = (checkin) => async (dispatch) => {
-  const res = await fetch("/new", {
+  const res = await fetch("api/checkins/new", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -64,8 +64,8 @@ export const createCheckinsThunk = (checkin) => async (dispatch) => {
   }
 };
 
-export const editCheckinsThunk = (checkin) => async (dispatch) => {
-  const res = await fetch("/new", {
+export const editCheckinsThunk = ({id, checkin}) => async (dispatch) => {
+  const res = await fetch(`api/checkins/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -82,7 +82,7 @@ export const editCheckinsThunk = (checkin) => async (dispatch) => {
 };
 
 export const deleteCheckinsThunk = (id) => async (dispatch) => {
-  const response = await fetch(`/delete/${id}`);
+  const response = await fetch(`api/checkins/delete/${id}`);
   if (response.ok) {
     dispatch(deleteCheckinAction(id));
   } else {
@@ -96,7 +96,12 @@ export default function checkinsReducer(state = initialState, action) {
   const newState = { ...state };
   switch (action.type) {
     case GET_CHECKINS:
-      return action.payload;
+        return action.payload;
+    //     const allCheckins = action.payload;
+    //     Object.values(allCheckins).forEach((checkin) => {
+    //       newState[checkin.id] = checkin;
+    //     });
+    //   return newState;
     case ADD_CHECKIN:
       newState[action.payload.id] = action.payload;
       return newState;
@@ -110,3 +115,5 @@ export default function checkinsReducer(state = initialState, action) {
       return state;
   }
 }
+
+// normalizing data inside reducer
