@@ -35,7 +35,7 @@ def seed_checkins():
             "You can tell the pride and attention to detail given to the craft just by the way the tour guide presents information. Very interesting tour and very generous, knowledgable, and genial bar staff.", 
             "My coworker and I came here for a tour, back in August. We learned so much about the distilling process. Prior to the tour, we watched the extremely skilled bartender make some very elaborate cocktails. You need to stop here if you're looking for a nice strong drink and lovely people."]
         }
-        
+
     locations = [
         "Home",
         "Other",
@@ -61,7 +61,7 @@ def seed_checkins():
         "Trinity River Distillery Home of Silver Star Spirits"]
 
     total_users = 20
-    total_drinks = 200
+    total_drinks = 1
     for dist_id in range(1, 21):
         used_users=[]
         for _ in range(1, 11):
