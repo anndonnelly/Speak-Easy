@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import SignUpForm from "../auth/SignUpForm";
 
+
 function SignUpFormModal() {
   const [showModal, setShowModal] = useState(false);
   const signupHandler = (e) => {
@@ -10,12 +11,10 @@ function SignUpFormModal() {
   };
   return (
     <div className="modal">
-      <a href="#" onClick={signupHandler}>
-        Sign Up
-      </a>
+      <button onClick={signupHandler}>Sign Up</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <SignUpForm />
+          <SignUpForm onClose={setShowModal} />
         </Modal>
       )}
     </div>

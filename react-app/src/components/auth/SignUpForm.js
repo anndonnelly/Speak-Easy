@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import "./SignUpForm.css"
 
-const SignUpForm = () => {
+const SignUpForm = ({onClose}) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -39,11 +40,12 @@ const SignUpForm = () => {
   };
 
   if (user) {
+    onClose(false);
     return <Redirect to='/' />;
   }
 
   return (
-    <div className="loginModal">
+    <div className="signUpModal">
       <form onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
@@ -87,7 +89,9 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" onClick={(e) => onSignUp(e)}>
+          Sign Up
+        </button>
       </form>
     </div>
   );

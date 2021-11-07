@@ -10,6 +10,8 @@ import { authenticate } from './store/session';
 // import AllCheckins from "./components/Checkins";
 import {Footer}  from './components/Footer';
 import SplashPage from './components/SplashPage';
+import LoginForm from './components/auth/LoginForm';
+import Home from './components/HomePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,7 +29,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <>
       <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
@@ -43,11 +45,12 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
-          <h1>My Home Page</h1>
+          <Home/>
         </ProtectedRoute>
       </Switch>
       <Footer />
-    </BrowserRouter>
+      </>
+    
   );
 }
 
