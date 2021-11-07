@@ -8,7 +8,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 // import AllCheckins from "./components/Checkins";
-// import Footer  from './components/Footer';
+import {Footer}  from './components/Footer';
 import SplashPage from './components/SplashPage';
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
           <SplashPage />
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm />
+          <SplashPage />
         </Route>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
@@ -46,6 +46,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

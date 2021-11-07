@@ -7,7 +7,6 @@ import LoginForm from '../auth/LoginForm'
 //           Login
 //         </button>
 
-
 function LoginFormModal() {
   const [showModal, setShowModal] = useState(false);
   const loginHandler = (e) => {
