@@ -2,6 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import LoginModal from "../LoginModal/index"
 
 const NavBar = () => {
   return (
@@ -30,6 +31,7 @@ const NavBar = () => {
         <li>
           <LogoutButton />
         </li>
+        <LoginModal/>
       </ul>
     </nav>
   );
