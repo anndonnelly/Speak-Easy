@@ -1,0 +1,15 @@
+.footerDiv {
+  display: flex;
+  margin-left: 20px;
+}
+
+.footerDiv a img {
+  width: 20px;
+  height: 20px;
+}
+
+.socialMedia {
+  width: 11%;
+  display: flex;
+  justify-content: space-around;
+}
