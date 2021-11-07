@@ -15,3 +15,17 @@ class Distillery(db.Model):
     longitude=db.Column(db.String)
     logo=db.Column(db.Text)
     checkin=db.relationship("Checkin", back_populates="distillery")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'name': self.name,
+            'street': self.street,
+            'city': self.street,
+            'state': self.state,
+            'latitude': self.latitude,
+            'longitude': self.longitude,
+            'logo': self.logo,
+            'checkin': self.logo
+        }
