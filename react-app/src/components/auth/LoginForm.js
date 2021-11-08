@@ -21,6 +21,16 @@ const LoginForm = ({ onClose }) => {
         });
     };
 
+    const demoLogin = async (e) => {
+        e.preventDefault();
+        const email = "demo@aa.io";
+        const password = "password";
+        const demo = await dispatch(login(email, password));
+        if (demo) {
+            return <Redirect to="/" />;
+        }
+    };
+
     const updatePassword = (e) => {
         setPassword(e.target.value);
     };
@@ -48,7 +58,7 @@ const LoginForm = ({ onClose }) => {
                     type="text"
                     placeholder="Email"
                     value={email}
-                    onChange={updateEmail}
+                    onChange={setEmail}
                 />
             </div>
             <div>
@@ -61,9 +71,16 @@ const LoginForm = ({ onClose }) => {
                     onChange={updatePassword}
                 />
             </div>
-            <button type="submit" onClick={(e) => onLogin(e)}>
-                Login
-            </button>
+            <div>
+                <button type="submit" onClick={(e) => onLogin(e)}>
+                    Login
+                </button>
+            </div>
+            <div>
+                <button type="submit" onClick={demoLogin}>
+                    Demo Login
+                </button>
+            </div>
         </form>
     );
 };
