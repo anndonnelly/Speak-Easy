@@ -36,7 +36,7 @@ const deleteCheckinAction = (checkin) => {
 //THUNKS
 export const getCheckinsThunk = () => async (dispatch) => {
     
-  const response = await fetch("api/checkins");
+  const response = await fetch("/api/checkins");
   let checkins_obj = await response.json();
   let checkinObj = checkins_obj.checkins;
   if (response.ok) {
@@ -47,7 +47,7 @@ export const getCheckinsThunk = () => async (dispatch) => {
 };
 
 export const createCheckinsThunk = (checkin) => async (dispatch) => {
-  const res = await fetch("api/checkins/new", {
+  const res = await fetch("/api/checkins/new", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export const createCheckinsThunk = (checkin) => async (dispatch) => {
 };
 
 export const editCheckinsThunk = ({id, checkin}) => async (dispatch) => {
-  const res = await fetch(`api/checkins/${id}`, {
+  const res = await fetch(`/api/checkins/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -82,7 +82,7 @@ export const editCheckinsThunk = ({id, checkin}) => async (dispatch) => {
 };
 
 export const deleteCheckinsThunk = (id) => async (dispatch) => {
-  const response = await fetch(`api/checkins/delete/${id}`);
+  const response = await fetch(`/api/checkins/delete/${id}`);
   if (response.ok) {
     dispatch(deleteCheckinAction(id));
   } else {
@@ -96,12 +96,13 @@ export default function checkinsReducer(state = initialState, action) {
   const newState = { ...state };
   switch (action.type) {
     case GET_CHECKINS:
-        return action.payload;
-    //     const allCheckins = action.payload;
-    //     Object.values(allCheckins).forEach((checkin) => {
-    //       newState[checkin.id] = checkin;
-    //     });
-    //   return newState;
+        // return action.payload;
+        const allCheckins = {};
+        action.payload.forEach(checkin => {
+          allCheckins[checkin.id] = checkin
+        })
+        console.log("bbbbbbbbbb", allCheckins)
+      return { ...state, ...allCheckins };
     case ADD_CHECKIN:
       newState[action.payload.id] = action.payload;
       return newState;

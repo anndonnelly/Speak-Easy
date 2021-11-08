@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 
-function AllCheckins() {
+function CreateCheckin() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [review, setReview] = useState("");
@@ -123,4 +123,4 @@ function AllCheckins() {
     );
   
 }
-export default AllCheckins;
+export default CreateCheckin;
