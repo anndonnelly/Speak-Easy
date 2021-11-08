@@ -32,11 +32,10 @@ def checkin():
         new_checkin = Checkin(
             review=data["review"],
             rating=data["rating"],
-            # location=data["location"],
+            location=data["location"],
             user_id= userid,
-            # drink_id=data["drink_id"],
-            # distillery_id=["istillery_id"])
-        )
+            drink_id=data["drink_id"],
+            distillery_id=["istillery_id"])
         db.session.add(new_checkin)
         db.session.commit()
         return new_checkin.to_dict()
