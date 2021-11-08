@@ -62,7 +62,7 @@ def seed_checkins():
     # TODO: Home and Other doesn't make sense here for seeder reviews - I was thinking of them as an option for a dropdown for a user making a review.
 
     total_users = 20
-    total_drinks = 1
+    total_drinks = 10
     for dist_id in range(1, 21):
         used_users = []
         for _ in range(1, 11):
