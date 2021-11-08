@@ -12,7 +12,8 @@ import { Footer } from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 import LoginForm from "./components/auth/LoginForm";
 import Home from "./components/HomePage";
-import AllCheckins from "./components/CreateCheckin";
+import CreateCheckin from "./components/CreateCheckin";
+import GetAllCheckins from "./components/AllCheckins/AllCheckins";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -47,7 +48,8 @@ function App() {
                 </ProtectedRoute>
                 <ProtectedRoute path="/" exact={true}>
                     {/* <Home/> */}
-                    <AllCheckins />
+                    <CreateCheckin />
+                    <GetAllCheckins />
                 </ProtectedRoute>
             </Switch>
             <Footer />

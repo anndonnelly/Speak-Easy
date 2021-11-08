@@ -13,14 +13,13 @@ def home():
     return {
         "checkins": [checkin.to_dict() for checkin in checkins]
     }
-    # ? too nested?
 
 @checkin_routes.route("/<int:id>")
 # @login_required
 def one_checkin(id):
     checkin = Checkin.query.get(id)
     return checkin.to_dict()
-    
+
 
 @checkin_routes.route("/new", methods=["POST"])
 # @login_required
@@ -34,10 +33,9 @@ def checkin():
             review=data["review"],
             rating=data["rating"],
             # location=data["location"],
-            user_id= userid,
+            user_id= userid,)
             # drink_id=data["drink_id"],
             # distillery_id=["istillery_id"])
-        )
         db.session.add(new_checkin)
         db.session.commit()
         return new_checkin.to_dict()
@@ -68,4 +66,3 @@ def checkin_delete(id):
     return {
         'deleted_comment': delete_checkin.to_dict()
     }
-
