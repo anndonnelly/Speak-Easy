@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { getCheckinsThunk } from "../../store/checkins";
 import { useDispatch, useSelector } from "react-redux";
+import './AllCheckins.css'
 
 function GetAllCheckins() {
   const dispatch = useDispatch();
@@ -16,9 +17,11 @@ function GetAllCheckins() {
       <ul >{checkins.map(checkin => {
           return (
             <div className="checkin">
-              <li key={checkin.id}>
+              <li key={checkin.review}>
                 {checkin.review}
+                <br></br>
                 {checkin.location}
+                <br></br>
                 {checkin.rating}
                 {""}
               </li>
