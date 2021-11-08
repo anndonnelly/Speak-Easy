@@ -64,7 +64,7 @@ def sign_up():
         distillery = Distillery(
             name=form.data['name'],
             email=form.data['email'],
-            hashed_password=form.data['hashed_password'],
+            distillery_password=form.data['hashed_password'],
             street=form.data['street'],
             city=form.data['city'],
             state=form.data['state'],
