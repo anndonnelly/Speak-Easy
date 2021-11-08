@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div className="home-page-wrapper">
-      <h1>PLS work</h1>
+      
     </div>
   );
 }

@@ -54,7 +54,7 @@ export const createCheckinsThunk = (checkin) => async (dispatch) => {
     },
     body: JSON.stringify(checkin),
   });
-
+  console.log("444444", res)
   if (res.ok) {
     let newCheckin = await res.json();
     dispatch(addCheckinAction(newCheckin));
