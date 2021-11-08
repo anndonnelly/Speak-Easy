@@ -3,7 +3,9 @@
     margin: 0 auto;
     padding: 0 32px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin-bottom: 100px;
+   
 }
 
 .search-input{
