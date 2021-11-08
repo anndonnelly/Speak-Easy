@@ -117,22 +117,35 @@ export const remove = (drinkId) => async (dispatch) => {
         return "Sorry, but an Error occured. Please try again.";
     }
 };
-/*-------------REDUCER-------------*/
-const initialState = {};
 
-const drinkReducer = (state = initialState, action) => {
-    //TODO finish reducer with immer produce fx
-    const produce = (state, draft) => {
-        switch (action.type) {
-            case LOAD_DRINKS: {
-                draft.drinks.forEach((drink) => {
-                    draft[drink.id] = action.drink;
-                });
-                return;
-            }
-            default:
-                return state;
+/*-------------REDUCER-------------*/
+const drinkReducer = produce((draft, action) => {
+    switch (action.type) {
+        case LOAD_DRINKS: {
+            draft.drinks.forEach((drink) => {
+                draft[drink.id] = action.drink;
+            });
+            break;
         }
-    };
-};
+        case ADD_DRINK:
+            draft.push(action.drink);
+            break;
+        case UPDATE_DRINK: {
+            const index = draft.findIndex(
+                (drink) => drink.id === action.drink.id
+            );
+            if (index !== -1) draft[index] = action.drink;
+            break;
+        }
+        case REMOVE_DRINK: {
+            const index = draft.findIndex(
+                (drink) => drink.id === action.drink.id
+            );
+            if (index !== -1) draft.splice(index, 1);
+            break;
+        }
+        default:
+            break;
+    }
+});
 export default drinkReducer;
