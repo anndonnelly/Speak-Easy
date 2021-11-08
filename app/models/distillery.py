@@ -14,6 +14,8 @@ class Distillery(db.Model):
     latitude=db.Column(db.String)
     longitude=db.Column(db.String)
     logo=db.Column(db.Text)
+
+    
     checkin=db.relationship("Checkin", back_populates="distillery")
 
     def to_dict(self):

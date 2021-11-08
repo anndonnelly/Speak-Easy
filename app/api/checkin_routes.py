@@ -13,7 +13,6 @@ def home():
     return {
         "checkins": [checkin.to_dict() for checkin in checkins]
     }
-    # ? too nested?
 
 @checkin_routes.route("/<int:id>")
 # @login_required
