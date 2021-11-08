@@ -21,5 +21,5 @@ class Drink(db.Model):
             'abv': self.abv,
             'rating': self.rating,
             'distillery_id': self.distillery_id,
-            'checkin': self.checkin
+            'checkin_ids': [checkin.id for checkin in self.checkin]
         }
