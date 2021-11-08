@@ -5,7 +5,7 @@ from app.models.drink import Drink, db
 drink_routes = Blueprint("drinks", __name__, url_prefix="/drinks")
 
 
-@drink_routes.route("", methods=["GET, POST"])
+@drink_routes.route("", methods=["GET", "POST"])
 def load_drinks():
   form = DrinkForm
   if form.validate_on_submit():
