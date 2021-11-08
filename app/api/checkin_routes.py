@@ -19,7 +19,7 @@ def home():
 def one_checkin(id):
     checkin = Checkin.query.get(id)
     return checkin.to_dict()
-    
+
 
 @checkin_routes.route("/new", methods=["POST"])
 # @login_required
@@ -32,10 +32,10 @@ def checkin():
         new_checkin = Checkin(
             review=data["review"],
             rating=data["rating"],
-            location=data["location"],
-            user_id= userid,
-            drink_id=data["drink_id"],
-            distillery_id=["istillery_id"])
+            # location=data["location"],
+            user_id= userid,)
+            # drink_id=data["drink_id"],
+            # distillery_id=["istillery_id"])
         db.session.add(new_checkin)
         db.session.commit()
         return new_checkin.to_dict()
@@ -66,4 +66,3 @@ def checkin_delete(id):
     return {
         'deleted_comment': delete_checkin.to_dict()
     }
-
