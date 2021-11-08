@@ -1,5 +1,6 @@
 from app.models import db, Drink
 
+
 def seed_drinks():
 
     drink1 = Drink(
@@ -36,8 +37,8 @@ def seed_drinks():
     db.session.add(drink9)
     db.session.add(drink10)
 
-
     db.session.commit()
+
 
 def undo_drinks():
     db.session.execute('TRUNCATE drinks RESTART IDENTITY CASCADE;')

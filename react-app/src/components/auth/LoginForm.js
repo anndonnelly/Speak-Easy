@@ -2,70 +2,87 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
-import "./LoginForm.css"
+import "./LoginForm.css";
 
-const LoginForm = ({onClose}) => {
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const user = useSelector((state) => state.session.user);
-  const dispatch = useDispatch();
+const LoginForm = ({ onClose }) => {
+    const [errors, setErrors] = useState([]);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const user = useSelector((state) => state.session.user);
+    const dispatch = useDispatch();
 
-  const onLogin = (e) => {
-    e.preventDefault();
-    setErrors([]);
-   
-    return dispatch(login(email, password)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
-    });
-  };
+    const onLogin = (e) => {
+        e.preventDefault();
+        setErrors([]);
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+        return dispatch(login(email, password)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+        });
+    };
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+    const demoLogin = async (e) => {
+        e.preventDefault();
+        const email = "demo@aa.io";
+        const password = "password";
+        const demo = await dispatch(login(email, password));
+        if (demo) {
+            return <Redirect to="/" />;
+        }
+    };
 
-  if (user) {
-    onClose(false);
-    return <Redirect to="/" />;
-  }
+    const updatePassword = (e) => {
+        setPassword(e.target.value);
+    };
 
-  return (
-    <form className="loginModal" onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-      </div>
-      <button type="submit" onClick={(e) => onLogin(e)}>
-        Login
-      </button>
-    </form>
-  );
+    if (user) {
+        return <Redirect to="/" />;
+    }
+
+    if (user) {
+        onClose(false);
+        return <Redirect to="/" />;
+    }
+
+    return (
+        <form className="loginModal" onSubmit={onLogin}>
+            <div>
+                {errors.map((error, ind) => (
+                    <div key={ind}>{error}</div>
+                ))}
+            </div>
+            <div>
+                <label htmlFor="email">Email</label>
+                <input
+                    name="email"
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                    onChange={setEmail}
+                />
+            </div>
+            <div>
+                <label htmlFor="password">Password</label>
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={updatePassword}
+                />
+            </div>
+            <div>
+                <button type="submit" onClick={(e) => onLogin(e)}>
+                    Login
+                </button>
+            </div>
+            <div>
+                <button type="submit" onClick={demoLogin}>
+                    Demo Login
+                </button>
+            </div>
+        </form>
+    );
 };
 
 export default LoginForm;

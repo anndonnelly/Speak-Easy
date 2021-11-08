@@ -1,12 +1,13 @@
 from app.models import db, Distillery
 
+
 def seed_distilleries():
     still_austin = Distillery(
         email='austin.still@gmail.com', hashed_password='password', name="Still Austin Whiskey Co.", street="440 E St Elmo Rd", city="Austin", state="Texas", latitude="30.2170", longitude="97.7614", logo="https://stillaustin.com/wp-content/uploads/2020/06/still-austin-whiskey-co-logo-square-primary-on-white.png")
     yellow_rose = Distillery(
         email='yellowrose@gmail.com', hashed_password='password2', name="Yellow Rose Distilling", street="1224 N Post Oak Rd", city="Houston", state="Texas", latitude="29.7884", longitude="95.4566", logo="https://dg6qn11ynnp6a.cloudfront.net/wp-content/uploads/2016/09/21134258/hQhi7ZZN.png")
     five_points = Distillery(
-        email='5points@gmail.com', hashed_password='password3', name="Five Points Distilling", street="8575 Union Hill Rd", city="Forney", state="Texas", latitude="32.6847", longitude="96.4779",logo="https://res.cloudinary.com/dis83syog/image/upload/v1636208014/SpeakEasy/Screen_Shot_2021-11-06_at_10.12.32_AM_zgguty.png")
+        email='5points@gmail.com', hashed_password='password3', name="Five Points Distilling", street="8575 Union Hill Rd", city="Forney", state="Texas", latitude="32.6847", longitude="96.4779", logo="https://res.cloudinary.com/dis83syog/image/upload/v1636208014/SpeakEasy/Screen_Shot_2021-11-06_at_10.12.32_AM_zgguty.png")
     firestone_robertson = Distillery(
         email='fireandrob@gmail.com', hashed_password='password4', name="Firestone & Robertson Distilling Co.", street="4250 Mitchell Blvd", city="Fort Worth", state="Texas", latitude="32.6999", longitude="97.2901", logo="https://dg6qn11ynnp6a.cloudfront.net/wp-content/uploads/2020/01/22143940/distillery0_a1208968-5056-a348-3a53f2590489c450.jpg")
     blackland = Distillery(
