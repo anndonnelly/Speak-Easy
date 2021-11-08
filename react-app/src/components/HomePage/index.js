@@ -7,7 +7,7 @@ export default function Home() {
     }, [])
 
   return (
-    <div>
+    <div className="home-page-wrapper">
       <h1>PLS work</h1>
     </div>
   );

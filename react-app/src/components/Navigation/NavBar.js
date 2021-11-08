@@ -1,42 +1,48 @@
-
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import LogoutButton from "../auth/LogoutButton";
 import LoginModal from "../LoginModal/index";
-import SignUpFormModal from "../SignUpModal/index"
+import SignUpFormModal from "../SignUpModal/index";
+import "./NavBar.css";
 
 const NavBar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
+    <header className="header">
+      <nav className="nav">
+        <div className="navbar-left">
           <NavLink to="/" exact={true} activeClassName="active">
-            Home
+            <img
+              className="logo"
+              src="https://res.cloudinary.com/dis83syog/image/upload/v1636326107/SpeakEasy/android-chrome-512x512_w7x1ff.png"
+              alt="logo"
+            ></img>
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
+        </div>
+        <div className="navbar-right">
+          <NavLink
+            className="nav-link"
+            to="/login"
+            exact={true}
+            activeClassName="active"
+          >
             <LoginModal />
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            <SignUpFormModal/>
+          <NavLink
+            className="nav-link"
+            to="/sign-up"
+            exact={true}
+            activeClassName="active"
+          >
+            <SignUpFormModal />
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
+          {/* <NavLink to="/users" exact={true} activeClassName="active">
             Users
-          </NavLink>
-        </li>
-        <li>
+          </NavLink> */}
           <LogoutButton />
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </nav>
+    </header>
   );
-}
+};
 
 export default NavBar;
-
-
