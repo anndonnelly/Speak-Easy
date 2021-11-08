@@ -11,6 +11,21 @@ class Distillery(db.Model):
     street=db.Column(db.String, nullable=False)
     city=db.Column(db.String, nullable=False)
     state=db.Column(db.String, nullable=False)
-    latitude=db.Column(db.Integer)
-    longitude=db.Column(db.Integer)
-    logo=db.Column(db.String)
+    latitude=db.Column(db.String)
+    longitude=db.Column(db.String)
+    logo=db.Column(db.Text)
+    checkin=db.relationship("Checkin", back_populates="distillery")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'name': self.name,
+            'street': self.street,
+            'city': self.street,
+            'state': self.state,
+            'latitude': self.latitude,
+            'longitude': self.longitude,
+            'logo': self.logo,
+            'checkin': self.logo
+        }

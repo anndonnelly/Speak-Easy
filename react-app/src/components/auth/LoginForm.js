@@ -2,24 +2,23 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import "./LoginForm.css";
 
-const LoginForm = () => {
+const LoginForm = ({ onClose }) => {
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const user = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
 
-    const onLogin = async (e) => {
+    const onLogin = (e) => {
         e.preventDefault();
-        const data = await dispatch(login(email, password));
-        if (data) {
-            setErrors(data);
-        }
-    };
+        setErrors([]);
 
-    const updateEmail = (e) => {
-        setEmail(e.target.value);
+        return dispatch(login(email, password)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+        });
     };
 
     const updatePassword = (e) => {
@@ -30,18 +29,13 @@ const LoginForm = () => {
         return <Redirect to="/" />;
     }
 
-    const demoLogin = async (e) => {
-        e.preventDefault();
-        const email = "demo@aa.io";
-        const password = "password";
-        const demo = await dispatch(login(email, password));
-        if (demo) {
-            return <Redirect to="/" />;
-        }
-    };
+    if (user) {
+        onClose(false);
+        return <Redirect to="/" />;
+    }
 
     return (
-        <form onSubmit={onLogin}>
+        <form className="loginModal" onSubmit={onLogin}>
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
@@ -66,11 +60,10 @@ const LoginForm = () => {
                     value={password}
                     onChange={updatePassword}
                 />
-                <button type="submit">Login</button>
-                <button type="submit" onClick={demoLogin}>
-                    Demo Login
-                </button>
             </div>
+            <button type="submit" onClick={(e) => onLogin(e)}>
+                Login
+            </button>
         </form>
     );
 };
