@@ -28,20 +28,16 @@ const updateDrink = (drink) => {
     };
 };
 
-const removeDrink = (drink) => {
+const removeDrink = (drinkId) => {
     return {
         type: REMOVE_DRINK,
-        drink,
+        drinkId,
     };
 };
 
 /*-------------THUNK CREATORS-------------*/
 export const load = () => async (dispatch) => {
-    const res = await fetch("/api/drink", {
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+    const res = await fetch("/api/drinks");
     if (res.ok) {
         const drinks = res.json();
         dispatch(loadDrinks(drinks));
@@ -57,7 +53,7 @@ export const load = () => async (dispatch) => {
 };
 
 export const add = (drink) => async (dispatch) => {
-    const res = fetch("/api/drink", {
+    const res = fetch("/api/drinks", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -79,8 +75,8 @@ export const add = (drink) => async (dispatch) => {
 };
 
 export const update = (drinkId, payload) => async (dispatch) => {
-    const res = fetch(`/api/drink/${drinkId}`, {
-        method: "PATCH",
+    const res = fetch(`/api/drinks/${drinkId}`, {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
@@ -101,12 +97,12 @@ export const update = (drinkId, payload) => async (dispatch) => {
 };
 
 export const remove = (drinkId) => async (dispatch) => {
-    const res = fetch(`/api/drink/${drinkId}`, {
+    const res = fetch(`/api/drinks/${drinkId}`, {
         method: "DELETE",
     });
     if (res.ok) {
-        const drink = res.json();
-        dispatch(removeDrink(drink));
+        const drinkId = res.json();
+        dispatch(removeDrink(drinkId));
     } else if (res.status < 500) {
         const data = res.json();
         if (data.errors) {
@@ -118,33 +114,60 @@ export const remove = (drinkId) => async (dispatch) => {
 };
 
 /*-------------REDUCER-------------*/
-const drinkReducer = produce((draft, action) => {
+// const drinksReducer = produce((draft, action) => {
+//     switch (action.type) {
+//         case LOAD_DRINKS: {
+//             draft.drinks.forEach((drink) => {
+//                 draft[drink.id] = action.drink;
+//             });
+//             break;
+//         }
+//         case ADD_DRINK:
+//             draft.push(action.drink);
+//             break;
+//         case UPDATE_DRINK: {
+//             const index = draft.findIndex(
+//                 (drink) => drink.id === action.drink.id
+//             );
+//             if (index !== -1) draft[index] = action.drink;
+//             break;
+//         }
+//         case REMOVE_DRINK: {
+//             const index = draft.findIndex(
+//                 (drink) => drink.id === action.drink.id
+//             );
+//             if (index !== -1) draft.splice(index, 1);
+//             break;
+//         }
+//         default:
+//             break;
+//     }
+// });
+
+const initalState = {};
+const drinksReducer = (state = initalState, action) => {
     switch (action.type) {
         case LOAD_DRINKS: {
-            draft.drinks.forEach((drink) => {
-                draft[drink.id] = action.drink;
-            });
-            break;
+            return {
+                ...state,
+                ...action.drinks,
+            };
         }
         case ADD_DRINK:
-            draft.push(action.drink);
-            break;
         case UPDATE_DRINK: {
-            const index = draft.findIndex(
-                (drink) => drink.id === action.drink.id
-            );
-            if (index !== -1) draft[index] = action.drink;
-            break;
+            return {
+                ...state,
+                [action.drink.id]: action.drink,
+            };
         }
         case REMOVE_DRINK: {
-            const index = draft.findIndex(
-                (drink) => drink.id === action.drink.id
-            );
-            if (index !== -1) draft.splice(index, 1);
-            break;
+            const newState = { ...state };
+            delete newState[action.drink];
+            return newState;
         }
         default:
-            break;
+            return state;
     }
-});
-export default drinkReducer;
+};
+
+export default drinksReducer;
