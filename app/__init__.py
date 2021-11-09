@@ -7,7 +7,8 @@ from flask_login import LoginManager
 
 from .models import db, User
 from .api.user_routes import user_routes
-from .api.auth_routes import auth_routes
+from .api.user_auth_routes import auth_routes
+from .api.distillery_auth_routes import distillery_auth_routes
 from .api.checkin_routes import checkin_routes
 from .api.drink_routes import drink_routes
 
@@ -32,7 +33,8 @@ app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
-app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(auth_routes, url_prefix='/api/users/auth')
+app.register_blueprint(distillery_auth_routes, url_prefix='/api/distilleries/auth')
 app.register_blueprint(drink_routes, url_prefix='/api/drinks')
 app.register_blueprint(checkin_routes, url_prefix='/api/checkins')
 db.init_app(app)

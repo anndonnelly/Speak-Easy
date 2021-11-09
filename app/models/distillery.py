@@ -1,7 +1,8 @@
 from .db import db
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
-
-class Distillery(db.Model):
+class Distillery(db.Model, UserMixin):
     __tablename__ = "distilleries"
 
     id=db.Column(db.Integer, primary_key=True)
@@ -15,8 +16,21 @@ class Distillery(db.Model):
     longitude=db.Column(db.String)
     logo=db.Column(db.Text)
 
-    
+
     checkin=db.relationship("Checkin", back_populates="distillery")
+
+    @property
+    def distillery_password(self):
+        return self.hashed_password
+
+    @distillery_password.setter
+    def distillery_password(self, password):
+        self.hashed_password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.hashed_password, password)
+
+
 
     def to_dict(self):
         return {
@@ -29,5 +43,5 @@ class Distillery(db.Model):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'logo': self.logo,
-            'checkin': self.logo
+            'checkin_ids': [checkin.id for checkin in self.checkin]
         }
