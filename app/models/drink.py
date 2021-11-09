@@ -9,7 +9,7 @@ class Drink(db.Model):
     image=db.Column(db.String)
     abv=db.Column(db.Integer)
     rating=db.Column(db.Integer)
-    distillery_id=db.Column(db.Integer, db.ForeignKey("distilleries.id", ondelete="cascade"), nullable=False)
+    distillery_id=db.Column(db.Integer, db.ForeignKey("distilleries.id"), nullable=False)
 
 
     checkin=db.relationship("Checkin", back_populates="drink")

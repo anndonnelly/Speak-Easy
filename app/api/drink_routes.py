@@ -43,6 +43,13 @@ def one_drink(id):
     return drink.to_dict()
 
 
+@drink_routes.route("/<int:id>", methods=["DELETE"])
+def delete_drink(id):
+    drink = Drink.query.get(id)
+    Drink.query.filter(Drink.id == id).delete()
+    db.session.commit()
+    return {"delete_drink": drink.to_dict()}
+
 # @drink_routes.route('/<int:id>', methods=["POST"])
 # # @login_required
 # def upload_file():
