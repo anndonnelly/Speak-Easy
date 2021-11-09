@@ -8,7 +8,8 @@ class Checkin(db.Model):
     review = db.Column(db.Text)
     rating = db.Column(db.Integer)
     location = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        "users.id", ondelete="CASCADE"), nullable=False)
     drink_id = db.Column(db.Integer, db.ForeignKey(
         "drinks.id", ondelete="CASCADE"), nullable=False)
     distillery_id = db.Column(db.Integer, db.ForeignKey(
