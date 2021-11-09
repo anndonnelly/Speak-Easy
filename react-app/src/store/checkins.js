@@ -101,7 +101,6 @@ export default function checkinsReducer(state = initialState, action) {
         action.payload.forEach(checkin => {
           allCheckins[checkin.id] = checkin
         })
-        console.log("bbbbbbbbbb", allCheckins)
       return { ...state, ...allCheckins };
     case ADD_CHECKIN:
       newState[action.payload.id] = action.payload;
