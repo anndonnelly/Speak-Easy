@@ -2,15 +2,15 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import checkins from "./checkins";
-import drinksReducer from "./drinks";
-import distilleriesReducer from "./distillery_session";
+import drinks from "./drinks";
+import distilleries from "./distillery_session";
 import modal from "./modal";
 
 const rootReducer = combineReducers({
     session,
     checkins,
-    drinksReducer,
-    distilleriesReducer,
+    drinks,
+    distilleries,
     modal,
 });
 
