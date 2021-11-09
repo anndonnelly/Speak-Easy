@@ -7,11 +7,11 @@ import distilleriesReducer from "./distillery_session";
 import modal from "./modal";
 
 const rootReducer = combineReducers({
-  session,
-  checkins,
-  drinksReducer,
-  distilleriesReducer,
-  modal,
+    session,
+    checkins,
+    drinksReducer,
+    distilleriesReducer,
+    modal,
 });
 
 let enhancer;
