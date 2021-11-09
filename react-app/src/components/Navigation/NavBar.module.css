@@ -22,8 +22,9 @@
 .navbarLeft {
     height: 72px;
 }
-.drinks {
-    border-color: red;
+.dContainer {
+    display: flex;
+    gap: 10px;
 }
 .navbarRight {
     height: 40px;

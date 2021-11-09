@@ -8,8 +8,8 @@ import distilleriesReducer from "./distillery_session";
 const rootReducer = combineReducers({
     session,
     checkins,
-    drinks: drinksReducer,
-    distilleries: distilleriesReducer,
+    drinksReducer,
+    distilleriesReducer,
 });
 
 let enhancer;
