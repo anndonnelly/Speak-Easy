@@ -64,8 +64,10 @@ def checkin_edit(id):
 @checkin_routes.route('/<int:id>', methods=["DELETE"])
 # @login_required
 def checkin_delete(id):
+    # deleted_checkin = Checkin.query.get(id)
     Checkin.query.filter(Checkin.id == id).delete()
     db.session.commit()
+    # return {"deleted_checkin": deleted_checkin.to_dict()}
     return "True", 201
 
 

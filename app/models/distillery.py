@@ -46,7 +46,6 @@ class Distillery(db.Model, UserMixin):
             'logo': self.logo,
             'checkin_ids': [checkin.id for checkin in self.checkin]
         }
-        # TODO add to card dict for distilleries
         # TODO add distillery page including drinks to dict
 
 
