@@ -96,9 +96,9 @@ export const signupDistillery =
         }
     };
 /*-------------REDUCER-------------*/
-const initialState = { distilleries: null };
+const initialState = { distilleriesSession: null };
 
-const distilleries = (state = initialState, action) => {
+const distilleriesSession = (state = initialState, action) => {
     switch (action.type) {
         case SET_DISTILLERY: {
             return { distilleries: action.distillery };
@@ -110,4 +110,4 @@ const distilleries = (state = initialState, action) => {
             return state;
     }
 };
-export default distilleries;
+export default distilleriesSession;

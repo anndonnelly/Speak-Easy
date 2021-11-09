@@ -1,0 +1,11 @@
+.distilleryContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+.indivDist {
+    background-color: red;
+}
+.distName {
+    border: 2px solid red;
+}

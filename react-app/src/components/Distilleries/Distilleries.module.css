@@ -1,4 +1,4 @@
-.checkin-modal-button{
+.checkinModalButton {
     height: 40px;
     border-radius: 4px;
     font-size: 16px;
@@ -9,4 +9,10 @@
     border: 2px solid grey;
     color: black;
     text-decoration: none;
+}
+
+.distilleryCard {
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
 }
