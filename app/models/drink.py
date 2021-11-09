@@ -29,3 +29,12 @@ class Drink(db.Model):
             'distillery_id': self.distillery_id,
             'checkin_ids': [checkin.id for checkin in self.checkin]
         }
+
+    def to_card_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'image': self.image,
+            'rating': self.rating,
+            'distillery_id': self.distillery_id,
+        }

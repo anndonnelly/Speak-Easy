@@ -24,7 +24,7 @@ def load_drinks():
         db.session.add(new_drink)
         db.session.commit()
         return new_drink.to_dict()
-    return {drink.id: drink.to_dict() for drink in Drink.query.all()}
+    return {drink.id: drink.to_card_dict() for drink in Drink.query.all()}
 
 
 @drink_routes.route("/<int:id>", methods=["GET", "PUT"])
