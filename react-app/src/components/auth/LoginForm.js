@@ -39,9 +39,9 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-     history.push('/')
-  }
+//   if (user) {
+//      history.push('/')
+//   }
 
   return (
     <form className="loginModal" onSubmit={onLogin}>

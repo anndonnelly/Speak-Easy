@@ -17,7 +17,7 @@ function CheckinCard({checkin}) {
 
   const checkins = useSelector((state) => Object.values(state.checkins));
   const checkinId = checkin.id
-  console.log("CheckinID", checkinId);
+//   console.log("CheckinID", checkinId);
 
   const handleEdit = async (e) => {
        e.preventDefault();
