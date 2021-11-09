@@ -11,8 +11,9 @@ class Drink(db.Model):
     rating=db.Column(db.Integer)
     distillery_id=db.Column(db.Integer, db.ForeignKey("distilleries.id"), nullable=False)
 
-    
+
     checkin=db.relationship("Checkin", back_populates="drink")
+    distillery=db.relationship("Distillery", back_populates="drink")
 
     def to_dict(self):
         return {

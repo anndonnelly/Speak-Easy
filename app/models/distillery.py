@@ -18,6 +18,7 @@ class Distillery(db.Model, UserMixin):
 
 
     checkin=db.relationship("Checkin", back_populates="distillery")
+    drink=db.relationship("Drink", back_populates="distillery")
 
     @property
     def distillery_password(self):

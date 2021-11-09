@@ -1,8 +1,11 @@
+import boto3
+import botocore
 from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
 from app.forms.checkin_form import CheckinForm
 from app.models.checkin import Checkin, db
-
+from app.config import Config
+from app.aws_s3 import *
 
 checkin_routes = Blueprint("checkins", __name__, url_prefix="/checkins")
 
@@ -67,3 +70,26 @@ def checkin_delete(id):
     return {
         'deleted_comment': delete_checkin.to_dict()
     }
+
+# @user_routes.route('/<int:id>', methods=["POST"])
+# @login_required
+# def upload_file():
+#     if "file" not in request.files:
+#         return "No user_file key in request.files"
+
+#     file = request.files["file"]
+
+#     if file:
+#          file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+#          # create an instance of <Your_Model>
+#          file = File(
+#              user_id=request.form.get('user_id')
+#              # extract any form fields you've appended to the
+#              # body of your POST request
+#              # i.e.
+#              url=file_url
+#          )
+#          db.session.add(file)
+#          db.session.commit()
+#          return file.to_dict()
+#     else: return "No File Attached!"
