@@ -17,25 +17,25 @@ import Modal from "./components/CheckinModal";
 import Distilleries from "./components/Distilleries";
 
 function App() {
-    // const [loaded, setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
         (async () => {
             await dispatch(authenticate());
-            // setLoaded(true);
+            setLoaded(true);
         })();
     }, [dispatch]);
 
-    // if (!loaded) {
-    //     return null;
-    // }
+    if (!loaded) {
+        return null;
+    }
 
     return (
       <>
         <NavBar sessionUser={sessionUser} />
-
+        <Modal />
         <Switch>
           <Route path="/login" exact={true}>
             <SplashPage />
@@ -55,7 +55,6 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path="/distilleries">
             <Distilleries />
-            <Modal />
           </ProtectedRoute>
         </Switch>
         <Footer />
