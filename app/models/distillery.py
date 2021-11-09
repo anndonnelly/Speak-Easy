@@ -48,3 +48,12 @@ class Distillery(db.Model, UserMixin):
         }
         # TODO add to card dict for distilleries
         # TODO add distillery page including drinks to dict
+
+
+    def to_card_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'street': self.street,
+            'logo': self.logo,
+        }
