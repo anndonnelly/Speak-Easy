@@ -24,6 +24,14 @@ def user(id):
     return user.to_dict()
 
 
+@user_routes.route('/<int:id>', methods=["DELETE"])
+def delete_user(id):
+    user = User.query.get(id)
+    User.query.filter(User.id == id).delete()
+    db.session.commit()
+    return "True", 201
+
+
 # @user_routes.route('/<int:id>', methods=["POST"])
 # @login_required
 # def upload_file():
