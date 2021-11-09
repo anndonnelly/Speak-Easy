@@ -24,7 +24,7 @@ class DistillerySignUpForm(FlaskForm):
     name = StringField(
         'name', validators=[DataRequired(), distillery_exists])
     email = StringField('email', validators=[DataRequired(), distillery_exists])
-    hashed_password = StringField('password', validators=[DataRequired()])
+    distillery_password = StringField('password', validators=[DataRequired()])
     street = StringField('street', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])
