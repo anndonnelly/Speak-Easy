@@ -14,15 +14,15 @@ def distillery_exists(form, field):
 
 def password_matches(form, field):
     # Checking if password matches
-    hashed_password = field.data
+    password = field.data
     email = form.data['email']
     distillery = Distillery.query.filter(Distillery.email == email).first()
     if not distillery:
         raise ValidationError('No such Distillery exists.')
-    if not distillery.check_password(hashed_password):
+    if not distillery.check_password(password):
         raise ValidationError('Password was incorrect.')
 
 
 class DistilleryLoginForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), distillery_exists])
-    hashed_password = StringField('password', validators=[DataRequired(), password_matches])
+    password = StringField('password', validators=[DataRequired(), password_matches])
