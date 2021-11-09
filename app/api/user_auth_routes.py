@@ -4,7 +4,7 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
-auth_routes = Blueprint('auth', __name__)
+auth_routes = Blueprint('user_auth', __name__, url_prefix="/users")
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -18,7 +18,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@auth_routes.route('/')
+@auth_routes.route('')
 def authenticate():
     """
     Authenticates a user.
