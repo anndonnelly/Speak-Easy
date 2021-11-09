@@ -36,6 +36,7 @@ function CheckinCard({checkin}) {
             setEditReview("")
             setErrors([])
           }
+          setEdit(false)
   }
 
 
