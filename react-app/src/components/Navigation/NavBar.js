@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import DrinksFeed from "../DrinksFeed";
+import Distilleries from "../Distilleries";
 import LogoutButton from "../auth/LogoutButton";
 import LoginModal from "../LoginModal/index";
 import SignUpFormModal from "../SignUpModal/index";
@@ -19,8 +21,13 @@ const NavBar = ({ sessionUser }) => {
                             src="https://res.cloudinary.com/dis83syog/image/upload/v1636326107/SpeakEasy/android-chrome-512x512_w7x1ff.png"
                             alt="logo"></img>
                     </NavLink>
-                    <NavLink className={styles.drinks} to="/drinks">
-                        Drinks
+                </div>
+                <div className={styles.dContainer}>
+                    <NavLink to="/drinks">
+                        <DrinksFeed></DrinksFeed>
+                    </NavLink>
+                    <NavLink to="/distilleries">
+                        <Distilleries></Distilleries>
                     </NavLink>
                 </div>
                 <div className={styles.navbarRight}>
