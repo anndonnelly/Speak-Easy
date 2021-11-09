@@ -9,15 +9,20 @@ from app.config import Config
 from app.aws_s3 import *
 
 
-distillery_routes = Blueprint('distilleries', __name__, url_prefix='/distilleries')
+distillery_routes = Blueprint(
+    'distilleries', __name__, url_prefix='/distilleries')
 
 # TODO: figure out why this is rerouting
+
+
 @distillery_routes.route('/')
 # @login_required
 def distilleries():
     return {distillery.id: distillery.to_dict() for distillery in Distillery.query.all()}
 
-#TODO: comment back in login_required once we have this working on front end
+# TODO: comment back in login_required once we have this working on front end
+
+
 @distillery_routes.route('/<int:id>')
 # @login_required
 def distillery(id):
@@ -50,8 +55,7 @@ def delete_distillery(id):
     db.session.commit()
     return {
         'deleted_distillery': distillery.to_dict()
-        }
-
+    }
 
 
 # @user_routes.route('/<int:id>', methods=["POST"])
