@@ -32,13 +32,11 @@ function App() {
 
     return (
         <>
-            <NavBar />
+            <NavBar sessionUser={sessionUser} />
             <Switch>
-                {!sessionUser && (
-                    <Route path="/login" exact={true}>
-                        <SplashPage />
-                    </Route>
-                )}
+                <Route path="/login" exact={true}>
+                    <SplashPage />
+                </Route>
                 <Route path="/sign-up" exact={true}>
                     <SplashPage />
                 </Route>
