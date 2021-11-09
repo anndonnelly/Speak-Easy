@@ -22,14 +22,16 @@ const NavBar = ({ sessionUser }) => {
                             alt="logo"></img>
                     </NavLink>
                 </div>
-                <div className={styles.dContainer}>
-                    <NavLink to="/drinks">
-                        <DrinksFeed></DrinksFeed>
-                    </NavLink>
-                    <NavLink to="/distilleries">
-                        <Distilleries></Distilleries>
-                    </NavLink>
-                </div>
+                {sessionUser && (
+                    <div className={styles.dContainer}>
+                        <NavLink to="/drinks">
+                            <DrinksFeed></DrinksFeed>
+                        </NavLink>
+                        <NavLink to="/distilleries">
+                            <Distilleries></Distilleries>
+                        </NavLink>
+                    </div>
+                )}
                 <div className={styles.navbarRight}>
                     {!sessionUser && (
                         <>
