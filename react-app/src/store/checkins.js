@@ -35,7 +35,7 @@ const deleteCheckinAction = (checkin) => {
 
 //THUNKS
 export const getCheckinsThunk = () => async (dispatch) => {
-    
+
   const response = await fetch("/api/checkins");
   let checkins_obj = await response.json();
   let checkinObj = checkins_obj.checkins;
@@ -64,7 +64,7 @@ export const createCheckinsThunk = (checkin) => async (dispatch) => {
   }
 };
 
-export const editCheckinsThunk = ({id, checkin}) => async (dispatch) => {
+export const editCheckinsThunk = (id, checkin) => async (dispatch) => {
   const res = await fetch(`/api/checkins/${id}`, {
     method: "PATCH",
     headers: {
@@ -101,7 +101,6 @@ export default function checkinsReducer(state = initialState, action) {
         action.payload.forEach(checkin => {
           allCheckins[checkin.id] = checkin
         })
-        console.log("bbbbbbbbbb", allCheckins)
       return { ...state, ...allCheckins };
     case ADD_CHECKIN:
       newState[action.payload.id] = action.payload;
