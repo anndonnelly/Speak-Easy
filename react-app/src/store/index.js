@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session";
 import checkins from "./checkins";
 import drinksReducer from "./drinks";
+import distilleriesReducer from "./distillery_session";
 
 const rootReducer = combineReducers({
     session,
     checkins,
     drinks: drinksReducer,
+    distilleries: distilleriesReducer,
 });
 
 let enhancer;

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import styles from "./NavBar.module.css";
-
+//! Isn't being used can we delete?
 const NavBar = () => {
     return (
         <nav className={styles.navBar}>
