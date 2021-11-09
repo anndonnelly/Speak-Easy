@@ -35,9 +35,14 @@ const Distilleries = () => {
                     Checkin
                 </button>
             </div>
-            {distilleries.map((distillery) => (
-                <DistilleryCard key={distillery.id} distillery={distillery} />
-            ))}
+            <div className={styles.feedWrapper}>
+                {distilleries.length &&
+                    distilleries.map((distillery, idx) => (
+                        <div key={idx} className={styles.distilleryCard}>
+                            <DistilleryCard distillery={distillery} />
+                        </div>
+                    ))}
+            </div>
         </>
     );
 };

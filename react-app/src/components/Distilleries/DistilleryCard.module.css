@@ -2,10 +2,23 @@
     display: flex;
     flex-direction: column;
     border: 2px solid black;
+    gap: 5px;
 }
-.indivDist {
+/* .indivDist {
     background-color: red;
 }
 .distName {
     border: 2px solid red;
+}
+.distStreet {
+    color: red;
+} */
+
+.img {
+    height: 50px;
+    width: 50px;
+}
+.imgContainer {
+    height: 50px;
+    width: 50px;
 }

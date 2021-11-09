@@ -12,7 +12,6 @@ export const loadDistilleries = () => async (dispatch) => {
     if (res.ok) {
         const distilleries = await res.json();
         dispatch(load(distilleries));
-        return distilleries;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
