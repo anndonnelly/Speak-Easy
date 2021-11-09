@@ -61,15 +61,13 @@ def checkin_edit(id):
         return form.errors
 
 
-@checkin_routes.route('/delete/<int:id>')
+@checkin_routes.route('/<int:id>', methods=["DELETE"])
 # @login_required
 def checkin_delete(id):
-    delete_checkin= Checkin.query.filter(Checkin.id == id).first()
     Checkin.query.filter(Checkin.id == id).delete()
     db.session.commit()
-    return {
-        'deleted_comment': delete_checkin.to_dict()
-    }
+    return "True", 201
+
 
 # @user_routes.route('/<int:id>', methods=["POST"])
 # @login_required
