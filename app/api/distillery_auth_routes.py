@@ -53,17 +53,6 @@ def logout():
     return {'message': 'User logged out'}
 
 
-# @client_routes.route('/', methods=['POST'])
-# @login_required
-# def create_client():
-#     '''Create a new client'''
-#     client = Client(**request.json)
-#     db.session.add(client)
-#     db.session.commit()
-#     return client.to_dict()
-
-
-
 @distillery_auth_routes.route('/signup', methods=['POST'])
 def sign_up():
     """
