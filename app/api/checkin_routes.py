@@ -52,7 +52,8 @@ def checkin_edit(id):
         edit_checkin.review = form.data["review"]
         edit_checkin.rating = form.data["rating"]
         db.session.commit()
-        return redirect("/")
+        # return redirect("/")
+        return edit_checkin.to_dict()
     else:
         return form.errors
 

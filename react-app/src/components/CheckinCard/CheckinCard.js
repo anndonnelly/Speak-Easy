@@ -15,6 +15,8 @@ function CheckinCard({checkin}) {
   const [errors, setErrors] = useState([])
 
   const checkins = useSelector((state) => Object.values(state.checkins));
+  const checkinId = checkin.id
+
 
   const handleEdit = async (e) => {
        e.preventDefault();
@@ -26,21 +28,25 @@ function CheckinCard({checkin}) {
           // location: location
         };
 
-        let response = await dispatch(editCheckinsThunk(editedCheckin));
+        let response = dispatch(editCheckinsThunk(checkinId, editedCheckin));
          if (response) {
            setErrors(response);
          }
+         if (!response){
+            setEditReview("")
+            setErrors([])
+          }
   }
 
 
   if(edit){
       return (
         <form onSubmit={handleEdit}>
-          <ul>
+          {/* <ul>
             {errors.map((error) => (
               <li key={error}>{error}</li>
             ))}
-          </ul>
+          </ul> */}
           <div>
             <label>Review</label>
             <textarea
@@ -91,7 +97,7 @@ function CheckinCard({checkin}) {
             </select>
           </div>
           <div>
-            <button>Checkin</button>
+            <button >Update</button>
           </div>
         </form>
       );
@@ -99,26 +105,25 @@ function CheckinCard({checkin}) {
 
   return (
     <>
-      <ul >{checkins.map(checkin => {
-          return (
+        <ul>
             <div className="checkin">
-              <li key={checkin.review}>
-                {checkin.review}
-                <br></br>
-                {checkin.location}
-                <br></br>
-                {checkin.rating}
-                <br></br>
-                <button onClick={() => setEdit(true)}>Edit</button>
-                <button>Delete</button>
-              </li>
+                <li>
+                    {checkin.review}
+                    <br></br>
+                    {checkin.location}
+                    <br></br>
+                    {checkin.rating}
+                    <br></br>
+                    <button onClick={() => setEdit(true)}>Edit</button>
+                    <button>Delete</button>
+                </li>
             </div>
-          );})} </ul>
+        </ul>
     </>
   );
 
 
-  
+
 }
 
 export default CheckinCard;
