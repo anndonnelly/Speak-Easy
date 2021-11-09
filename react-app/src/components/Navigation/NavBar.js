@@ -7,7 +7,9 @@ import LoginModal from "../LoginModal/index";
 import SignUpFormModal from "../SignUpModal/index";
 import styles from "./NavBar.module.css";
 
+
 const NavBar = ({ sessionUser }) => {
+
     return (
         <header className={styles.header}>
             <nav className={styles.nav}>
@@ -28,7 +30,7 @@ const NavBar = ({ sessionUser }) => {
                             <DrinksFeed></DrinksFeed>
                         </NavLink>
                         <NavLink to="/distilleries">
-                            <Distilleries></Distilleries>
+                            Distilleries
                         </NavLink>
                     </div>
                 )}

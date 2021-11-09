@@ -1,0 +1,12 @@
+.checkin-modal-button{
+    height: 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    background: transparent;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    border: 2px solid grey;
+    color: black;
+    text-decoration: none;
+}
