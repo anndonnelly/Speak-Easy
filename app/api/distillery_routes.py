@@ -53,9 +53,7 @@ def delete_distillery(id):
     distillery = Distillery.query.get(id)
     Distillery.query.filter(Distillery.id == id).delete()
     db.session.commit()
-    return {
-        'deleted_distillery': distillery.to_dict()
-    }
+    return True, 201
 
 
 # @user_routes.route('/<int:id>', methods=["POST"])

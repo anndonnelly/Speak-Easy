@@ -1,5 +1,3 @@
-//import produce from "immer";
-
 /*-------------Types-------------*/
 const LOAD_DRINKS = "drink/LOAD_DRINKS";
 const ADD_DRINK = "drink/ADD_DRINK";
@@ -114,38 +112,8 @@ export const remove = (drinkId) => async (dispatch) => {
 };
 
 /*-------------REDUCER-------------*/
-// const drinksReducer = produce((draft, action) => {
-//     switch (action.type) {
-//         case LOAD_DRINKS: {
-//             draft.drinks.forEach((drink) => {
-//                 draft[drink.id] = action.drink;
-//             });
-//             break;
-//         }
-//         case ADD_DRINK:
-//             draft.push(action.drink);
-//             break;
-//         case UPDATE_DRINK: {
-//             const index = draft.findIndex(
-//                 (drink) => drink.id === action.drink.id
-//             );
-//             if (index !== -1) draft[index] = action.drink;
-//             break;
-//         }
-//         case REMOVE_DRINK: {
-//             const index = draft.findIndex(
-//                 (drink) => drink.id === action.drink.id
-//             );
-//             if (index !== -1) draft.splice(index, 1);
-//             break;
-//         }
-//         default:
-//             break;
-//     }
-// });
-
 const initalState = {};
-const drinksReducer = (state = initalState, action) => {
+const drinks = (state = initalState, action) => {
     switch (action.type) {
         case LOAD_DRINKS: {
             return {
@@ -170,4 +138,4 @@ const drinksReducer = (state = initalState, action) => {
     }
 };
 
-export default drinksReducer;
+export default drinks;
