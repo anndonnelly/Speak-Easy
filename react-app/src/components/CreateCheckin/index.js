@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
+import { hideModal } from "../../store/modal";
 
 function CreateCheckin() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function CreateCheckin() {
         setErrors([])
       }
     }
+    dispatch(hideModal())
 
   }
 
