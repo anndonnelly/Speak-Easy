@@ -53,6 +53,17 @@ def logout():
     return {'message': 'User logged out'}
 
 
+# @client_routes.route('/', methods=['POST'])
+# @login_required
+# def create_client():
+#     '''Create a new client'''
+#     client = Client(**request.json)
+#     db.session.add(client)
+#     db.session.commit()
+#     return client.to_dict()
+
+
+
 @distillery_auth_routes.route('/signup', methods=['POST'])
 def sign_up():
     """
@@ -64,7 +75,7 @@ def sign_up():
         distillery = Distillery(
             name=form.data['name'],
             email=form.data['email'],
-            distillery_password=form.data['hashed_password'],
+            distillery_password=form.data['distillery_password'],
             street=form.data['street'],
             city=form.data['city'],
             state=form.data['state'],
