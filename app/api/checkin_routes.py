@@ -6,13 +6,14 @@ from app.forms.checkin_form import CheckinForm
 from app.models.checkin import Checkin, db
 from app.config import Config
 from app.aws_s3 import *
+from sqlalchemy import desc
 
 checkin_routes = Blueprint("checkins", __name__, url_prefix="/checkins")
 
 @checkin_routes.route("")
 # @login_required
 def home():
-    checkins = Checkin.query.all()
+    checkins = Checkin.query.order_by(desc(Checkin.created_at)).all()
     return {
         "checkins": [checkin.to_dict() for checkin in checkins]
     }

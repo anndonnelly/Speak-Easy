@@ -1,5 +1,6 @@
 from app.models import db, Checkin
 import random
+import datetime
 
 
 def seed_checkins():
@@ -60,7 +61,7 @@ def seed_checkins():
         "Lockwood Distilling Company",
         "Trinity River Distillery Home of Silver Star Spirits"]
     # TODO: Home and Other doesn't make sense here for seeder reviews - I was thinking of them as an option for a dropdown for a user making a review.
-
+    
     total_users = 20
     total_drinks = 10
     for dist_id in range(1, 21):
@@ -84,7 +85,9 @@ def seed_checkins():
                 location=new_location,
                 user_id=new_user_id,
                 drink_id=new_drink,
-                distillery_id=dist_id
+                distillery_id=dist_id,
+                # created_at = datetime.datetime,
+                # updated_at = datetime.datetime
             )
             db.session.add(new_checkin)
     db.session.commit()
