@@ -3,6 +3,7 @@ import { getCheckinsThunk } from "../../store/checkins";
 import { useDispatch, useSelector } from "react-redux";
 import './CheckinCard.css';
 import { editCheckinsThunk } from "../../store/checkins";
+import { deleteCheckinsThunk } from "../../store/checkins";
 
 function CheckinCard({checkin}) {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function CheckinCard({checkin}) {
 
   const checkins = useSelector((state) => Object.values(state.checkins));
   const checkinId = checkin.id
-
+  console.log("CheckinID", checkinId);
 
   const handleEdit = async (e) => {
        e.preventDefault();
@@ -38,6 +39,10 @@ function CheckinCard({checkin}) {
           }
           setEdit(false)
   }
+
+  const deleteCheckin = () => {
+    dispatch(deleteCheckinsThunk(checkinId));
+  };
 
 
   if(edit){
@@ -106,20 +111,20 @@ function CheckinCard({checkin}) {
 
   return (
     <>
-        <ul>
-            <div className="checkin">
-                <li>
-                    {checkin.review}
-                    <br></br>
-                    {checkin.location}
-                    <br></br>
-                    {checkin.rating}
-                    <br></br>
-                    <button onClick={() => setEdit(true)}>Edit</button>
-                    <button>Delete</button>
-                </li>
-            </div>
-        </ul>
+      <ul>
+        <div className="checkin">
+          <li>
+            {checkin.review}
+            <br></br>
+            {checkin.location}
+            <br></br>
+            {checkin.rating}
+            <br></br>
+            <button onClick={() => setEdit(true)}>Edit</button>
+            <button onClick={deleteCheckin}>Delete</button>
+          </li>
+        </div>
+      </ul>
     </>
   );
 
