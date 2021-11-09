@@ -12,6 +12,7 @@ export const loadDistilleries = () => async (dispatch) => {
     if (res.ok) {
         const distilleries = await res.json();
         dispatch(load(distilleries));
+        return distilleries;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -27,7 +28,7 @@ export const loadDistilleries = () => async (dispatch) => {
 
 //TODO delete single distillery
 /*-------------REDUCER-------------*/
-const initialState = { distilleries: null };
+const initialState = { distilleries: {} };
 
 const distilleries = (state = initialState, action) => {
     switch (action.type) {

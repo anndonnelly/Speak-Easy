@@ -112,7 +112,7 @@ export const remove = (drinkId) => async (dispatch) => {
 };
 
 /*-------------REDUCER-------------*/
-const initalState = {};
+const initalState = { drinks: {} };
 const drinks = (state = initalState, action) => {
     switch (action.type) {
         case LOAD_DRINKS: {
