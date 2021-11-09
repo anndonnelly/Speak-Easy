@@ -4,12 +4,14 @@ import session from "./session";
 import checkins from "./checkins";
 import drinksReducer from "./drinks";
 import distilleriesReducer from "./distillery_session";
+import modal from "./modal";
 
 const rootReducer = combineReducers({
-    session,
-    checkins,
-    drinksReducer,
-    distilleriesReducer,
+  session,
+  checkins,
+  drinksReducer,
+  distilleriesReducer,
+  modal,
 });
 
 let enhancer;

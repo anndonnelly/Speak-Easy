@@ -82,7 +82,7 @@ export const editCheckinsThunk = (id, checkin) => async (dispatch) => {
 };
 
 export const deleteCheckinsThunk = (id) => async (dispatch) => {
-    // console.log("******", id)
+
   const response = await fetch(`/api/checkins/delete/${id}`);
   if (response.ok) {
     dispatch(deleteCheckinAction(id));
