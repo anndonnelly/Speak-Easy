@@ -9,10 +9,11 @@ class Drink(db.Model):
     image=db.Column(db.String)
     abv=db.Column(db.Integer)
     rating=db.Column(db.Integer)
-    distillery_id=db.Column(db.Integer, db.ForeignKey("distilleries.id"), nullable=False)
+    distillery_id=db.Column(db.Integer, db.ForeignKey("distilleries.id", ondelete="cascade"), nullable=False)
 
-    
+
     checkin=db.relationship("Checkin", back_populates="drink")
+    distillery=db.relationship("Distillery", back_populates="drink")
 
     def to_dict(self):
         return {
