@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -17,6 +17,7 @@ import CheckinsFeed from "./components/CheckinFeed";
 function App() {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
         (async () => {
@@ -30,28 +31,30 @@ function App() {
     }
 
     return (
-      <>
-        <NavBar />
-        <Switch>
-          <Route path="/login" exact={true}>
-            <SplashPage />
-          </Route>
-          <Route path="/sign-up" exact={true}>
-            <SplashPage />
-          </Route>
-          <ProtectedRoute path="/users" exact={true}>
-            <UsersList />
-          </ProtectedRoute>
-          <ProtectedRoute path="/users/:userId" exact={true}>
-            <User />
-          </ProtectedRoute>
-          <ProtectedRoute path="/" exact={true}>
-            <CreateCheckin />
-            <CheckinsFeed />
-          </ProtectedRoute>
-        </Switch>
-        <Footer />
-      </>
+        <>
+            <NavBar />
+            <Switch>
+                {!sessionUser && (
+                    <Route path="/login" exact={true}>
+                        <SplashPage />
+                    </Route>
+                )}
+                <Route path="/sign-up" exact={true}>
+                    <SplashPage />
+                </Route>
+                <ProtectedRoute path="/users" exact={true}>
+                    <UsersList />
+                </ProtectedRoute>
+                <ProtectedRoute path="/users/:userId" exact={true}>
+                    <User />
+                </ProtectedRoute>
+                <ProtectedRoute path="/" exact={true}>
+                    <CreateCheckin />
+                    <CheckinsFeed />
+                </ProtectedRoute>
+            </Switch>
+            <Footer />
+        </>
     );
 }
 
