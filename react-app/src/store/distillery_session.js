@@ -1,4 +1,4 @@
-/*-------------ACTION.Types-------------*/
+/*-------------ACTION.TYPES-------------*/
 const SET_DISTILLERY = "distillery_session/SET";
 const REMOVE_DISTILLERY = "distillery_session/REMOVE";
 

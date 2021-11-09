@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import "./LoginForm.css";
 
-const LoginForm = ({ onClose }) => {
+const LoginForm = ({ setShowModal }) => {
+    const history = useHistory();
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -15,10 +16,12 @@ const LoginForm = ({ onClose }) => {
         e.preventDefault();
         setErrors([]);
 
-        return dispatch(login(email, password)).catch(async (res) => {
+        dispatch(login(email, password)).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
         });
+        setShowModal(false);
+        return history.push("/");
     };
 
     const demoLogin = async (e) => {
@@ -27,7 +30,7 @@ const LoginForm = ({ onClose }) => {
         const password = "password";
         const demo = await dispatch(login(email, password));
         if (demo) {
-            return <Redirect to="/" />;
+            return history.push("/");
         }
     };
 
@@ -35,13 +38,13 @@ const LoginForm = ({ onClose }) => {
         setPassword(e.target.value);
     };
 
-    if (user) {
-        return <Redirect to="/" />;
-    }
+    //? Not sure what this is doing here.
+    // if (user) {
+    //     return <Redirect to="/" />;
+    // }
 
     if (user) {
-        onClose(false);
-        return <Redirect to="/" />;
+        setShowModal(false);
     }
 
     return (
