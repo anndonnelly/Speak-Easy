@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
-import { login } from '../../store/session';
-import {showModal, setCurrentModal} from '../../store/modal'
+import { loginDistillery } from '../../store/distillery_session';
 import "./LoginForm.css";
-import DistilleryLoginForm from './DistilleryLoginForm';
 
-const LoginForm = () => {
+const DistilleryLoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,20 +14,20 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(loginDistillery(email, password));
     if (data) {
       setErrors(data);
     }
-    history.push('/')
+    history.push('/distilleries') //TODO: add correct id
   };
 
   const demoLogin = async (e) => {
             e.preventDefault();
-            const email = "demo@aa.io";
-            const password = "password";
-            const demo = await dispatch(login(email, password));
+            const email = "yellowrose@gmail.com";
+            const password = "password2";
+            const demo = await dispatch(loginDistillery(email, password));
             if (demo) {
-                return history.push("/");
+                return history.push("/distilleries"); //TODO: add correct id
             }
         };
 
@@ -41,12 +39,6 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const distilleryLoginButton = (e) => {
-    e.preventDefault()
-    dispatch(setCurrentModal(DistilleryLoginForm))
-    dispatch(showModal())
-  }
-
 //   if (user) {
 //      history.push('/')
 //   }
@@ -54,7 +46,7 @@ const LoginForm = () => {
   return (
     <>
         <form className="loginModal" onSubmit={onLogin}>
-        <h2>User Login</h2>
+        <h2>Distillery Login</h2>
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
@@ -83,15 +75,12 @@ const LoginForm = () => {
             Login
           </button>
           <button type="submit" onClick={demoLogin}>
-                       User Demo Login
+                       Distillery Demo Login
                      </button>
-            <button onClick={distilleryLoginButton}>
-              Distillery Login
-            </button>
           </div>
         </form>
     </>
   );
 };
 
-export default LoginForm;
+export default DistilleryLoginForm;
