@@ -21,8 +21,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "redux-devtools": "redux-devtools --hostname=localhost --port=8000"
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -40,8 +39,5 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://localhost:5000",
-    "devDependencies": {
-        "@redux-devtools/cli": "^1.0.0-10"
-    }
+    "proxy": "http://localhost:5000"
 }
