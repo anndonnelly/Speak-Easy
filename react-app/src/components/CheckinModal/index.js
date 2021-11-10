@@ -10,7 +10,7 @@ export default function Modal(){
     const Current = useSelector(state => state.modal.current)
 
     const onClose = () => {
-        dispatch( hideModal())
+        dispatch(hideModal())
     }
 
     return mount && display && ReactDOM.createPortal (

@@ -35,15 +35,16 @@ const removeDrink = (drinkId) => {
 };
 
 /*-------------THUNK CREATORS-------------*/
-
-export const load = () => async (dispatch) => {
+export const loadAllDrinks = () => async (dispatch) => {
     const res = await fetch("/api/drinks");
     if (res.ok) {
-        const drinks = res.json();
+        // console.log("---------> hit")
+        const drinks = await res.json();
+        // console.log("DRNIKS", )
         dispatch(loadDrinks(drinks));
-        return drinks;
+        // return drinks;
     } else if (res.status < 500) {
-        const data = res.json();
+        const data = await res.json();
         if (data.errors) {
             return data.errors;
         }
@@ -53,7 +54,7 @@ export const load = () => async (dispatch) => {
 };
 
 export const add = (drink) => async (dispatch) => {
-    const res = fetch("/api/drinks", {
+    const res = await fetch("/api/drinks", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -61,11 +62,11 @@ export const add = (drink) => async (dispatch) => {
         body: JSON.stringify(drink),
     });
     if (res.ok) {
-        const drink = res.json();
+        const drink = await res.json();
         dispatch(addDrink(drink));
         return drink;
     } else if (res.status < 500) {
-        const data = res.json();
+        const data = await res.json();
         if (data.errors) {
             return data.errors;
         }
@@ -75,7 +76,7 @@ export const add = (drink) => async (dispatch) => {
 };
 
 export const update = (drinkId, payload) => async (dispatch) => {
-    const res = fetch(`/api/drinks/${drinkId}`, {
+    const res = await fetch(`/api/drinks/${drinkId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -83,11 +84,11 @@ export const update = (drinkId, payload) => async (dispatch) => {
         body: JSON.stringify(payload),
     });
     if (res.ok) {
-        const drink = res.json();
+        const drink = await res.json();
         dispatch(updateDrink(drink));
         return drink;
     } else if (res.status < 500) {
-        const data = res.json();
+        const data = await res.json();
         if (data.errors) {
             return data.errors;
         }
@@ -97,14 +98,14 @@ export const update = (drinkId, payload) => async (dispatch) => {
 };
 
 export const remove = (drinkId) => async (dispatch) => {
-    const res = fetch(`/api/drinks/${drinkId}`, {
+    const res = await fetch(`/api/drinks/${drinkId}`, {
         method: "DELETE",
     });
     if (res.ok) {
-        const drinkId = res.json();
+        const drinkId = await res.json();
         dispatch(removeDrink(drinkId));
     } else if (res.status < 500) {
-        const data = res.json();
+        const data = await res.json();
         if (data.errors) {
             return data.errors;
         }
