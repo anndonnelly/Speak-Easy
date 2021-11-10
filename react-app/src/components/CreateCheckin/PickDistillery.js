@@ -2,29 +2,45 @@ import ReactDOM from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {showModal, setCurrentModal} from "../../store/modal"
 import { hideModal } from "../../store/modal";
+import DistilleryCard from "../Distilleries/DistilleryCard";
 import CreateCheckin from "./index";
+import { loadAllDrinks } from "../../store/drinks";
+import { useEffect } from "react";
 
 export default function PickDistillery() {
 
     const dispatch = useDispatch()
+ 
+
+    const drinks = useSelector((state) =>
+       Object.values(state?.drinks)
+     );
+    console.log("********", drinks);
+
+    useEffect(() => {
+      dispatch(loadAllDrinks());
+    }, [dispatch]);
+
+    // const distilleryName = distilleries.map(distillery => distillery.name)
+    // console.log("distilleryName", distilleryName);
 
     const handlePickDistillery = (e) => {
         e.preventDefault();
-
         dispatch(setCurrentModal(CreateCheckin))
-
     }
 
   return (
     <>
       <select onChange={handlePickDistillery}>
-        <option value="0">Test</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
+        <option value="" disabled>
+          --Select Drink--
+        </option>
+        {drinks.map((drink) => (
+          <option key={drink?.id}value={drink?.id}>{drink.name}</option>
+        ))}
       </select>
     </>
   );
 }
+
+

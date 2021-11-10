@@ -13,9 +13,10 @@ checkin_routes = Blueprint("checkins", __name__, url_prefix="/checkins")
 @checkin_routes.route("")
 # @login_required
 def home():
-    checkins = Checkin.query.order_by(desc(Checkin.created_at)).all()
+
     return {
-        "checkins": [checkin.to_dict() for checkin in checkins]
+        # checkin.id: checkin.to_dict() for checkin in Checkin.query.order_by(desc(Checkin.created_at)).all()
+        checkin.id: checkin.to_dict() for checkin in Checkin.query.all()
     }
 
 @checkin_routes.route("/<int:id>")
