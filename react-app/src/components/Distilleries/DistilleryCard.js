@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import styles from "./DistilleryCard.module.css";
 
 const DistilleryCard = ({ distillery }) => {
@@ -7,14 +7,22 @@ const DistilleryCard = ({ distillery }) => {
     return (
         <div className={styles.distilleryContainer}>
             <div>
-                <div className={styles.distName}>{distillery.name}</div>
-                <div className={styles.distStreet}>{distillery.street}</div>
+                <div className={styles.name}>
+                    <Link
+                        className={styles.link}
+                        to={`/distilleries/${distillery.id}`}>
+                        {distillery.name}
+                    </Link>
+                </div>
+                <div className={styles.street}>{distillery.street}</div>
                 <div className={styles.imgContainer}>
-                    <img
-                        className={styles.img}
-                        src={distillery.logo}
-                        alt="distillery logo"
-                    />
+                    <Link to={`/distilleries/${distillery.id}`}>
+                        <img
+                            className={styles.img}
+                            src={distillery.logo}
+                            alt="distillery logo"
+                        />
+                    </Link>
                 </div>
             </div>
         </div>
