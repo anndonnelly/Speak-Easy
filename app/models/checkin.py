@@ -14,8 +14,8 @@ class Checkin(db.Model):
         "drinks.id", ondelete="CASCADE"), nullable=False)
     distillery_id = db.Column(db.Integer, db.ForeignKey(
         "distilleries.id", ondelete="CASCADE"), nullable=False)
-    # created_at = db.Column(db.Date)
-    # updated_at = db.Column(db.Date)
+    created_at = db.Column(db.Date)
+    updated_at = db.Column(db.Date)
 
     user = db.relationship("User", back_populates="checkins")
     distillery = db.relationship("Distillery", back_populates="checkin")
