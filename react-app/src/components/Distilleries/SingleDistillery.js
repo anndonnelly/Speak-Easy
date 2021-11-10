@@ -96,8 +96,6 @@ const SingleDistillery = () => {
                     )}
                 </div>
             </div>
-
-        </div>
         <div>
           <button onClick={createDrinkModal}>Add a Drink</button>
         </div>
