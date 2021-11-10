@@ -1,6 +1,7 @@
 .distilleryContainer {
     display: flex;
     flex-direction: column;
+    background-color: lightgrey;
     border: 3px solid seagreen;
     box-shadow: 0 0 3px 4px lightgray;
     gap: 5px;
