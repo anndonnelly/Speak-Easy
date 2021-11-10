@@ -15,14 +15,12 @@ export default function PickDistillery() {
     const drinks = useSelector((state) =>
        Object.values(state?.drinks)
      );
-    console.log("********", drinks);
+
 
     useEffect(() => {
       dispatch(loadAllDrinks());
     }, [dispatch]);
 
-    // const distilleryName = distilleries.map(distillery => distillery.name)
-    // console.log("distilleryName", distilleryName);
 
     const handlePickDistillery = (e) => {
         e.preventDefault();
