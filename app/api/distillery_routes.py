@@ -54,7 +54,7 @@ def delete_distillery(id):
     distillery = Distillery.query.get(id)
     Distillery.query.filter(Distillery.id == id).delete()
     db.session.commit()
-    return True, 201
+    return "True", 201
 
 
 # @user_routes.route('/<int:id>', methods=["POST"])
