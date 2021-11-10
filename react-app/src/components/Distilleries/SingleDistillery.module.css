@@ -3,3 +3,10 @@
     flex-direction: column;
     align-items: center;
 }
+
+.feedContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

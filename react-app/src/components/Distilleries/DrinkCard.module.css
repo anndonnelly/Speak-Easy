@@ -1,0 +1,25 @@
+.drinkContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgrey;
+    box-shadow: 0 0 3px 4px lightgray;
+    border: 3px solid #ffcc33;
+    margin: 5px 50px;
+}
+.name {
+    border-bottom: 2px solid #ffdf00;
+    font-size: 50px;
+    margin: 5px 0;
+}
+
+.imgContainer {
+    border: 2px solid black;
+    max-height: fit-content;
+    max-width: fit-content;
+}
+
+.img {
+    max-width: 400px;
+    max-height: 400px;
+}

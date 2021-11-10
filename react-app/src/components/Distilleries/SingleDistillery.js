@@ -55,7 +55,7 @@ const SingleDistillery = () => {
                 <div>{distillery.state}</div>
                 <div>{distillery.drink_ids}</div>
             </div>
-            <div>
+            <div className={styles.feedContainer}>
                 {selection ? (
                     <button onClick={() => setSelection(!selection)}>
                         Drinks
