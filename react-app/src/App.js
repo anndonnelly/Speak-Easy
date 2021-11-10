@@ -15,6 +15,7 @@ import CreateCheckin from "./components/CreateCheckin";
 import CheckinsFeed from "./components/CheckinFeed";
 import Modal from "./components/CheckinModal";
 import Distilleries from "./components/Distilleries";
+import SingleDistillery from "./components/Distilleries/SingleDistillery";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -53,8 +54,11 @@ function App() {
             <CreateCheckin />
             <CheckinsFeed />
           </ProtectedRoute>
-          <ProtectedRoute path="/distilleries">
+          <ProtectedRoute exact path="/distilleries">
             <Distilleries />
+          </ProtectedRoute>
+          <ProtectedRoute path="/distilleries/:distilleryId">
+            <SingleDistillery />
           </ProtectedRoute>
         </Switch>
         <Footer />

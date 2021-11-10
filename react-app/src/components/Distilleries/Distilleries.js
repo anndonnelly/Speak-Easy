@@ -37,8 +37,8 @@ const Distilleries = () => {
             </div>
             <div className={styles.feedWrapper}>
                 {distilleries.length &&
-                    distilleries.map((distillery, idx) => (
-                        <div key={idx} className={styles.distilleryCard}>
+                    distilleries.map((distillery) => (
+                        <div key={distillery.id} className={styles.distilleryCard}>
                             <DistilleryCard distillery={distillery} />
                         </div>
                     ))}

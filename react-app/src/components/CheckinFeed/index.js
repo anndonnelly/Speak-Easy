@@ -7,7 +7,6 @@ import "./CheckinFeed.css";
 function CheckinsFeed() {
   const dispatch = useDispatch();
 
-
   const checkins = useSelector((state) => Object.values(state.checkins));
 
   useEffect(() => {
@@ -16,12 +15,9 @@ function CheckinsFeed() {
 
   return (
     <>
-
-        {checkins.map((checkin) => (
-            <CheckinCard key={checkin.id} checkin={checkin}/>
-        ))}
-
-
+      {checkins.map((checkin) => (
+        <CheckinCard key={checkin.id} checkin={checkin} />
+      ))}
     </>
   );
 }
