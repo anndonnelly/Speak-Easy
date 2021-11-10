@@ -1,47 +1,46 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { login } from '../../store/session';
-import {showModal, setCurrentModal, hideModal } from '../../store/modal'
+
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
+import { login } from "../../store/session";
+
 import "./LoginForm.css";
 import DistilleryLoginForm from './DistilleryLoginForm';
 
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
-  const history = useHistory();
+    const [errors, setErrors] = useState([]);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const user = useSelector((state) => state.session.user);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  const onLogin = async (e) => {
-    e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
-    dispatch(hideModal())
-    history.push('/')
-  };
+    const onLogin = async (e) => {
+        e.preventDefault();
+        const data = await dispatch(login(email, password));
+        if (data) {
+            setErrors(data);
+        }
+        history.push("/");
+    };
 
-  const demoLogin = async (e) => {
-            e.preventDefault();
-            const email = "demo@aa.io";
-            const password = "password";
-            const demo = await dispatch(login(email, password));
-            dispatch(hideModal())
-            if (demo) {
-                return history.push("/");
-            }
-        };
+    const demoLogin = async (e) => {
+        e.preventDefault();
+        const email = "demo@aa.io";
+        const password = "password";
+        await dispatch(login(email, password));
+        history.push("/");
+    };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
+    const updateEmail = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const updatePassword = (e) => {
+        setPassword(e.target.value);
+    };
+
 
   const distilleryLoginButton = (e) => {
     e.preventDefault()
