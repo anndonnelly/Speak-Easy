@@ -1,6 +1,7 @@
 import boto3
 import botocore
 from flask import Blueprint, request, redirect
+from flask_login import login_required
 from app.forms.drink_form import DrinkForm
 from app.models.drink import Drink, db
 
@@ -11,6 +12,7 @@ drink_routes = Blueprint("drinks", __name__, url_prefix="/drinks")
 
 
 @drink_routes.route("", methods=["GET", "POST"])
+# @login_required
 def load_drinks():
     form = DrinkForm()
     if form.validate_on_submit():
