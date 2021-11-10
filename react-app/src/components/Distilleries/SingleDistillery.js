@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showModal, setCurrentModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distilleries";
@@ -12,6 +12,7 @@ import DrinkCard from "./DrinkCard";
 const SingleDistillery = () => {
     const { distilleryId } = useParams();
     const dispatch = useDispatch();
+    const [selection, setSelection] = useState(false);
     const distillery = useSelector((state) => state.distilleries);
     const checkins = useSelector((state) => state.checkins);
     const drinks = useSelector((state) => state.drinks);
@@ -52,11 +53,20 @@ const SingleDistillery = () => {
                 <div>{distillery.street}</div>
                 <div>{distillery.city}</div>
                 <div>{distillery.state}</div>
-                {/* <div>{distillery.checkin_ids}</div> */}
                 <div>{distillery.drink_ids}</div>
             </div>
-            <div>{checkinCards}</div>
-            <div>{drinkCards}</div>
+            <div>
+                {selection ? (
+                    <button onClick={() => setSelection(!selection)}>
+                        Drinks
+                    </button>
+                ) : (
+                    <button onClick={() => setSelection(!selection)}>
+                        Checkins
+                    </button>
+                )}
+            </div>
+            {selection ? <div>{checkinCards}</div> : <div>{drinkCards}</div>}
         </div>
     );
 };
