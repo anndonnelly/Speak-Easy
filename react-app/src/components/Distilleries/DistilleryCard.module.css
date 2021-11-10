@@ -1,14 +1,14 @@
 .distilleryContainer {
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
+    border: 3px solid seagreen;
+    box-shadow: 0 0 3px 4px lightgray;
     gap: 5px;
 }
 .name {
     display: flex;
     justify-content: center;
     font-size: 25px;
-    border: 2px solid red;
 }
 .name:hover {
 }
@@ -23,7 +23,7 @@
 }
 .imgContainer {
     display: inline-flex;
-    border: 2px solid green;
+    padding: 4px;
 }
 .link {
     text-decoration: none;
