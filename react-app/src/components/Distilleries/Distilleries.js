@@ -21,7 +21,7 @@ const Distilleries = () => {
         dispatch(loadDistilleries());
     }, [dispatch]);
 
-    if (!distilleries.length === 0) {
+    if (!distilleries.length) {
         return null;
     }
 
