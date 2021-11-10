@@ -2,7 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
-
+#TODO: figure out how to store overall distillery rating
 class Distillery(db.Model, UserMixin):
     __tablename__ = "distilleries"
 
