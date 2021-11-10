@@ -1,10 +1,11 @@
 .search-wrapper {
-    max-width: 1264px;
+    /* max-width: 1264px; */
+    width: 1000px;
     margin: 0 auto;
     padding: 0 32px;
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
    
 }
 
@@ -13,6 +14,7 @@
     flex-grow: 1;
     /* takes up a;; available space */
     margin-right: 16px;
+    font-size: 20px;
 }
 
 .search-button{
