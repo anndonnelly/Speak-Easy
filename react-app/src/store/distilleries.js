@@ -1,16 +1,16 @@
 /*-------------ACTION.TYPES-------------*/
 const LOAD_DISTILLERIES = "distillery/LOAD_DISTILLERIES";
-const LOAD_ONE_DISTILLERY = "distillery/LOAD_ONE_DISTILLERY"
+const LOAD_ONE_DISTILLERY = "distillery/LOAD_ONE_DISTILLERY";
 /*-------------ACTIONS-------------*/
 const load = (distilleries) => ({
     type: LOAD_DISTILLERIES,
     distilleries,
 });
 
-const loadOne = distillery => ({
+const loadOne = (distillery) => ({
     type: LOAD_ONE_DISTILLERY,
-    distillery
-})
+    distillery,
+});
 /*-------------THUNK CREATORS-------------*/
 export const loadDistilleries = () => async (dispatch) => {
     const res = await fetch("/api/distilleries");
@@ -30,10 +30,10 @@ export const loadDistilleries = () => async (dispatch) => {
 };
 // TODO Load one base on ID
 export const loadOneDistillery = (id) => async (dispatch) => {
-    const res = await fetch(`/api/distilleries/${id}`)
+    const res = await fetch(`/api/distilleries/${id}`);
     if (res.ok) {
-        const distillery = await res.json()
-        dispatch(loadOne(distillery))
+        const distillery = await res.json();
+        dispatch(loadOne(distillery));
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -42,13 +42,13 @@ export const loadOneDistillery = (id) => async (dispatch) => {
     } else {
         return ["An error occurred. Please try again."];
     }
-}
+};
 
 // TODO update single distillery
 
 //TODO delete single distillery
 /*-------------REDUCER-------------*/
-const initialState = { distilleries: {} };
+const initialState = {};
 
 const distilleries = (state = initialState, action) => {
     switch (action.type) {
@@ -61,8 +61,8 @@ const distilleries = (state = initialState, action) => {
         case LOAD_ONE_DISTILLERY: {
             return {
                 ...state,
-                ...action.distillery //this may not work
-            }
+                ...action.distillery, //this may not work
+            };
         }
         default:
             return state;
