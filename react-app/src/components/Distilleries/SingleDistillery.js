@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showModal, setCurrentModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distilleries";
 import { useParams } from "react-router-dom";
+import styles from "./SingleDistillery.module.css"
 
 const SingleDistillery = () => {
     const { distilleryId } = useParams();
@@ -16,7 +17,7 @@ const SingleDistillery = () => {
     }, [dispatch, distilleryId]);
 
     return (
-        <div>
+        <div className={styles.singleDistillContainer}>
             <div>
                 <img src={distillery.logo} alt="Distillery Logo" />
             </div>
@@ -25,6 +26,7 @@ const SingleDistillery = () => {
             <div>{distillery.city}</div>
             <div>{distillery.state}</div>
             <div>{distillery.checkin_ids}</div>
+            <div>{distillery.drink_ids}</div>
         </div>
     );
 };
