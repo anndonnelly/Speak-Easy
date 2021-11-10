@@ -13,12 +13,11 @@ const loadOne = (distillery) => ({
 });
 /*-------------THUNK CREATORS-------------*/
 export const loadDistilleries = () => async (dispatch) => {
-    const res = await fetch("/api/distilleries");
+    const res = await fetch("/api/distilleries/");
 
     if (res.ok) {
         const distilleries = await res.json();
         dispatch(load(distilleries));
-        return distilleries;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -28,7 +27,7 @@ export const loadDistilleries = () => async (dispatch) => {
         return ["An error occurred. Please try again."];
     }
 };
-// TODO Load one base on ID
+
 export const loadOneDistillery = (id) => async (dispatch) => {
     const res = await fetch(`/api/distilleries/${id}`);
     if (res.ok) {

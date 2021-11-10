@@ -12,14 +12,13 @@ from app.aws_s3 import *
 distillery_routes = Blueprint(
     'distilleries', __name__, url_prefix='/distilleries')
 
-# TODO: figure out why this is rerouting, PERMANENT REROUTE WHEN USING POSTMAN MAY BE ISSUE?
 
 
-
-@distillery_routes.route('/', )
+@distillery_routes.route('/')
 # @login_required
 def distilleries_cards():
-    return {distillery.id: distillery.to_card_dict() for distillery in Distillery.query.all()}
+    return {distillery.id: distillery.to_card_dict() for distillery
+            in Distillery.query.all()}
 
 # TODO: comment back in login_required once we have this working on front end
 

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 3ba2f279fc3c
+Revision ID: 99d7b915bbf7
 Revises: 
-Create Date: 2021-11-06 19:39:59.898129
+Create Date: 2021-11-10 16:17:02.176446
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3ba2f279fc3c'
+revision = '99d7b915bbf7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -49,7 +49,7 @@ def upgrade():
     sa.Column('abv', sa.Integer(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
     sa.Column('distillery_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['distillery_id'], ['distilleries.id'], ),
+    sa.ForeignKeyConstraint(['distillery_id'], ['distilleries.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('checkins',
@@ -59,10 +59,12 @@ def upgrade():
     sa.Column('location', sa.String(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('drink_id', sa.Integer(), nullable=True),
-    sa.Column('distillery_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['distillery_id'], ['distilleries.id'], ),
-    sa.ForeignKeyConstraint(['drink_id'], ['drinks.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.Column('distillery_id', sa.Integer(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['distillery_id'], ['distilleries.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['drink_id'], ['drinks.id'], ondelete='CASCADE'),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
