@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showModal, setCurrentModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distilleries";
+import { getCheckinsThunk } from "../../store/checkins";
 import { useParams } from "react-router-dom";
 import styles from "./SingleDistillery.module.css";
 import CheckinCard from "../CheckinCard/CheckinCard";
@@ -14,6 +15,7 @@ const SingleDistillery = () => {
 
     useEffect(() => {
         dispatch(loadOneDistillery(distilleryId));
+        dispatch(getCheckinsThunk());
     }, [dispatch, distilleryId]);
 
     let checkinCards;
