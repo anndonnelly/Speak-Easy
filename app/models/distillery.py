@@ -45,10 +45,8 @@ class Distillery(db.Model, UserMixin):
             'longitude': self.longitude,
             'logo': self.logo,
             'checkin_ids': [checkin.id for checkin in self.checkin],
-            'drink_ids ': [drink.id for drink in self.drink]
+            'drink_ids': [drink.id for drink in self.drink]
         }
-        # TODO add distillery page including drinks to dict
-
 
     def to_card_dict(self):
         return {

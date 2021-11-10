@@ -38,11 +38,8 @@ const removeDrink = (drinkId) => {
 export const loadAllDrinks = () => async (dispatch) => {
     const res = await fetch("/api/drinks");
     if (res.ok) {
-        // console.log("---------> hit")
         const drinks = await res.json();
-        // console.log("DRNIKS", )
         dispatch(loadDrinks(drinks));
-        // return drinks;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -64,7 +61,6 @@ export const add = (drink) => async (dispatch) => {
     if (res.ok) {
         const drink = await res.json();
         dispatch(addDrink(drink));
-        return drink;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -86,7 +82,6 @@ export const update = (drinkId, payload) => async (dispatch) => {
     if (res.ok) {
         const drink = await res.json();
         dispatch(updateDrink(drink));
-        return drink;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {

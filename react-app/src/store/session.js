@@ -44,7 +44,6 @@ export const login = (email, password) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(setUser(data));
-        return data;
     } else if (response.status < 500) {
         const data = await response.json();
         if (data.errors) {
@@ -61,7 +60,6 @@ export const logout = () => async (dispatch) => {
             "Content-Type": "application/json",
         },
     });
-
     if (response.ok) {
         dispatch(removeUser());
     }

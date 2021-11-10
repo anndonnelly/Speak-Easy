@@ -15,7 +15,6 @@ distillery_routes = Blueprint(
 # TODO: figure out why this is rerouting, PERMANENT REROUTE WHEN USING POSTMAN MAY BE ISSUE?
 
 
-
 @distillery_routes.route('/', )
 # @login_required
 def distilleries_cards():
