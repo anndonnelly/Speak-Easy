@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { loginDistillery } from '../../store/distillery_session';
+import {hideModal} from '../../store/modal'
 import "./LoginForm.css";
 
 const DistilleryLoginForm = () => {
@@ -18,6 +19,7 @@ const DistilleryLoginForm = () => {
     if (data) {
       setErrors(data);
     }
+    dispatch(hideModal())
     history.push('/distilleries') //TODO: add correct id
   };
 
@@ -26,6 +28,7 @@ const DistilleryLoginForm = () => {
             const email = "yellowrose@gmail.com";
             const password = "password2";
             const demo = await dispatch(loginDistillery(email, password));
+            dispatch(hideModal())
             if (demo) {
                 return history.push("/distilleries"); //TODO: add correct id
             }

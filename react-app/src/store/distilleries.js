@@ -13,7 +13,7 @@ const loadOne = (distillery) => ({
 });
 /*-------------THUNK CREATORS-------------*/
 export const loadDistilleries = () => async (dispatch) => {
-    const res = await fetch("/api/distilleries");
+    const res = await fetch("/api/distilleries/");
 
     if (res.ok) {
         const distilleries = await res.json();
