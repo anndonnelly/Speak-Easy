@@ -28,7 +28,6 @@ const Distilleries = () => {
     return (
         <>
             <div>
-                {/* <button>Distilleries</button> */}
                 <button
                     className={styles.checkinModalButton}
                     onClick={showCheckinModal}>
@@ -36,12 +35,14 @@ const Distilleries = () => {
                 </button>
             </div>
             <div className={styles.feedWrapper}>
-                {distilleries.length &&
-                    distilleries.map((distillery) => (
-                        <div key={distillery.id} className={styles.distilleryCard}>
-                            <DistilleryCard distillery={distillery} />
-                        </div>
-                    ))}
+                {distilleries.map((distillery, idx) => (
+                    <div key={idx} className={styles.distilleryCard}>
+                        <DistilleryCard
+                            key={distillery.id}
+                            distillery={distillery}
+                        />
+                    </div>
+                ))}
             </div>
         </>
     );

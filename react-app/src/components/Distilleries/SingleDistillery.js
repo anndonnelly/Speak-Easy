@@ -19,10 +19,10 @@ const SingleDistillery = () => {
     }, [dispatch, distilleryId]);
 
     let checkinCards;
-    if (checkins) {
+    if (checkins && distillery) {
         checkinCards = Object.values(checkins).map((checkin) => {
             if (distillery.checkin_ids.includes(checkin.id)) {
-                return <CheckinCard checkin={checkin} />;
+                return <CheckinCard key={checkin.id} checkin={checkin} />;
             }
             return null;
         });
