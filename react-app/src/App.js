@@ -14,6 +14,7 @@ import SplashPage from "./components/SplashPage";
 import CheckinsFeed from "./components/CheckinFeed";
 import Modal from "./components/CheckinModal";
 import Distilleries from "./components/Distilleries";
+import SingleDistillery from "./components/Distilleries/SingleDistillery";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -51,8 +52,11 @@ function App() {
           <ProtectedRoute path="/" exact={true}>
             <CheckinsFeed />
           </ProtectedRoute>
-          <ProtectedRoute path="/distilleries">
+          <ProtectedRoute exact path="/distilleries">
             <Distilleries />
+          </ProtectedRoute>
+          <ProtectedRoute path="/distilleries/:distilleryId">
+            <SingleDistillery />
           </ProtectedRoute>
         </Switch>
         <Footer />
