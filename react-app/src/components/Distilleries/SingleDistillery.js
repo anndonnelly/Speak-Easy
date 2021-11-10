@@ -11,7 +11,6 @@ import CheckinCard from "../CheckinCard/CheckinCard";
 import CreateDrink from "../CreateDrink";
 import DrinkCard from "./DrinkCard";
 
-
 const SingleDistillery = () => {
     const { distilleryId } = useParams();
     const dispatch = useDispatch();
@@ -26,25 +25,23 @@ const SingleDistillery = () => {
         dispatch(loadAllDrinks());
     }, [dispatch, distilleryId]);
 
+    let checkinCards;
+    if (checkins) {
+        checkinCards = Object.values(checkins).map((checkin) => {
+            if (distillery.checkin_ids?.includes(checkin.id)) {
+                //includes showing undefined
+                return <CheckinCard checkin={checkin} />;
+            }
+            return null;
+        });
+    }
 
-
-  let checkinCards;
-  if (checkins) {
-    checkinCards = Object.values(checkins).map((checkin) => {
-      if (distillery.checkin_ids?.includes(checkin.id)) { //includes showing undefined
-        return <CheckinCard checkin={checkin} />;
-      }
-      return null;
-    });
-  }
-    
     const createDrinkModal = (e) => {
-      e.preventDefault();
-      dispatch(setCurrentModal(CreateDrink));
-      dispatch(showModal());
+        e.preventDefault();
+        dispatch(setCurrentModal(CreateDrink));
+        dispatch(showModal());
     };
 
-    
     let drinkCards;
     if (drinks) {
         drinkCards = Object.values(drinks).map((drink) => {
@@ -57,6 +54,9 @@ const SingleDistillery = () => {
 
     return (
         <div>
+            <div>
+                <button onClick={createDrinkModal}>Add a Drink</button>
+            </div>
             <div className={styles.singleDistillContainer}>
                 <div>
                     <img src={distillery.logo} alt="Distillery Logo" />
@@ -96,17 +96,7 @@ const SingleDistillery = () => {
                     )}
                 </div>
             </div>
-        <div>
-          <button onClick={createDrinkModal}>Add a Drink</button>
         </div>
-        <h1>{distillery.name}</h1>
-        <div>{distillery.street}</div>
-        <div>{distillery.city}</div>
-        <div>{distillery.state}</div>
-        {/* <div>{distillery.checkin_ids}</div> */}
-        <div>{distillery.drink_ids}</div>
-        <div>{checkinCards}</div>
-      </div>
     );
 };
 
