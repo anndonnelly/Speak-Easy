@@ -15,21 +15,21 @@ const getCheckinsAction = (checkins) => {
 const addCheckinAction = (checkin) => {
     return {
         type: ADD_CHECKIN,
-        payload: checkin,
+        checkin,
     };
 };
 
 const editCheckinAction = (checkin) => {
     return {
         type: EDIT_CHECKIN,
-        payload: checkin,
+        checkin,
     };
 };
 
 const deleteCheckinAction = (checkin) => {
     return {
         type: DELETE_CHECKIN,
-        payload: checkin,
+        checkin,
     };
 };
 
@@ -99,13 +99,13 @@ export default function checkinsReducer(state = initialState, action) {
             });
             return { ...state, ...allCheckins };
         case ADD_CHECKIN:
-            newState[action.payload.id] = action.payload;
+            newState[action.checkin.id] = action.checkin;
             return newState;
         case EDIT_CHECKIN:
-            newState[action.payload.id] = action.payload;
+            newState[action.checkin.id] = action.checkin;
             return newState;
         case DELETE_CHECKIN:
-            delete newState[action.payload];
+            delete newState[action.checkin];
             return newState;
         default:
             return state;
