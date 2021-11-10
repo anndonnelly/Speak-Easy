@@ -18,17 +18,16 @@ const SingleDistillery = () => {
         dispatch(getCheckinsThunk());
     }, [dispatch, distilleryId]);
 
-
-  let checkinCards;
-  if (checkins) {
-    checkinCards = Object.values(checkins).map((checkin) => {
-      if (distillery.checkin_ids.includes(checkin.id)) { //includes showing undefined
-        return <CheckinCard checkin={checkin} />;
-      }
-      return null;
-    });
-  }
-
+    let checkinCards;
+    if (checkins) {
+        checkinCards = Object.values(checkins).map((checkin) => {
+            if (distillery.checkin_ids?.includes(checkin.id)) {
+                //includes showing undefined
+                return <CheckinCard checkin={checkin} />;
+            }
+            return null;
+        });
+    }
 
     return (
         <div className={styles.singleDistillContainer}>
