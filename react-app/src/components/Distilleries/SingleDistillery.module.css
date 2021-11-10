@@ -4,9 +4,32 @@
     align-items: center;
 }
 
+.feedToggle {
+    display: flex;
+    margin: 5px 225px;
+}
+.titleContainer {
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 5px 2px lightgray;
+    margin: 25px;
+    width: 100%;
+}
+.title {
+    font-size: 75px;
+}
 .feedContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+}
+.feed {
+    width: 100%;
+    background-color: #404040;
+}
+.card {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
