@@ -57,11 +57,15 @@ const SingleDistillery = () => {
             </div>
             <div className={styles.feedToggle}>
                 {selection ? (
-                    <button onClick={() => setSelection(!selection)}>
+                    <button
+                        className={styles.button}
+                        onClick={() => setSelection(!selection)}>
                         Drinks
                     </button>
                 ) : (
-                    <button onClick={() => setSelection(!selection)}>
+                    <button
+                        className={styles.button}
+                        onClick={() => setSelection(!selection)}>
                         Checkins
                     </button>
                 )}

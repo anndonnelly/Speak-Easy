@@ -33,3 +33,8 @@
     flex-direction: column;
     align-items: center;
 }
+.button {
+    font-size: 25px;
+    width: 150px;
+    background-color: #b78727;
+}
