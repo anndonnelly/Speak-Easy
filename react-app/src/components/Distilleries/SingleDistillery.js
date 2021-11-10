@@ -8,14 +8,25 @@ const SingleDistillery = () => {
     const { distilleryId } = useParams();
     console.log(distilleryId);
     const dispatch = useDispatch();
-    const distillery = useSelector((state) => state.distilleries[distilleryId]);
+    const distillery = useSelector((state) => state.distilleries);
     console.log("sdfghjkl;", distillery);
 
     useEffect(() => {
         dispatch(loadOneDistillery(distilleryId));
     }, [dispatch, distilleryId]);
 
-    return <h1>Hello from single distillery</h1>;
+    return (
+        <div>
+            <div>
+                <img src={distillery.logo} alt="Distillery Logo" />
+            </div>
+            <h1>{distillery.name}</h1>
+            <div>{distillery.street}</div>
+            <div>{distillery.city}</div>
+            <div>{distillery.state}</div>
+            <div>{distillery.checkin_ids}</div>
+        </div>
+    );
 };
 
 export default SingleDistillery;
