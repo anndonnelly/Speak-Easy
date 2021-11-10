@@ -6,6 +6,7 @@ import { getCheckinsThunk } from "../../store/checkins";
 import { useParams } from "react-router-dom";
 import styles from "./SingleDistillery.module.css";
 import CheckinCard from "../CheckinCard/CheckinCard";
+import CreateDrink from "../CreateDrink";
 
 const SingleDistillery = () => {
     const { distilleryId } = useParams();
@@ -22,27 +23,36 @@ const SingleDistillery = () => {
   let checkinCards;
   if (checkins) {
     checkinCards = Object.values(checkins).map((checkin) => {
-      if (distillery.checkin_ids.includes(checkin.id)) { //includes showing undefined
+      if (distillery.checkin_ids?.includes(checkin.id)) { //includes showing undefined
         return <CheckinCard checkin={checkin} />;
       }
       return null;
     });
   }
+    
+    const createDrinkModal = (e) => {
+      e.preventDefault();
+      dispatch(setCurrentModal(CreateDrink));
+      dispatch(showModal());
+    };
 
 
     return (
-        <div className={styles.singleDistillContainer}>
-            <div>
-                <img src={distillery.logo} alt="Distillery Logo" />
-            </div>
-            <h1>{distillery.name}</h1>
-            <div>{distillery.street}</div>
-            <div>{distillery.city}</div>
-            <div>{distillery.state}</div>
-            {/* <div>{distillery.checkin_ids}</div> */}
-            <div>{distillery.drink_ids}</div>
-            <div>{checkinCards}</div>
+      <div className={styles.singleDistillContainer}>
+        <div>
+          <img src={distillery.logo} alt="Distillery Logo" />
         </div>
+        <div>
+          <button onClick={createDrinkModal}>Add a Drink</button>
+        </div>
+        <h1>{distillery.name}</h1>
+        <div>{distillery.street}</div>
+        <div>{distillery.city}</div>
+        <div>{distillery.state}</div>
+        {/* <div>{distillery.checkin_ids}</div> */}
+        <div>{distillery.drink_ids}</div>
+        <div>{checkinCards}</div>
+      </div>
     );
 };
 
