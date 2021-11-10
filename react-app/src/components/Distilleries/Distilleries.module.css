@@ -16,13 +16,13 @@
     flex-direction: column;
     justify-content: center;
     border: 2px solid black;
-    width: 50%;
+    min-width: 50%;
     margin: 10px;
 }
 .feedWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid red;
-    width: 100%;
+    width: 100vw;
+    background-color: #404040;
 }

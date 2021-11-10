@@ -96,7 +96,7 @@ export const signupDistillery =
         }
     };
 /*-------------REDUCER-------------*/
-const initialState = { distilleriesSession: null };
+const initialState = { distilleriesSession: {} };
 
 const distilleriesSession = (state = initialState, action) => {
     switch (action.type) {
@@ -104,7 +104,7 @@ const distilleriesSession = (state = initialState, action) => {
             return { distilleries: action.distillery };
         }
         case REMOVE_DISTILLERY: {
-            return { distilleries: null };
+            return { distilleries: {} };
         }
         default:
             return state;

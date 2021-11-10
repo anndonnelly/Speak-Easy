@@ -1,24 +1,36 @@
 .distilleryContainer {
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
+    background-color: lightgrey;
+    border: 3px solid seagreen;
+    box-shadow: 0 0 3px 4px lightgray;
     gap: 5px;
 }
-/* .indivDist {
-    background-color: red;
+.name {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
 }
-.distName {
-    border: 2px solid red;
+.name:hover {
 }
-.distStreet {
-    color: red;
-} */
+.street {
+    font-size: 20px;
+    color: black;
+}
 
 .img {
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
 }
 .imgContainer {
-    height: 50px;
-    width: 50px;
+    display: inline-flex;
+    padding: 4px;
+}
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.link:hover {
+    background-color: lightgreen;
 }

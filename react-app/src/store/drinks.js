@@ -5,6 +5,7 @@ const UPDATE_DRINK = "drink/UPDATE_DRINK";
 const REMOVE_DRINK = "drink/REMOVE_DRINK";
 
 /*-------------ACTIONS-------------*/
+
 const loadDrinks = (drinks) => {
     return {
         type: LOAD_DRINKS,
@@ -114,7 +115,7 @@ export const remove = (drinkId) => async (dispatch) => {
 };
 
 /*-------------REDUCER-------------*/
-const initalState = {};
+const initalState = { drinks: {} };
 const drinks = (state = initalState, action) => {
     switch (action.type) {
         case LOAD_DRINKS: {
