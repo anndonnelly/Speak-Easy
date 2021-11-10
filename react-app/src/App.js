@@ -11,7 +11,6 @@ import { authenticate } from "./store/session";
 import { Footer } from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 // import LoginForm from "./components/auth/LoginForm";
-import CreateCheckin from "./components/CreateCheckin";
 import CheckinsFeed from "./components/CheckinFeed";
 import Modal from "./components/CheckinModal";
 import Distilleries from "./components/Distilleries";
@@ -51,7 +50,6 @@ function App() {
             <User />
           </ProtectedRoute>
           <ProtectedRoute path="/" exact={true}>
-            <CreateCheckin />
             <CheckinsFeed />
           </ProtectedRoute>
           <ProtectedRoute exact path="/distilleries">

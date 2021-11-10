@@ -1,4 +1,5 @@
 from .db import db
+import datetime
 
 
 class Checkin(db.Model):
@@ -11,11 +12,11 @@ class Checkin(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(
         "users.id", ondelete="CASCADE"), nullable=False)
     drink_id = db.Column(db.Integer, db.ForeignKey(
-        "drinks.id", ondelete="CASCADE"), nullable=False)
+        "drinks.id", ondelete="CASCADE"), nullable=True)
     distillery_id = db.Column(db.Integer, db.ForeignKey(
-        "distilleries.id", ondelete="CASCADE"), nullable=False)
-    created_at = db.Column(db.Date)
-    updated_at = db.Column(db.Date)
+        "distilleries.id", ondelete="CASCADE"), nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
     user = db.relationship("User", back_populates="checkins")
     distillery = db.relationship("Distillery", back_populates="checkin")
