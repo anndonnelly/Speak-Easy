@@ -5,6 +5,7 @@ const UPDATE_DRINK = "drink/UPDATE_DRINK";
 const REMOVE_DRINK = "drink/REMOVE_DRINK";
 
 /*-------------ACTIONS-------------*/
+
 const loadDrinks = (drinks) => {
     return {
         type: LOAD_DRINKS,
@@ -34,6 +35,7 @@ const removeDrink = (drinkId) => {
 };
 
 /*-------------THUNK CREATORS-------------*/
+
 export const load = () => async (dispatch) => {
     const res = await fetch("/api/drinks");
     if (res.ok) {
