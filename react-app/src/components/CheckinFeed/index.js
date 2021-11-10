@@ -16,10 +16,9 @@ function CheckinsFeed() {
 
   return (
     <>
-
-        {checkins.map((checkin) => (
+          {checkins.map((checkin) => (
             <CheckinCard key={checkin.id} checkin={checkin}/>
-        ))}
+        )).reverse()}
 
 
     </>
