@@ -14,7 +14,6 @@ distillery_routes = Blueprint(
 
 
 
-
 @distillery_routes.route('/', )
 # @login_required
 def distilleries_cards():
