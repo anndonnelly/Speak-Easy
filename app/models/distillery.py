@@ -39,12 +39,13 @@ class Distillery(db.Model, UserMixin):
             'email': self.email,
             'name': self.name,
             'street': self.street,
-            'city': self.street,
+            'city': self.city,
             'state': self.state,
             'latitude': self.latitude,
             'longitude': self.longitude,
             'logo': self.logo,
-            'checkin_ids': [checkin.id for checkin in self.checkin]
+            'checkin_ids': [checkin.id for checkin in self.checkin],
+            'drink_ids ': [drink.id for drink in self.drink]
         }
         # TODO add distillery page including drinks to dict
 
