@@ -18,15 +18,18 @@ function App() {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const distilleryUser = useSelector((state) => state.distilleriesSession.distilleries)
+    const distilleryUser = useSelector(
+        (state) => state.distilleriesSession.distilleries
+    );
 
     useEffect(() => {
         (async () => {
-            if(!distilleryUser){
-                await dispatch(authenticateDistillery());
-            } else if (!sessionUser){
-               await dispatch(authenticate());
-            }
+            await dispatch(authenticate());
+            // if(!distilleryUser){
+            //     await dispatch(authenticateDistillery());
+            // } else if (!sessionUser){
+            //    await dispatch(authenticate());
+            // }
             setLoaded(true);
         })();
     }, [dispatch]);

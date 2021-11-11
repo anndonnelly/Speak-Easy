@@ -96,7 +96,7 @@ export const signupDistillery =
         }
     };
 /*-------------REDUCER-------------*/
-const initialState = { distilleriesSession: null };
+const initialState = { distilleries: null };
 
 const distilleriesSession = (state = initialState, action) => {
     switch (action.type) {
