@@ -29,7 +29,7 @@ function CheckinsFeed() {
                     onClick={showCheckinModal}>
                     Checkin
                 </button>{" "}
-                */}
+                
             </div>
             {checkins
                 .map((checkin) => (

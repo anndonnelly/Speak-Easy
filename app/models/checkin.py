@@ -36,4 +36,3 @@ class Checkin(db.Model):
         }
 
 # TODO drink, distillery should be nullable=False
-
