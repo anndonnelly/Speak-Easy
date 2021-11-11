@@ -30,11 +30,11 @@ export default function PickDrink() {
 
   return (
     <>
+      <h1>Checkin</h1>
+      {/* TODO not sure if Checkin needs to go seperately on the 3 pages */}
       <div>{distillery.name}</div>
       <select onChange={handlePickDrink}>
-        <option value="">
-          --Pick a Drink--
-        </option>
+        <option value="">--Pick a Drink--</option>
         {drinks.map((drink) => (
           <option key={drink?.id} value={drink?.id}>
             {drink.name}
