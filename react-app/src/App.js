@@ -37,7 +37,7 @@ function App() {
             }
             setLoaded(true);
         })();
-    }, [dispatch, user, distillery]);
+    }, [dispatch, user, distillery, distilleryUser]);
 
     if (!loaded) {
         return null;

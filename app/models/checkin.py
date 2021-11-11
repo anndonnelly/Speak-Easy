@@ -33,3 +33,4 @@ class Checkin(db.Model):
         }
 
 # TODO drink, distillery should be nullable=False
+# TODO are we adding an image column on this table?

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { showModal, setCurrentModal } from "../../store/modal";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
-import { hideModal } from "../../store/modal";
+import { showModal, setCurrentModal, hideModal } from "../../store/modal";
 import "./LoginForm.css";
 import DistilleryLoginForm from "./DistilleryLoginForm";
 

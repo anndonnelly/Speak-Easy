@@ -3,22 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
+// import "../../index.css";
+import styles from "./CreateCheckin.module.css";
+
 
 function CreateCheckin() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
-  // const [location, setLocation] = useState("");
-
+  const [checkinImage, setCheckinImage] = useState("");
+  const [location, setLocation] = useState("");
 
   const currentUser = useSelector((state) => state.session.user);
-  
+  const distillery = useSelector((state) => state?.selectedDistillery);
+  const drink = useSelector((state) => state?.selectedDrink);
+  const checkedInUser = useSelector((state) => state?.selectedUser);
+  const checkins = useSelector((state) => Object.values(state?.checkins));
+//   const checkinLocations = checkins
+  console.log("llllllll", checkins);
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (review && rating){
-
+    if (review && rating) {
       if (rating < 0 || rating > 5) {
         setErrors([...errors, "Please include a rating for your drink"]);
         return;
@@ -26,8 +33,8 @@ function CreateCheckin() {
       const checkin = {
         review: review,
         rating: rating,
-        // location: location
-        user_id : currentUser.id,
+        location: location,
+        user_id: currentUser.id,
         // drink_id: currentDrink.id,
         // distillery_id: currentDistillery.id,
       };
@@ -36,71 +43,44 @@ function CreateCheckin() {
         setErrors(response);
       }
 
-      if (!response){
-        setReview("")
-        setErrors([])
+      if (!response) {
+        setReview("");
+        setErrors([]);
       }
     }
-    dispatch(hideModal())
+    dispatch(hideModal());
+  };
 
-  }
-
-    return (
-      <>
-        <div>
-          <h1>Checkin</h1>
+  return (
+    <div className={styles.checkinContainer}>
+      <div className={styles.checkinFormHeader}>
+        <h1 className={styles.checkinModalTitle}>Checkin</h1>
+      </div>
+      <div>
+        {checkedInUser.username} is at {distillery.name} drinking a {drink.name}
+      </div>
+      <form className={styles.checkinForm} onSubmit={onSubmit}>
+        <ul>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+        <div className={styles.formSection}>
+          <label className={styles.checkinLabel}>Review</label>
+          <textarea
+            name="review"
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+            placeholder="What did you think?"
+            className={styles.checkinText}
+            rows={4}
+          />
         </div>
-        <form onSubmit={onSubmit}>
-          <ul>
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul>
+        <div className={styles.formSectionFlex}>
           <div>
-            <label>Review</label>
-            <textarea
-              name="review"
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
-              placeholder="What did you think?"
-            />
-          </div>
-          {/* <div>
-            <label>Location</label>
+            <label className={styles.checkinLabelTwo}>Rating</label>
             <select
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            >
-              {eventLocations.map((location) => (
-                <option value={location.id} key={location.id}>
-                  {location.name}
-                </option>
-              ))}
-            </select>
-          </div> */}
-          <div>
-            <label>Drink</label>
-            {/* <select value={drink} onChange={(e) => setDrink(e.target.value)}>
-              {eventLocations.map((location) => (
-                <option value={location.id} key={location.id}>
-                  {location.name}
-                </option>
-              ))}
-            </select> */}
-          </div>
-          <div>
-            <label>Distillery</label>
-            {/* <select value={drink} onChange={(e) => setDrink(e.target.value)}>
-              {eventLocations.map((location) => (
-                <option value={location.id} key={location.id}>
-                  {location.name}
-                </option>
-              ))}
-            </select> */}
-          </div>
-          <div>
-            <label>Rating</label>
-            <select
+              className={styles.checkinSelect}
               name="rating"
               value={rating}
               onChange={(e) => setRating(e.target.value)}
@@ -117,11 +97,36 @@ function CreateCheckin() {
             </select>
           </div>
           <div>
-            <button >Checkin</button>
+            <label className={styles.checkinLabelTwo}>Location</label>
+            <select
+              className={styles.checkinSelect}
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            >
+              {checkins.map((checkin) => (
+                <option value={checkin.location} key={checkin.id}>
+                  {checkin.location}
+                </option>
+              ))}
+            </select>
           </div>
-        </form>
-      </>
-    );
-  
+        </div>
+        <div className={styles.formSection}>
+          <input
+            value={checkinImage}
+            type="file"
+            id="input"
+            multiple
+            onChange={(e) => setCheckinImage(e.target.value)}
+          ></input>
+        </div>
+        <div className={styles.checkinButtonWrap}>
+          <button className={styles.checkinButton}>Checkin</button>
+        </div>
+      </form>
+    </div>
+  );
 }
 export default CreateCheckin;
+
+// TODO ? make a set for locations ?

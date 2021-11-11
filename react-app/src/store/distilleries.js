@@ -61,6 +61,7 @@ const distilleries = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.distillery, //this may not work
+                
             };
         }
         default:
