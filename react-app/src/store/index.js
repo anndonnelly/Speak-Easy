@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   session,
   checkins,
   drinks,
-  distilleriesSession,
+
   distilleries,
   modal,
   selectedDistillery,
