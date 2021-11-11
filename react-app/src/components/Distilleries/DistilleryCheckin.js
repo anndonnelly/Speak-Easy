@@ -4,25 +4,27 @@ import { useState } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
 // import "../../index.css";
-import styles from "./CreateCheckin.module.css";
+import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
+import { useParams } from "react-router-dom";
 
-
-function CreateCheckin() {
+function DistilleryCheckin() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState();
   const [checkinImage, setCheckinImage] = useState("");
-  const [location, setLocation] = useState("")
+  const [location, setLocation] = useState("");
+  const { distilleryId } = useParams();
+  console.log("USEPARAMS", distilleryId);
 
   const currentUser = useSelector((state) => state.session.user);
   const distillery = useSelector((state) => state?.selectedDistillery);
   const drink = useSelector((state) => state?.selectedDrink);
   const checkedInUser = useSelector((state) => state?.session.user);
   const checkins = useSelector((state) => Object.values(state?.checkins));
-//   const checkinLocations = checkins
-// console.log("DRINK", drink.id)
-// console.log("DISTILLERY", distillery);
+  //   const checkinLocations = checkins
+  // console.log("DRINK", drink.id)
+  // console.log("DISTILLERY", distillery);
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,13 +37,13 @@ function CreateCheckin() {
         review: review,
         rating: rating,
         location: distillery.name,
-        image: checkinImage,
-        // user_id: currentUser.id,
+        checkinImage: checkinImage,
+        user_id: currentUser.id,
         drink_id: drink.id,
         distillery_id: distillery.id,
-        drink_name: drink.name
+        drink_name: drink.name,
       };
-    //   console.log("-------->", checkin);
+   
       let response = await dispatch(createCheckinsThunk(checkin));
       if (response) {
         setErrors(response);
@@ -58,10 +60,7 @@ function CreateCheckin() {
   return (
     <div className={styles.checkinContainer}>
       <div className={styles.checkinFormHeader}>
-        <h1 className={styles.checkinModalTitle}>Checkin</h1>
-      </div>
-      <div>
-        {checkedInUser.username} is at {distillery.name} drinking a {drink.name}
+        <h1 className={styles.checkinModalTitle}> Distillery Checkin</h1>
       </div>
       <form className={styles.checkinForm} onSubmit={onSubmit}>
         <ul>
@@ -131,6 +130,4 @@ function CreateCheckin() {
     </div>
   );
 }
-export default CreateCheckin;
-
-// TODO ? make a set for locations ?
+export default DistilleryCheckin;

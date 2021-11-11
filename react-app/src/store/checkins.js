@@ -52,7 +52,6 @@ export const createCheckinsThunk = (checkin) => async (dispatch) => {
     formData.append("image", checkin.image)
     formData.append("location", checkin.location);
     formData.append("drink_name", checkin.drink_name);
-    formData.append("user_id", checkin.user_id)
     formData.append("drink_id", checkin.drink_id)
     formData.append("distillery_id", checkin.distillery_id)
     const res = await fetch("/api/checkins/new", {

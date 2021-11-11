@@ -33,6 +33,7 @@ def checkin():
     userid = current_user.get_id()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("validated------>")
         data = form.data
         new_checkin = Checkin(
             review=data["review"],
