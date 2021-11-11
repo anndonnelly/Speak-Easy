@@ -127,7 +127,6 @@ const distilleries = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.distillery, //this may not work
-in
             };
         }
         case CREATE_DISTILLERY:
