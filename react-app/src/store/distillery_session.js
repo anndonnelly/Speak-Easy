@@ -5,7 +5,7 @@ const REMOVE_DISTILLERY = "distillery_session/REMOVE";
 /*-------------ACTIONS-------------*/
 const setDistillery = (distillery) => ({
     type: SET_DISTILLERY,
-    distillery,
+    distillery: distillery,
 });
 
 const removeDistillery = () => ({
@@ -96,7 +96,7 @@ export const signupDistillery =
         }
     };
 /*-------------REDUCER-------------*/
-const initialState = { distilleriesSession: {} };
+const initialState = { distilleriesSession: null };
 
 const distilleriesSession = (state = initialState, action) => {
     switch (action.type) {
