@@ -13,7 +13,7 @@ const DistilleryLoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const onLogin = async (e) => {
+  const distilleryLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(loginDistillery(email, password));
     if (data) {
@@ -23,7 +23,7 @@ const DistilleryLoginForm = () => {
     history.push('/distilleries') //TODO: add correct id
   };
 
-  const demoLogin = async (e) => {
+  const distillerydemoLogin = async (e) => {
             e.preventDefault();
             const email = "yellowrose@gmail.com";
             const password = "password2";
@@ -48,7 +48,7 @@ const DistilleryLoginForm = () => {
 
   return (
     <>
-        <form className="loginModal" onSubmit={onLogin}>
+        <form className="loginModal" onSubmit={distilleryLogin}>
         <h2>Distillery Login</h2>
           <div>
             {errors.map((error, ind) => (
@@ -74,10 +74,10 @@ const DistilleryLoginForm = () => {
               value={password}
               onChange={updatePassword}
             />
-            <button type="submit" onClick={(e) => onLogin(e)}>
+            <button type="submit" onClick={(e) => distilleryLogin(e)}>
             Login
           </button>
-          <button type="submit" onClick={demoLogin}>
+          <button type="submit" onClick={distillerydemoLogin}>
                        Distillery Demo Login
                      </button>
           </div>

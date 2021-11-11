@@ -15,10 +15,17 @@ function CheckinsFeed() {
 
   return (
     <>
-
-          {checkins.map((checkin) => (
-            <CheckinCard key={checkin.id} checkin={checkin}/>
-        )).reverse()}
+      <div>
+        <button
+          className={styles.checkinModalButton}
+          onClick={showCheckinModal}
+        >
+          Checkin
+        </button>
+      </div>
+      {checkins
+        .map((checkin) => <CheckinCard key={checkin.id} checkin={checkin} />)
+        .reverse()}
     </>
   );
 }
