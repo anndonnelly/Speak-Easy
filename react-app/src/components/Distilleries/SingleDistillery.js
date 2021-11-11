@@ -15,6 +15,7 @@ const SingleDistillery = () => {
     const { distilleryId } = useParams();
     const dispatch = useDispatch();
     const [selection, setSelection] = useState(false);
+    console.log(selection, "@@@@@@@@@@@");
     const distillery = useSelector((state) => state.distilleries);
     const checkins = useSelector((state) => state.checkins);
     const drinks = useSelector((state) => state.drinks);
