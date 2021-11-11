@@ -8,7 +8,7 @@ class Checkin(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     review = db.Column(db.Text)
     rating = db.Column(db.Integer)
-    # location = db.Column(db.String)
+    location = db.Column(db.String)
     image = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey(
         "users.id", ondelete="CASCADE"), nullable=False)
@@ -28,7 +28,7 @@ class Checkin(db.Model):
             'id': self.id,
             'review': self.review,
             'rating': self.rating,
-            # 'location': self.location,
+            'location': self.location,
             'image': self.image,
             'user_id': self.user_id,
             'drink_id': self.drink_id,
