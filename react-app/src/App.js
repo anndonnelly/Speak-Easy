@@ -30,15 +30,16 @@ function App() {
 
     useEffect(() => {
         (async () => {
-            console.log("hit");
-            if (distillery || distilleryUser) {
+            if (distillery) {
+                console.log("hit");
                 await dispatch(authenticateDistillery());
-            } else {
+            }
+            if (user) {
                 await dispatch(authenticate());
             }
             setLoaded(true);
         })();
-    }, [dispatch, user, distillery, distilleryUser]);
+    }, [dispatch, user, distillery]);
 
     if (!loaded) {
         return null;

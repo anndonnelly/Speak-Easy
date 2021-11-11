@@ -2,13 +2,13 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
-#TODO: figure out how to store overall distillery rating
+# TODO: figure out how to store overall distillery rating
+
+
 class Distillery(db.Model, UserMixin):
     __tablename__ = "distilleries"
 
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String, nullable=False, unique=True)
-    hashed_password = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     street = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
@@ -16,22 +16,14 @@ class Distillery(db.Model, UserMixin):
     latitude = db.Column(db.String)
     longitude = db.Column(db.String)
     logo = db.Column(db.Text)
+    owner_id = db.Column(db.Integer, db.ForeignKey(
+        'users.id', ondelete='CASCADE'))
 
+    owner = db.relationship('User', back_populates="distilleries")
     checkin = db.relationship(
         "Checkin", back_populates="distillery", cascade="all, delete")
     drink = db.relationship(
         "Drink", back_populates="distillery", cascade="all, delete")
-
-    @property
-    def distillery_password(self):
-        return self.hashed_password
-
-    @distillery_password.setter
-    def distillery_password(self, password):
-        self.hashed_password = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.distillery_password, password)
 
     def to_dict(self):
         return {
@@ -44,6 +36,7 @@ class Distillery(db.Model, UserMixin):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'logo': self.logo,
+            'owner_id': [owner.id for owner in self.owner],
             'checkin_ids': [checkin.id for checkin in self.checkin],
             'drink_ids': [drink.id for drink in self.drink]
         }
@@ -54,11 +47,5 @@ class Distillery(db.Model, UserMixin):
             'name': self.name,
             'street': self.street,
             'logo': self.logo,
-        }
-
-    def login_to_dict(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'email': self.email
+            'owner_id': [owner.id for owner in self.owner],
         }
