@@ -12,5 +12,6 @@ class CheckinForm(FlaskForm):
     drink_id = IntegerField('drink_id', validators=[DataRequired()])
     distillery_id = IntegerField('distillery_id', validators=[DataRequired()])
     location = StringField('location')
+    drink_name = StringField('drink_name')
 
     # API will grab location

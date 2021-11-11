@@ -39,6 +39,7 @@ function CreateCheckin() {
         user_id: currentUser.id,
         drink_id: drink.id,
         distillery_id: distillery.id,
+        drink_name: drink.name
       };
     //   console.log("-------->", checkin);
       let response = await dispatch(createCheckinsThunk(checkin));

@@ -104,6 +104,8 @@ function CheckinCard({ checkin }) {
       <div className="checkin">
         {checkin.location}
         <br></br>
+        {checkin.drink_name}
+        <br></br>
         {checkin.review}
         <br></br>
         {checkin.rating}
