@@ -10,7 +10,6 @@ import * as drinksActions from "./store/drinks";
 import * as distilleryActions from "./store/distillery_session";
 import { setModalMount } from "./store/modal";
 import { useDispatch } from "react-redux";
-import { DistillerySelectedProvider } from "./context/DistillerySelected";
 
 const store = configureStore();
 
@@ -41,11 +40,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ModalProvider>
-        <DistillerySelectedProvider>
           <BrowserRouter>
             <Root />
           </BrowserRouter>
-        </DistillerySelectedProvider>
       </ModalProvider>
     </Provider>
   </React.StrictMode>,

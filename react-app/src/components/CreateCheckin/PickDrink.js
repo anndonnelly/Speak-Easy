@@ -7,11 +7,15 @@ import CreateCheckin from "./index";
 import { loadAllDrinks } from "../../store/drinks";
 import { useEffect } from "react";
 import { loadDistilleries } from "../../store/distilleries";
+import { loadSelectedDrink } from "../../store/checkinmodal_pagetwo";
+
 
 export default function PickDrink() {
   const dispatch = useDispatch();
 
   const drinks = useSelector((state) => Object.values(state?.drinks));
+  const distillery = useSelector((state) => state?.selectedDistillery);
+
 
   useEffect(() => {
     dispatch(loadAllDrinks());
@@ -19,14 +23,16 @@ export default function PickDrink() {
   }, [dispatch]);
 
   const handlePickDrink = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     dispatch(setCurrentModal(CreateCheckin));
+    dispatch(loadSelectedDrink(+e.target.value));
   };
 
   return (
     <>
+      <div>{distillery.name}</div>
       <select onChange={handlePickDrink}>
-        <option value="" disabled>
+        <option value="">
           --Pick a Drink--
         </option>
         {drinks.map((drink) => (

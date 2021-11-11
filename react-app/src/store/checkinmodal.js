@@ -28,8 +28,7 @@ export default function selectedDistillery(state = initialState, action) {
   const newState = { ...state };
   switch (action.type) {
     case GET_SELECTED_DISTILLERY:
-      newState[action.distillery.id] = action.distillery;
-      return newState;
+      return action.distillery;
     default:
       return state;
   }

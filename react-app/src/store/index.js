@@ -7,6 +7,7 @@ import distilleriesSession from "./distillery_session";
 import distilleries from "./distilleries";
 import modal from "./modal";
 import selectedDistillery from "./checkinmodal";
+import selectedDrink from "./checkinmodal_pagetwo";
 
 const rootReducer = combineReducers({
   session,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   distilleries,
   modal,
   selectedDistillery,
+  selectedDrink,
 });
 
 let enhancer;
