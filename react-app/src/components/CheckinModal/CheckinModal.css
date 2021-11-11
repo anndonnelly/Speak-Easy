@@ -14,12 +14,16 @@
 
 .modal-content{
     width: 50%;
-    background-color: white;
+    background-color: lightgray;
     position: fixed;
-    top: 5%;
+    top: 25%;
     left: 25%;
-    height: 90%;
-    display: flex;
+    height: auto;
+    min-height: 50%;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
+    padding: 24px;
+    border-radius: 8px;
 }
+
