@@ -54,7 +54,7 @@ const DistilleryLoginForm = () => {
 
     return (
         <>
-            <form className="loginModal" onSubmit={distilleryLogin}>
+            <form className="loginModal">
                 <h2>Distillery Login</h2>
                 <div>
                     {errors.map((error, ind) => (
@@ -80,7 +80,7 @@ const DistilleryLoginForm = () => {
                         value={password}
                         onChange={updatePassword}
                     />
-                    <button type="submit" onClick={(e) => distilleryLogin(e)}>
+                    <button type="submit" onClick={distilleryLogin}>
                         Login
                     </button>
                     <button type="submit" onClick={distillerydemoLogin}>

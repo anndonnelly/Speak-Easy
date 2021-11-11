@@ -21,7 +21,7 @@ export const authenticateDistillery = () => async (dispatch) => {
     });
     if (res.ok) {
         const data = await res.json();
-        if (data.erros) {
+        if (data.errors) {
             return;
         }
         dispatch(setDistillery(data));
