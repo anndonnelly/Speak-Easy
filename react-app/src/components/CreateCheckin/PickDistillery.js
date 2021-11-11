@@ -6,19 +6,17 @@ import DistilleryCard from "../Distilleries/DistilleryCard";
 import CreateCheckin from "./index";
 import { loadAllDrinks } from "../../store/drinks";
 import { useEffect } from "react";
+import { loadDistilleries } from "../../store/distilleries";
 
 export default function PickDistillery() {
 
     const dispatch = useDispatch()
  
-
-    const drinks = useSelector((state) =>
-       Object.values(state?.drinks)
-     );
-
+    const distilleries = useSelector((state) => Object.values(state?.distilleries));
 
     useEffect(() => {
       dispatch(loadAllDrinks());
+      dispatch(loadDistilleries());
     }, [dispatch]);
 
 
@@ -31,10 +29,12 @@ export default function PickDistillery() {
     <>
       <select onChange={handlePickDistillery}>
         <option value="" disabled>
-          --Select Drink--
+          --Pick a Distillery--
         </option>
-        {drinks.map((drink) => (
-          <option key={drink?.id}value={drink?.id}>{drink.name}</option>
+        {distilleries.map((distillery) => (
+          <option key={distillery?.id} value={distillery?.id}>
+            {distillery.name}
+          </option>
         ))}
       </select>
     </>
