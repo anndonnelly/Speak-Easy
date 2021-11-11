@@ -29,10 +29,11 @@ function App() {
 
     useEffect(() => {
         (async () => {
-            if (distillery || distilleryUser) {
+            if (distillery) {
                 console.log("hit");
                 await dispatch(authenticateDistillery());
-            } else {
+            }
+            if (user) {
                 await dispatch(authenticate());
             }
             setLoaded(true);
