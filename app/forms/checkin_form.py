@@ -11,5 +11,6 @@ class CheckinForm(FlaskForm):
     image = FileField('image')
     drink_id = IntegerField('drink_id', validators=[DataRequired()])
     distillery_id = IntegerField('distillery_id', validators=[DataRequired()])
+    location = StringField('location')
 
     # API will grab location

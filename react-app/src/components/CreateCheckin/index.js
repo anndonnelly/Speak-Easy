@@ -13,6 +13,7 @@ function CreateCheckin() {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState();
   const [checkinImage, setCheckinImage] = useState("");
+  const [location, setLocation] = useState("")
 
   const currentUser = useSelector((state) => state.session.user);
   const distillery = useSelector((state) => state?.selectedDistillery);
@@ -33,7 +34,7 @@ function CreateCheckin() {
       const checkin = {
         review: review,
         rating: rating,
-        // location: location,
+        location: distillery.name,
         checkinImage: checkinImage,
         user_id: currentUser.id,
         drink_id: drink.id,
