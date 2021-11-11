@@ -10,6 +10,7 @@ class Checkin(db.Model):
     rating = db.Column(db.Integer)
     location = db.Column(db.String)
     image = db.Column(db.String)
+    drink_name = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey(
         "users.id", ondelete="CASCADE"), nullable=False)
     drink_id = db.Column(db.Integer, db.ForeignKey(
@@ -29,6 +30,7 @@ class Checkin(db.Model):
             'review': self.review,
             'rating': self.rating,
             'location': self.location,
+            'drink_name': self.drink_name,
             'image': self.image,
             'user_id': self.user_id,
             'drink_id': self.drink_id,

@@ -3,14 +3,17 @@ import { useDispatch } from "react-redux";
 import CreateCheckin from "../../components/CreateCheckin/index";
 import { showModal, setCurrentModal } from "../../store/modal";
 import styles from "./DrinkCard.module.css";
+
 const DrinkCard = ({ drink }) => {
     const dispatch = useDispatch();
+    
 
     const checkin = (e) => {
         e.preventDefault();
         dispatch(setCurrentModal(CreateCheckin));
         dispatch(showModal());
     };
+    console.log("DRINK",drink)
     return (
         <div className={styles.drinkContainer}>
             <div className={styles.name}>{drink.name}</div>
