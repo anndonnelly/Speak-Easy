@@ -18,14 +18,26 @@ function App() {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const distilleryUser = useSelector((state) => state.distilleriesSession.distilleries)
+    const distilleryUser = useSelector(
+        (state) => state.distilleriesSession.distilleries
+    );
+
+    const user = window.localStorage.getItem("user");
+    console.log(user, "@@@@@@@@@@@@@@@@@@@@@");
+    const distillery = window.localStorage.getItem("distillery");
+    console.log(distillery, "!!!!!!!!!!!!!!!!!!!!");
 
     useEffect(() => {
-      (async () => {
-        await dispatch(authenticate());
-        setLoaded(true);
-      })();
-    }, [dispatch]);
+        (async () => {
+            console.log("hit");
+            if (distillery || distilleryUser) {
+                await dispatch(authenticateDistillery());
+            } else {
+                await dispatch(authenticate());
+            }
+            setLoaded(true);
+        })();
+    }, [dispatch, user, distillery, distilleryUser]);
 
     if (!loaded) {
         return null;
