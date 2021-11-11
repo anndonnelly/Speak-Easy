@@ -29,8 +29,8 @@ function App() {
 
     useEffect(() => {
         (async () => {
-            console.log("hit");
             if (distillery || distilleryUser) {
+                console.log("hit");
                 await dispatch(authenticateDistillery());
             } else {
                 await dispatch(authenticate());
