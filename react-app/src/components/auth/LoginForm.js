@@ -3,24 +3,30 @@ import { showModal, setCurrentModal } from "../../store/modal";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
-
+import { hideModal } from "../../store/modal";
 import "./LoginForm.css";
 import DistilleryLoginForm from "./DistilleryLoginForm";
 
 const LoginForm = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const user = useSelector((state) => state.session.user);
-    const dispatch = useDispatch();
-    const history = useHistory();
+
+    const USER = useSelector((state) => state.session.user);
 
     const onLogin = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password));
+        if (USER) {
+            window.localStorage.setItem("user", JSON.stringify(USER.id));
+        }
         if (data) {
             setErrors(data);
         }
+        await dispatch(hideModal());
         history.push("/");
     };
 
@@ -29,6 +35,8 @@ const LoginForm = () => {
         const email = "demo@aa.io";
         const password = "password";
         await dispatch(login(email, password));
+        window.localStorage.setItem("user", JSON.stringify(1));
+        await dispatch(hideModal());
         history.push("/");
     };
 
@@ -78,9 +86,7 @@ const LoginForm = () => {
                         value={password}
                         onChange={updatePassword}
                     />
-                    <button type="submit" onClick={(e) => onLogin(e)}>
-                        Login
-                    </button>
+                    <button type="submit">Login</button>
                     <button type="submit" onClick={demoLogin}>
                         User Demo Login
                     </button>
