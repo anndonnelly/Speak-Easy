@@ -100,10 +100,10 @@ const initialState = { distillery: null };
 const distilleriesSession = (state = initialState, action) => {
     switch (action.type) {
         case SET_DISTILLERY: {
-            return { ...state, distilleries: action.distillery };
+            return { ...state, distillery: action.distillery };
         }
         case REMOVE_DISTILLERY: {
-            return { ...state, distilleries: null };
+            return { ...state, distillery: null };
         }
         default:
             return state;

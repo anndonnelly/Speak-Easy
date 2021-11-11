@@ -23,12 +23,10 @@ const DistilleryLoginForm = () => {
         if (data) {
             setErrors(data);
         }
-        if (DISTILLERY) {
-            window.localStorage.setItem("distillery", "distillery");
-            await dispatch(hideModal());
-            history.push("/distilleries"); //TODO: add correct id
-            //TODO need to fix redirect
-        }
+        window.localStorage.setItem("distillery", "distillery");
+        dispatch(hideModal());
+        return history.push("/distilleries"); //TODO: add correct id
+        //TODO need to fix redirect
     };
 
     const distillerydemoLogin = async (e) => {
@@ -37,8 +35,8 @@ const DistilleryLoginForm = () => {
         const password = "password2";
         await dispatch(loginDistillery(email, password));
         window.localStorage.setItem("distillery", "distillery");
-        await dispatch(hideModal());
-        history.push("/distilleries"); //TODO: add correct id
+        dispatch(hideModal());
+        return history.push("/distilleries"); //TODO: add correct id
         //TODO need to fix redirect
     };
 

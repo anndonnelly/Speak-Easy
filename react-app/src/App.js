@@ -22,17 +22,23 @@ function App() {
         (state) => state.distilleriesSession.distilleries
     );
 
+    const user = window.localStorage.getItem("user");
+    console.log(user, "@@@@@@@@@@@@@@@@@@@@@");
+    const distillery = window.localStorage.getItem("distillery");
+    console.log(distillery, "!!!!!!!!!!!!!!!!!!!!");
+
     useEffect(() => {
         (async () => {
-            await dispatch(authenticate());
-            // if(!distilleryUser){
-            //     await dispatch(authenticateDistillery());
-            // } else if (!sessionUser){
-            //    await dispatch(authenticate());
-            // }
+            if (user) {
+                await dispatch(authenticate());
+            }
+            if (distillery) {
+                await dispatch(authenticateDistillery());
+            }
+
             setLoaded(true);
         })();
-    }, [dispatch]);
+    }, [dispatch, user, distillery]);
 
     if (!loaded) {
         return null;
