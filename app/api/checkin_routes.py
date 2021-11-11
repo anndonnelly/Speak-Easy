@@ -37,7 +37,8 @@ def checkin():
         new_checkin = Checkin(
             review=data["review"],
             rating=data["rating"],
-            # location=data["location"],
+            location=data["location"],
+            drink_name=data["drink_name"],
             image=data["image"],
             user_id= userid,
             drink_id=data["drink_id"],

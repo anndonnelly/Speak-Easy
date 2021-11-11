@@ -1,7 +1,7 @@
 import boto3
 import botocore
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Distillery
 from app.forms import EditDistilleryForm, DistillerySignUpForm
 
@@ -13,7 +13,7 @@ distillery_routes = Blueprint(
     'distilleries', __name__, url_prefix='/distilleries')
 
 
-@distillery_routes.route('/', methods=['GET', 'POST'])
+@distillery_routes.route('', methods=['GET', 'POST'])
 # @login_required
 def distilleries_cards():
     form = DistillerySignUpForm()
@@ -21,10 +21,10 @@ def distilleries_cards():
     if form.validate_on_submit():
         distillery = Distillery(
             name=form.data['name'],
-            distillery_password=form.data['distillery_password'],
             street=form.data['street'],
             city=form.data['city'],
             state=form.data['state'],
+            owner_id=current_user.id,  # Gets current user from flask login and sets owner_id
             logo=form.data['logo']
         )
         db.session.add(distillery)

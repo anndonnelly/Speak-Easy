@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { addADrinkThunk } from "../../store/drinks";
 import { hideModal } from "../../store/modal";
+import { useParams } from "react-router";
 
 function CreateDrink() {
   const dispatch = useDispatch();
@@ -11,9 +12,11 @@ function CreateDrink() {
   const [desription, setDescription] = useState("");
   const [drinkImage, setDrinkImage] = useState("")
   const [abv, setAbv] = useState("");
-
+  const [rating, setRating] = useState("")
+//   const {distilleryId} = useParams()
+//     console.log("------>hit", distilleryId);
   const currentDistillery = useSelector(
-    (state) => state.distilleriesSession.distillery
+    (state) => state.distilleries
   );
 
   const onSubmit = async (e) => {
@@ -24,8 +27,10 @@ function CreateDrink() {
       desription: desription,
       drinkImage: drinkImage,
       abv: abv,
+      rating: rating,
       distillery_id: currentDistillery.id,
     };
+    console.log("*******", currentDistillery.id);
     let response = await dispatch(addADrinkThunk(newDrink));
     if (response) {
       setErrors(response);
@@ -86,6 +91,24 @@ function CreateDrink() {
             />{" "}
             <span>%</span>
           </label>
+        </div>
+        <div>
+          <label >Rating</label>
+          <select
+            name="rating"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+          >
+            <option value="" disabled>
+              --Rating--
+            </option>
+            <option value={0}>0</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
         </div>
         <button>Create</button>
       </form>

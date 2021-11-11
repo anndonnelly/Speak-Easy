@@ -21,7 +21,9 @@ def load_drinks():
             name=data["name"],
             description=data["description"],
             image=data["image"],
-            abv=data["abv"]
+            abv=data["abv"],
+            distillery_id=data["distillery_id"],
+            rating=data["rating"]
         )
         db.session.add(new_drink)
         db.session.commit()

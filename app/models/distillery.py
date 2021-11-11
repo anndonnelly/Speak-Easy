@@ -19,7 +19,7 @@ class Distillery(db.Model, UserMixin):
     owner_id = db.Column(db.Integer, db.ForeignKey(
         'users.id', ondelete='CASCADE'))
 
-    owner = db.relationship('User', back_populates="distilleries")
+    owner = db.relationship('User', back_populates="distilleries", cascade="all")
     checkin = db.relationship(
         "Checkin", back_populates="distillery", cascade="all, delete")
     drink = db.relationship(
@@ -28,7 +28,7 @@ class Distillery(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'email': self.email,
+
             'name': self.name,
             'street': self.street,
             'city': self.city,
@@ -36,7 +36,7 @@ class Distillery(db.Model, UserMixin):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'logo': self.logo,
-            'owner_id': [owner.id for owner in self.owner],
+            'owner_id': self.owner.id,
             'checkin_ids': [checkin.id for checkin in self.checkin],
             'drink_ids': [drink.id for drink in self.drink]
         }
@@ -47,5 +47,5 @@ class Distillery(db.Model, UserMixin):
             'name': self.name,
             'street': self.street,
             'logo': self.logo,
-            'owner_id': [owner.id for owner in self.owner],
+            'owner_id': self.owner.id
         }

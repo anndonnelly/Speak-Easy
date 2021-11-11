@@ -13,6 +13,7 @@ import CheckinsFeed from "./components/CheckinFeed";
 import Modal from "./components/CheckinModal";
 import Distilleries from "./components/Distilleries";
 import SingleDistillery from "./components/Distilleries/SingleDistillery";
+import CreateDrink from "./components/CreateDrink";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -23,9 +24,9 @@ function App() {
     );
 
     const user = window.localStorage.getItem("user");
-    console.log(user, "@@@@@@@@@@@@@@@@@@@@@");
+    // console.log(user, "@@@@@@@@@@@@@@@@@@@@@");
     const distillery = window.localStorage.getItem("distillery");
-    console.log(distillery, "!!!!!!!!!!!!!!!!!!!!");
+    // console.log(distillery, "!!!!!!!!!!!!!!!!!!!!");
 
     useEffect(() => {
         (async () => {
