@@ -50,7 +50,7 @@ export const loadAllDrinks = () => async (dispatch) => {
     }
 };
 
-export const add = (drink) => async (dispatch) => {
+export const addADrinkThunk = (drink) => async (dispatch) => {
     const res = await fetch("/api/drinks", {
         method: "POST",
         headers: {

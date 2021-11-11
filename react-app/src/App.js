@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
+import { authenticateDistillery } from "./store/distillery_session";
 import { Footer } from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 import CheckinsFeed from "./components/CheckinFeed";
@@ -17,12 +18,13 @@ function App() {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
+    const distilleryUser = useSelector((state) => state.distilleriesSession.distilleries)
 
     useEffect(() => {
-        (async () => {
-            await dispatch(authenticate());
-            setLoaded(true);
-        })();
+      (async () => {
+        await dispatch(authenticate());
+        setLoaded(true);
+      })();
     }, [dispatch]);
 
     if (!loaded) {

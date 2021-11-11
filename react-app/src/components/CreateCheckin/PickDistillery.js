@@ -5,42 +5,48 @@ import { hideModal } from "../../store/modal";
 import DistilleryCard from "../Distilleries/DistilleryCard";
 import CreateCheckin from "./index";
 import { loadAllDrinks } from "../../store/drinks";
-import { useEffect } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
+import { loadDistilleries } from "../../store/distilleries";
+import PickDrink from "./PickDrink";
+
+import { loadSelectedDistillery } from "../../store/checkinmodal";
 
 export default function PickDistillery() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  const distilleries = useSelector((state) =>
+    Object.values(state?.distilleries)
+  );
  
+  const [distillery, setDistillery] = useState(-1);
 
-    const drinks = useSelector((state) =>
-       Object.values(state?.drinks)
-     );
-    console.log("********", drinks);
+  useEffect(() => {
+    dispatch(loadDistilleries());
+  }, [dispatch]);
 
-    useEffect(() => {
-      dispatch(loadAllDrinks());
-    }, [dispatch]);
+  const handlePickDistillery =(e) => {
+    e.preventDefault();
+    setDistillery(+e.target.value);
+    dispatch(loadSelectedDistillery(+e.target.value));
+   
+    dispatch(setCurrentModal(PickDrink));
 
-    // const distilleryName = distilleries.map(distillery => distillery.name)
-    // console.log("distilleryName", distilleryName);
-
-    const handlePickDistillery = (e) => {
-        e.preventDefault();
-        dispatch(setCurrentModal(CreateCheckin))
-    }
+  };
 
   return (
     <>
-      <select onChange={handlePickDistillery}>
-        <option value="" disabled>
-          --Select Drink--
+    <h1>Checkin</h1>
+      <select value={distillery} onChange={handlePickDistillery}>
+        <option value="" >
+          --Pick a Distillery--
         </option>
-        {drinks.map((drink) => (
-          <option key={drink?.id}value={drink?.id}>{drink.name}</option>
+        {distilleries.map((distillery) => (
+          <option key={distillery.id} value={distillery.id}>
+            {distillery.name}
+          </option>
         ))}
       </select>
     </>
   );
 }
-
 
