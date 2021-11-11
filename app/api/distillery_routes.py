@@ -3,7 +3,7 @@ import botocore
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Distillery
-from app.forms import EditDistilleryForm
+from app.forms import EditDistilleryForm, DistillerySignUpForm
 
 from app.config import Config
 from app.aws_s3 import *
@@ -14,13 +14,29 @@ distillery_routes = Blueprint(
 
 
 
-@distillery_routes.route('/')
+@distillery_routes.route('/', methods=['GET', 'POST'])
 # @login_required
 def distilleries_cards():
+
+    form = DistillerySignUpForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        distillery = Distillery(
+            name=form.data['name'],
+            distillery_password=form.data['distillery_password'],
+            street=form.data['street'],
+            city=form.data['city'],
+            state=form.data['state'],
+            logo=form.data['logo']
+        )
+        db.session.add(distillery)
+        db.session.commit()
+        return distillery.to_dict()
     return {distillery.id: distillery.to_card_dict() for distillery
             in Distillery.query.all()}
 
-# TODO: comment back in login_required once we have this working on front end
+ 
+
 
 
 @distillery_routes.route('/<int:id>')
