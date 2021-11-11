@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
+// import "../../index.css";
 import styles from "./CreateCheckin.module.css";
+
 
 function CreateCheckin() {
   const dispatch = useDispatch();
@@ -50,50 +52,54 @@ function CreateCheckin() {
   };
 
   return (
-    <>
-      <div>
+    <div className={styles.checkinContainer}>
+      <div className={styles.checkinFormHeader}>
         <h1 className={styles.checkinModalTitle}>Checkin</h1>
-        <br />
-        <div>
-          {checkedInUser.username} is at {distillery.name} drinking {drink.name}
-        </div>
       </div>
-      <form onSubmit={onSubmit}>
+      <div>
+        {checkedInUser.username} is at {distillery.name} drinking a {drink.name}
+      </div>
+      <form className={styles.checkinForm} onSubmit={onSubmit}>
         <ul>
           {errors.map((error) => (
             <li key={error}>{error}</li>
           ))}
         </ul>
-        <div>
-          <label>Review</label>
+        <div className={styles.formSection}>
+          <label className={styles.checkinLabel}>Review</label>
           <textarea
             name="review"
             value={review}
             onChange={(e) => setReview(e.target.value)}
             placeholder="What did you think?"
+            className={styles.checkinText}
+            rows={4}
           />
         </div>
-        <div>
-          <label>Rating</label>
-          <select
-            name="rating"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-          >
-            <option value="" disabled>
-              --Rating--
-            </option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <div>
-            <label>Location</label>
+        <div className={styles.formSectionFlex}>
+          <div>
+            <label className={styles.checkinLabelTwo}>Rating</label>
             <select
+              className={styles.checkinSelect}
+              name="rating"
+              value={rating}
+              onChange={(e) => setRating(e.target.value)}
+            >
+              <option value="" disabled>
+                --Rating--
+              </option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <div>
+            <label className={styles.checkinLabelTwo}>Location</label>
+            <select
+              className={styles.checkinSelect}
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             >
@@ -104,7 +110,8 @@ function CreateCheckin() {
               ))}
             </select>
           </div>
-        <div>
+        </div>
+        <div className={styles.formSection}>
           <input
             value={checkinImage}
             type="file"
@@ -113,11 +120,11 @@ function CreateCheckin() {
             onChange={(e) => setCheckinImage(e.target.value)}
           ></input>
         </div>
-        <div>
-          <button>Checkin</button>
+        <div className={styles.checkinButtonWrap}>
+          <button className={styles.checkinButton}>Checkin</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 export default CreateCheckin;

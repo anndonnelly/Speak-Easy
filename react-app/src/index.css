@@ -8,7 +8,7 @@
 *::before,
 *::after {
     box-sizing: border-box;
-    font-family: "Spectral", serif;
+    
 }
 html,
 body,
@@ -97,6 +97,7 @@ video {
     font-size: 100%;
     font: inherit;
     /* will look for parent element for font */
+    font-family: "Inter", serif;
     vertical-align: baseline;
     text-decoration: none;
 }
