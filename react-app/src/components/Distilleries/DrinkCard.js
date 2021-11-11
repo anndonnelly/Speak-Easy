@@ -1,19 +1,26 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CreateCheckin from "../../components/CreateCheckin/index";
 import { showModal, setCurrentModal } from "../../store/modal";
 import styles from "./DrinkCard.module.css";
+import DistilleryCheckin from "./DistilleryCheckin";
+import { loadSelectedDistillery } from "../../store/checkinmodal";
+import { loadSelectedDrink } from "../../store/checkinmodal_pagetwo";
+
 
 const DrinkCard = ({ drink }) => {
     const dispatch = useDispatch();
-    
+    const distillery = useSelector((state) => state?.distilleries);
 
     const checkin = (e) => {
         e.preventDefault();
-        dispatch(setCurrentModal(CreateCheckin));
+        dispatch(setCurrentModal(DistilleryCheckin));
+        dispatch(loadSelectedDistillery(distillery));
+        dispatch(loadSelectedDrink(drink));
         dispatch(showModal());
     };
     console.log("DRINK",drink)
+    console.log("DISTIL", distillery)
     return (
         <div className={styles.drinkContainer}>
             <div className={styles.name}>{drink.name}</div>

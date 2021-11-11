@@ -7,15 +7,17 @@ import { loadAllDrinks } from "../../store/drinks";
 import { useParams } from "react-router-dom";
 import styles from "./SingleDistillery.module.css";
 import CheckinCard from "../CheckinCard/CheckinCard";
+// import DistilleryCheckin from "./DistilleryCheckin";
 
 import CreateDrink from "../CreateDrink";
 import DrinkCard from "./DrinkCard";
 
 const SingleDistillery = () => {
-    const { distilleryId } = useParams();
+     const { distilleryId } = useParams();
+     
     const dispatch = useDispatch();
     const [selection, setSelection] = useState(false);
-    console.log(selection, "@@@@@@@@@@@");
+
     const distillery = useSelector((state) => state.distilleries);
     const checkins = useSelector((state) => state.checkins);
     const drinks = useSelector((state) => state.drinks);

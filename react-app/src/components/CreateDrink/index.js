@@ -9,7 +9,7 @@ function CreateDrink() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [drinkName, setDrinkName] = useState("");
-  const [desription, setDescription] = useState("");
+  const [description, setDescription] = useState("");
   const [drinkImage, setDrinkImage] = useState("")
   const [abv, setAbv] = useState("");
   const [rating, setRating] = useState("")
@@ -23,9 +23,10 @@ function CreateDrink() {
     e.preventDefault();
 
     const newDrink = {
-      drinkName: drinkName,
-      desription: desription,
-      drinkImage: drinkImage,
+      name: drinkName,
+    //   name matches what is on WTF form
+      description: description,
+      image: drinkImage,
       abv: abv,
       rating: rating,
       distillery_id: currentDistillery.id,
@@ -53,6 +54,7 @@ function CreateDrink() {
         <div>
           {/* <label>Name</label> */}
           <input
+            type="text"
             name="name"
             value={drinkName}
             onChange={(e) => setDrinkName(e.target.value)}
@@ -62,8 +64,9 @@ function CreateDrink() {
         <div>
           {/* <label>Description</label> */}
           <textarea
+            type="text"
             name="description"
-            value={desription}
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
           />
@@ -86,14 +89,14 @@ function CreateDrink() {
               placeholder="ABV"
               onChange={(e) => setAbv(e.target.value)}
               step="0.1"
-              min="0"
+              min="1"
               max="80"
             />{" "}
             <span>%</span>
           </label>
         </div>
         <div>
-          <label >Rating</label>
+          <label>Rating</label>
           <select
             name="rating"
             value={rating}
