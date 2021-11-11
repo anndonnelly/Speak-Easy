@@ -57,10 +57,6 @@ export const createCheckinsThunk = (checkin) => async (dispatch) => {
     formData.append("distillery_id", checkin.distillery_id)
     const res = await fetch("/api/checkins/new", {
         method: "POST",
-        // headers: {
-        //     "Content-Type": "application/json",
-        // },
-        // body: JSON.stringify(checkin),
         body: formData
     });
     if (res.ok) {

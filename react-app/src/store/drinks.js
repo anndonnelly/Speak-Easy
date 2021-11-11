@@ -51,12 +51,17 @@ export const loadAllDrinks = () => async (dispatch) => {
 };
 
 export const addADrinkThunk = (drink) => async (dispatch) => {
+
+    const formData = new FormData();
+    formData.append("name", drink.name);
+    formData.append("description", drink.description);
+    formData.append("image", drink.image);
+    formData.append("abv", drink.abv);
+    formData.append("rating", drink.rating);
+    formData.append("distillery_id", drink.distillery_id);
     const res = await fetch("/api/drinks", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(drink),
+        body: formData,
     });
     if (res.ok) {
         const drink = await res.json();
