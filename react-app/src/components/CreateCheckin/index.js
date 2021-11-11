@@ -18,10 +18,11 @@ function CreateCheckin() {
   const currentUser = useSelector((state) => state.session.user);
   const distillery = useSelector((state) => state?.selectedDistillery);
   const drink = useSelector((state) => state?.selectedDrink);
-  const checkedInUser = useSelector((state) => state?.selectedUser);
+  const checkedInUser = useSelector((state) => state?.session.user);
   const checkins = useSelector((state) => Object.values(state?.checkins));
 //   const checkinLocations = checkins
-  console.log("llllllll", checkins);
+console.log("DRINK", drink)
+console.log("DISTILLERY", distillery);
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,11 +34,13 @@ function CreateCheckin() {
       const checkin = {
         review: review,
         rating: rating,
-        location: location,
+        // location: location,
+        checkinImage: checkinImage,
         user_id: currentUser.id,
-        // drink_id: currentDrink.id,
-        // distillery_id: currentDistillery.id,
+        drink_id: drink.id,
+        distillery_id: distillery.id,
       };
+      console.log("-------->", checkin);
       let response = await dispatch(createCheckinsThunk(checkin));
       if (response) {
         setErrors(response);
@@ -96,7 +99,7 @@ function CreateCheckin() {
               <option value="5">5</option>
             </select>
           </div>
-          <div>
+          {/* <div>
             <label className={styles.checkinLabelTwo}>Location</label>
             <select
               className={styles.checkinSelect}
@@ -109,8 +112,8 @@ function CreateCheckin() {
                 </option>
               ))}
             </select>
-          </div>
-        </div>
+          </div> */}
+        </div> 
         <div className={styles.formSection}>
           <input
             value={checkinImage}
