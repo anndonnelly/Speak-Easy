@@ -21,14 +21,10 @@ function App() {
     const distilleryUser = useSelector((state) => state.distilleriesSession.distilleries)
 
     useEffect(() => {
-        (async () => {
-            if(!distilleryUser){
-                await dispatch(authenticateDistillery());
-            } else if (!sessionUser){
-               await dispatch(authenticate());
-            }
-            setLoaded(true);
-        })();
+      (async () => {
+        dispatch(authenticate());
+        setLoaded(true);
+      })();
     }, [dispatch]);
 
     if (!loaded) {
