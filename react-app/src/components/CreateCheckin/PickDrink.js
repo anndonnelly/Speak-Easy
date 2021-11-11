@@ -16,7 +16,7 @@ export default function PickDrink() {
 
   const drinks = useSelector((state) => Object.values(state?.drinks));
   const distillery = useSelector((state) => state?.selectedDistillery);
-  const currentUser = useSelector((state) => state?.selectedUser);
+  const currentUser = useSelector((state) => state?.session.user);
   
    
   useEffect(() => {

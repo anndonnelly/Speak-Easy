@@ -30,7 +30,6 @@ export default function PickDistillery() {
     e.preventDefault();
     setDistillery(+e.target.value);
     dispatch(loadSelectedDistillery(+e.target.value));
-    dispatch(loadCheckinUser(+e.target.value));
     dispatch(setCurrentModal(PickDrink));
 
   };

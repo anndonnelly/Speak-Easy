@@ -38,9 +38,10 @@ def checkin():
             review=data["review"],
             rating=data["rating"],
             # location=data["location"],
-            user_id= userid,)
-            # drink_id=data["drink_id"],
-            # distillery_id=["istillery_id"])
+            image=data["image"],
+            user_id= userid,
+            drink_id=data["drink_id"],
+            distillery_id=data["distillery_id"])
         db.session.add(new_checkin)
         db.session.commit()
         return new_checkin.to_dict()
