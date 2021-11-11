@@ -7,7 +7,7 @@ import { deleteCheckinsThunk } from "../../store/checkins";
 
 function CheckinCard({ checkin }) {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state.session.user);
+  const currentUserId = useSelector((state) => state.session.user.id);
   const [edit, setEdit] = useState(false);
   const [editReview, setEditReview] = useState(checkin.review);
   const [editRating, setEditRating] = useState(checkin.rating);
@@ -110,11 +110,20 @@ function CheckinCard({ checkin }) {
         <br></br>
         {checkin.rating}
         <br></br>
-        <button onClick={() => setEdit(true)}>Edit</button>
-        <button onClick={deleteCheckin}>Delete</button>
+      {
+        checkin?.user_id === currentUserId ? (
+            <div>
+                <button onClick={() => setEdit(true)}>Edit</button>
+                <button onClick={deleteCheckin}>Delete</button>
+            </div>
+        ) : null
+        }
       </div>
     </>
   );
 }
+
+
+
 
 export default CheckinCard;
