@@ -8,6 +8,7 @@ import { loadAllDrinks } from "../../store/drinks";
 import { useEffect, useState, createContext, useContext } from "react";
 import { loadDistilleries } from "../../store/distilleries";
 import PickDrink from "./PickDrink";
+import { loadCheckinUser } from "../../store/checkinmodal_user";
 
 import { loadSelectedDistillery } from "../../store/checkinmodal";
 
@@ -17,6 +18,7 @@ export default function PickDistillery() {
   const distilleries = useSelector((state) =>
     Object.values(state?.distilleries)
   );
+  
  
   const [distillery, setDistillery] = useState(-1);
 
@@ -28,7 +30,7 @@ export default function PickDistillery() {
     e.preventDefault();
     setDistillery(+e.target.value);
     dispatch(loadSelectedDistillery(+e.target.value));
-   
+    dispatch(loadCheckinUser(+e.target.value));
     dispatch(setCurrentModal(PickDrink));
 
   };

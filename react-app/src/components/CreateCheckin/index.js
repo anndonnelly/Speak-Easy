@@ -10,12 +10,16 @@ function CreateCheckin() {
   const [errors, setErrors] = useState([]);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
-  // const [location, setLocation] = useState("");
+  const [checkinImage, setCheckinImage] = useState("");
+  const [location, setLocation] = useState("");
 
   const currentUser = useSelector((state) => state.session.user);
   const distillery = useSelector((state) => state?.selectedDistillery);
   const drink = useSelector((state) => state?.selectedDrink);
-  console.log("hhhhhhh", drink)
+  const checkedInUser = useSelector((state) => state?.selectedUser);
+  const checkins = useSelector((state) => Object.values(state?.checkins));
+//   const checkinLocations = checkins
+  console.log("llllllll", checkins);
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,7 +31,7 @@ function CreateCheckin() {
       const checkin = {
         review: review,
         rating: rating,
-        // location: location
+        location: location,
         user_id: currentUser.id,
         // drink_id: currentDrink.id,
         // distillery_id: currentDistillery.id,
@@ -50,11 +54,9 @@ function CreateCheckin() {
       <div>
         <h1 className={styles.checkinModalTitle}>Checkin</h1>
         <br />
-        <div>{distillery.name}</div>
-      </div>
-      <br />
-      <div>
-        <div>{drink.name}</div>
+        <div>
+          {checkedInUser.username} is at {distillery.name} drinking {drink.name}
+        </div>
       </div>
       <form onSubmit={onSubmit}>
         <ul>
@@ -71,19 +73,6 @@ function CreateCheckin() {
             placeholder="What did you think?"
           />
         </div>
-        {/* <div>
-            <label>Location</label>
-            <select
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            >
-              {eventLocations.map((location) => (
-                <option value={location.id} key={location.id}>
-                  {location.name}
-                </option>
-              ))}
-            </select>
-          </div> */}
         <div>
           <label>Rating</label>
           <select
@@ -103,6 +92,28 @@ function CreateCheckin() {
           </select>
         </div>
         <div>
+            <label>Location</label>
+            <select
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            >
+              {checkins.map((checkin) => (
+                <option value={checkin.location} key={checkin.id}>
+                  {checkin.location}
+                </option>
+              ))}
+            </select>
+          </div>
+        <div>
+          <input
+            value={checkinImage}
+            type="file"
+            id="input"
+            multiple
+            onChange={(e) => setCheckinImage(e.target.value)}
+          ></input>
+        </div>
+        <div>
           <button>Checkin</button>
         </div>
       </form>
@@ -110,3 +121,5 @@ function CreateCheckin() {
   );
 }
 export default CreateCheckin;
+
+// TODO ? make a set for locations ?
