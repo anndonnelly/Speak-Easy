@@ -25,9 +25,9 @@ const NavBar = ({ sessionUser }) => {
           </div>
           {sessionUser && (
             <div className={styles.dContainer}>
-              <NavLink to="/drinks">
+              {/* <NavLink to="/drinks">
                 <DrinksFeed></DrinksFeed>
-              </NavLink>
+              </NavLink> */}
               <NavLink to="/distilleries">Distilleries</NavLink>
             </div>
           )}

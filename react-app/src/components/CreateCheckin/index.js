@@ -11,14 +11,14 @@ function CreateCheckin() {
   const [rating, setRating] = useState("");
   // const [location, setLocation] = useState("");
 
-
   const currentUser = useSelector((state) => state.session.user);
-  
+  const distillery = useSelector((state) => state?.selectedDistillery);
+  const drink = useSelector((state) => state?.selectedDrink);
+  console.log("hhhhhhh", drink)
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (review && rating){
-
+    if (review && rating) {
       if (rating < 0 || rating > 5) {
         setErrors([...errors, "Please include a rating for your drink"]);
         return;
@@ -27,7 +27,7 @@ function CreateCheckin() {
         review: review,
         rating: rating,
         // location: location
-        user_id : currentUser.id,
+        user_id: currentUser.id,
         // drink_id: currentDrink.id,
         // distillery_id: currentDistillery.id,
       };
@@ -36,36 +36,41 @@ function CreateCheckin() {
         setErrors(response);
       }
 
-      if (!response){
-        setReview("")
-        setErrors([])
+      if (!response) {
+        setReview("");
+        setErrors([]);
       }
     }
-    dispatch(hideModal())
+    dispatch(hideModal());
+  };
 
-  }
-
-    return (
-      <>
+  return (
+    <>
+      <div>
+        <h1>Checkin</h1>
+        <br />
+        <div>{distillery.name}</div>
+      </div>
+      <br />
+      <div>
+        <div>{drink.name}</div>
+      </div>
+      <form onSubmit={onSubmit}>
+        <ul>
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
         <div>
-          <h1>Checkin</h1>
+          <label>Review</label>
+          <textarea
+            name="review"
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+            placeholder="What did you think?"
+          />
         </div>
-        <form onSubmit={onSubmit}>
-          <ul>
-            {errors.map((error) => (
-              <li key={error}>{error}</li>
-            ))}
-          </ul>
-          <div>
-            <label>Review</label>
-            <textarea
-              name="review"
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
-              placeholder="What did you think?"
-            />
-          </div>
-          {/* <div>
+        {/* <div>
             <label>Location</label>
             <select
               value={location}
@@ -78,50 +83,29 @@ function CreateCheckin() {
               ))}
             </select>
           </div> */}
-          <div>
-            <label>Drink</label>
-            {/* <select value={drink} onChange={(e) => setDrink(e.target.value)}>
-              {eventLocations.map((location) => (
-                <option value={location.id} key={location.id}>
-                  {location.name}
-                </option>
-              ))}
-            </select> */}
-          </div>
-          <div>
-            <label>Distillery</label>
-            {/* <select value={drink} onChange={(e) => setDrink(e.target.value)}>
-              {eventLocations.map((location) => (
-                <option value={location.id} key={location.id}>
-                  {location.name}
-                </option>
-              ))}
-            </select> */}
-          </div>
-          <div>
-            <label>Rating</label>
-            <select
-              name="rating"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-            >
-              <option value="" disabled>
-                --Rating--
-              </option>
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          </div>
-          <div>
-            <button >Checkin</button>
-          </div>
-        </form>
-      </>
-    );
-  
+        <div>
+          <label>Rating</label>
+          <select
+            name="rating"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+          >
+            <option value="" disabled>
+              --Rating--
+            </option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div>
+          <button>Checkin</button>
+        </div>
+      </form>
+    </>
+  );
 }
 export default CreateCheckin;

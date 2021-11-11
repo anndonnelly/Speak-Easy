@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { getCheckinsThunk } from "../../store/checkins";
 import { useDispatch, useSelector } from "react-redux";
 import CheckinCard from "../CheckinCard/CheckinCard";
-import "./CheckinFeed.css";
+import styles from "./CheckinFeed.module.css";
+import PickDistillery from "../CreateCheckin/PickDistillery";
+import { showModal, setCurrentModal } from "../../store/modal";
 
 function CheckinsFeed() {
   const dispatch = useDispatch();
@@ -12,6 +14,12 @@ function CheckinsFeed() {
   useEffect(() => {
     dispatch(getCheckinsThunk());
   }, [dispatch]);
+
+   const showCheckinModal = () => {
+     dispatch(setCurrentModal(PickDistillery));
+     // dispatch(setCurrentModal(CreateCheckin));
+     dispatch(showModal());
+   };
 
   return (
     <>
