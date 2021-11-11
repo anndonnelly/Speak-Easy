@@ -11,3 +11,4 @@ class EditDistilleryForm(FlaskForm):
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])
     logo = StringField('logo', validators=[DataRequired()])
+
