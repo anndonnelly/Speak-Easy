@@ -6,40 +6,25 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
-import { authenticateDistillery } from "./store/distillery_session";
 import { Footer } from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 import CheckinsFeed from "./components/CheckinFeed";
 import Modal from "./components/CheckinModal";
 import Distilleries from "./components/Distilleries";
 import SingleDistillery from "./components/Distilleries/SingleDistillery";
-import CreateDrink from "./components/CreateDrink";
+// import CreateDrink from "./components/CreateDrink";
 
 function App() {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
-    const distilleryUser = useSelector(
-        (state) => state.distilleriesSession.distilleries
-    );
-
-    const user = window.localStorage.getItem("user");
-    // console.log(user, "@@@@@@@@@@@@@@@@@@@@@");
-    const distillery = window.localStorage.getItem("distillery");
-    // console.log(distillery, "!!!!!!!!!!!!!!!!!!!!");
 
     useEffect(() => {
         (async () => {
-            if (distillery) {
-                console.log("hit");
-                await dispatch(authenticateDistillery());
-            }
-            if (user) {
-                await dispatch(authenticate());
-            }
+            await dispatch(authenticate());
             setLoaded(true);
         })();
-    }, [dispatch, user, distillery]);
+    }, [dispatch]);
 
     if (!loaded) {
         return null;

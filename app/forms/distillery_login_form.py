@@ -24,5 +24,7 @@ def password_matches(form, field):
 
 
 class DistilleryLoginForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), distillery_exists])
-    password = StringField('password', validators=[DataRequired(), password_matches])
+    email = StringField('email', validators=[
+                        DataRequired(), distillery_exists])
+    password = StringField('password', validators=[
+                           DataRequired(), password_matches])

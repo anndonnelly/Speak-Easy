@@ -1,8 +1,8 @@
-"""empty message
+"""fixed database schema
 
-Revision ID: bae960340469
-Revises: 1892a95b590f
-Create Date: 2021-11-11 15:01:05.568293
+Revision ID: 313574cee605
+Revises: 
+Create Date: 2021-11-11 15:17:09.230310
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'bae960340469'
-down_revision = '1892a95b590f'
+revision = '313574cee605'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -55,7 +55,9 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('review', sa.Text(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
+    sa.Column('location', sa.String(), nullable=True),
     sa.Column('image', sa.String(), nullable=True),
+    sa.Column('drink_name', sa.String(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('drink_id', sa.Integer(), nullable=True),
     sa.Column('distillery_id', sa.Integer(), nullable=True),

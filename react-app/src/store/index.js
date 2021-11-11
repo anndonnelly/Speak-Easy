@@ -3,7 +3,6 @@ import thunk from "redux-thunk";
 import session from "./session";
 import checkins from "./checkins";
 import drinks from "./drinks";
-import distilleriesSession from "./distillery_session";
 import distilleries from "./distilleries";
 import modal from "./modal";
 import selectedDistillery from "./checkinmodal";
@@ -22,6 +21,7 @@ const rootReducer = combineReducers({
   selectedDrink,
   selectedUser,
   users
+
 });
 
 let enhancer;
