@@ -1,29 +1,23 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
-import { showModal, setCurrentModal, hideModal } from "../../store/modal";
+import { hideModal } from "../../store/modal";
 import "./LoginForm.css";
-import DistilleryLoginForm from "./DistilleryLoginForm";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const USER = useSelector((state) => state.session.user);
+    const [errors, setErrors] = useState([]);
 
     const onLogin = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password));
         if (data) {
             setErrors(data);
-        }
-        if (USER) {
-            window.localStorage.setItem("user", "user");
         }
         await dispatch(hideModal());
         history.push("/");
@@ -34,7 +28,6 @@ const LoginForm = () => {
         const email = "demo@aa.io";
         const password = "password";
         await dispatch(login(email, password));
-        window.localStorage.setItem("user", "user");
         await dispatch(hideModal());
         history.push("/");
     };
@@ -46,16 +39,6 @@ const LoginForm = () => {
     const updatePassword = (e) => {
         setPassword(e.target.value);
     };
-
-    const distilleryLoginButton = (e) => {
-        e.preventDefault();
-        dispatch(setCurrentModal(DistilleryLoginForm));
-        dispatch(showModal());
-    };
-
-    //   if (user) {
-    //      history.push('/')
-    //   }
 
     return (
         <>
@@ -90,9 +73,6 @@ const LoginForm = () => {
                     </button>
                     <button type="submit" onClick={demoLogin}>
                         User Demo Login
-                    </button>
-                    <button onClick={distilleryLoginButton}>
-                        Distillery Login
                     </button>
                 </div>
             </form>

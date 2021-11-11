@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { loginDistillery } from "../../store/distillery_session";
+import { createDistillery } from "../../store/distilleries";
 import { hideModal } from "../../store/modal";
 import "./LoginForm.css";
 
@@ -10,29 +10,22 @@ const DistillerySignUpForm = () => {
     const history = useHistory();
 
     const [name, setName] = useState("");
-    const [street, setStree] = useState("");
+    const [street, setStreet] = useState("");
+    const [city, setCity] = useState("");
+    const [state, setState] = useState("");
+    const [logo, setLogo] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const distilleryLogin = async (e) => {
+    const distillerySignup = async (e) => {
         e.preventDefault();
-        const data = await dispatch(loginDistillery(email, password));
+        const data = await dispatch(
+            createDistillery(name, street, city, state, logo)
+        );
         if (data) {
             setErrors(data);
         }
-        window.localStorage.setItem("distillery", "distillery");
         dispatch(hideModal());
-        return history.push("/distilleries"); //TODO: add correct id
-        //TODO need to fix redirect
-    };
-
-    const distillerydemoLogin = async (e) => {
-        e.preventDefault();
-        const email = "yellowrose@gmail.com";
-        const password = "password2";
-        await dispatch(loginDistillery(email, password));
-        window.localStorage.setItem("distillery", "distillery");
-        dispatch(hideModal());
-        return history.push("/distilleries"); //TODO: add correct id
+        return history.push("/distilleries");
         //TODO need to fix redirect
     };
 
@@ -46,29 +39,50 @@ const DistillerySignUpForm = () => {
                     ))}
                 </div>
                 <div>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="name">Distillery Name</label>
                     <input
-                        name="email"
+                        name="name"
                         type="text"
-                        placeholder="Email"
-                        value={email}
-                        onChange={updateEmail}
+                        placeholder="Distillery Name"
+                        value={name}
+                        onChange={setName}
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="street">Street</label>
                     <input
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={updatePassword}
+                        name="street"
+                        type="text"
+                        placeholder="Street"
+                        value={street}
+                        onChange={setStreet}
                     />
-                    <button type="submit" onClick={distilleryLogin}>
-                        Login
-                    </button>
-                    <button type="submit" onClick={distillerydemoLogin}>
-                        Distillery Demo Login
+                    <label htmlFor="city">City</label>
+                    <input
+                        name="city"
+                        type="text"
+                        placeholder="City"
+                        value={city}
+                        onChange={setCity}
+                    />
+                    <label htmlFor="state">State</label>
+                    <input
+                        name="state"
+                        type="text"
+                        placeholder="State"
+                        value={state}
+                        onChange={setState}
+                    />
+                    <label htmlFor="logo">Logo</label>
+                    <input
+                        name="logo"
+                        type="file"
+                        placeholder="Logo"
+                        value={logo}
+                        onChange={setLogo}
+                    />
+                    <button type="submit" onClick={distillerySignup}>
+                        Create Distillery
                     </button>
                 </div>
             </form>
