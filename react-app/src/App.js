@@ -22,7 +22,7 @@ function App() {
 
     useEffect(() => {
       (async () => {
-        dispatch(authenticate());
+        await dispatch(authenticate());
         setLoaded(true);
       })();
     }, [dispatch]);

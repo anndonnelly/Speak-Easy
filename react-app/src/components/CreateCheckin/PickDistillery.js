@@ -35,6 +35,7 @@ export default function PickDistillery() {
 
   return (
     <>
+    <h1>Checkin</h1>
       <select value={distillery} onChange={handlePickDistillery}>
         <option value="" >
           --Pick a Distillery--

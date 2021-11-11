@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
+import styles from "./CreateCheckin.module.css";
 
 function CreateCheckin() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function CreateCheckin() {
   return (
     <>
       <div>
-        <h1>Checkin</h1>
+        <h1 className={styles.checkinModalTitle}>Checkin</h1>
         <br />
         <div>{distillery.name}</div>
       </div>
