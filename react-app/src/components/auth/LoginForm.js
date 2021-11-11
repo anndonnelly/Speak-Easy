@@ -20,11 +20,11 @@ const LoginForm = () => {
     const onLogin = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password));
-        if (USER) {
-            window.localStorage.setItem("user", JSON.stringify(USER.id));
-        }
         if (data) {
             setErrors(data);
+        }
+        if (USER) {
+            window.localStorage.setItem("user", "user");
         }
         await dispatch(hideModal());
         history.push("/");
@@ -35,7 +35,7 @@ const LoginForm = () => {
         const email = "demo@aa.io";
         const password = "password";
         await dispatch(login(email, password));
-        window.localStorage.setItem("user", JSON.stringify(1));
+        window.localStorage.setItem("user", "user");
         await dispatch(hideModal());
         history.push("/");
     };

@@ -42,7 +42,6 @@ export const loginDistillery = (email, password) => async (dispatch) => {
     if (res.ok) {
         const data = await res.json();
         dispatch(setDistillery(data));
-        return null;
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -96,15 +95,15 @@ export const signupDistillery =
         }
     };
 /*-------------REDUCER-------------*/
-const initialState = { distilleries: null };
+const initialState = { distillery: null };
 
 const distilleriesSession = (state = initialState, action) => {
     switch (action.type) {
         case SET_DISTILLERY: {
-            return { distilleries: action.distillery };
+            return { ...state, distilleries: action.distillery };
         }
         case REMOVE_DISTILLERY: {
-            return { distilleries: {} };
+            return { ...state, distilleries: null };
         }
         default:
             return state;

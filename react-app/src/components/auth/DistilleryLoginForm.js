@@ -6,12 +6,16 @@ import { hideModal } from "../../store/modal";
 import "./LoginForm.css";
 
 const DistilleryLoginForm = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const user = useSelector((state) => state.session.user);
-    const dispatch = useDispatch();
-    const history = useHistory();
+
+    const DISTILLERY = useSelector(
+        (state) => state.distilleriesSesssion?.distilleries
+    );
 
     const distilleryLogin = async (e) => {
         e.preventDefault();
@@ -19,19 +23,23 @@ const DistilleryLoginForm = () => {
         if (data) {
             setErrors(data);
         }
-        await dispatch(hideModal());
-        history.push("/distilleries"); //TODO: add correct id
+        if (DISTILLERY) {
+            window.localStorage.setItem("distillery", "distillery");
+            await dispatch(hideModal());
+            history.push("/distilleries"); //TODO: add correct id
+            //TODO need to fix redirect
+        }
     };
 
     const distillerydemoLogin = async (e) => {
         e.preventDefault();
         const email = "yellowrose@gmail.com";
         const password = "password2";
-        const demo = await dispatch(loginDistillery(email, password));
-        dispatch(hideModal());
-        if (demo) {
-            return history.push("/distilleries"); //TODO: add correct id
-        }
+        await dispatch(loginDistillery(email, password));
+        window.localStorage.setItem("distillery", "distillery");
+        await dispatch(hideModal());
+        history.push("/distilleries"); //TODO: add correct id
+        //TODO need to fix redirect
     };
 
     const updateEmail = (e) => {
