@@ -12,6 +12,9 @@ export default function PickDistillery() {
 
     const dispatch = useDispatch()
  
+    const drinks = useSelector((state) =>
+      Object.values(state?.drinks)
+    );
     const distilleries = useSelector((state) => Object.values(state?.distilleries));
 
     useEffect(() => {
@@ -34,6 +37,16 @@ export default function PickDistillery() {
         {distilleries.map((distillery) => (
           <option key={distillery?.id} value={distillery?.id}>
             {distillery.name}
+          </option>
+        ))}
+      </select>
+      <select>
+        <option value="" disabled>
+          --Pick a Drink--
+        </option>
+        {drinks.map((drink) => (
+          <option key={drink?.id} value={drink?.id}>
+            {drink.name}
           </option>
         ))}
       </select>
