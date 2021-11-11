@@ -11,9 +11,8 @@ function CreateCheckin() {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [review, setReview] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState();
   const [checkinImage, setCheckinImage] = useState("");
-  const [location, setLocation] = useState("");
 
   const currentUser = useSelector((state) => state.session.user);
   const distillery = useSelector((state) => state?.selectedDistillery);
@@ -21,8 +20,8 @@ function CreateCheckin() {
   const checkedInUser = useSelector((state) => state?.session.user);
   const checkins = useSelector((state) => Object.values(state?.checkins));
 //   const checkinLocations = checkins
-console.log("DRINK", drink)
-console.log("DISTILLERY", distillery);
+// console.log("DRINK", drink.id)
+// console.log("DISTILLERY", distillery);
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,7 +39,7 @@ console.log("DISTILLERY", distillery);
         drink_id: drink.id,
         distillery_id: distillery.id,
       };
-      console.log("-------->", checkin);
+    //   console.log("-------->", checkin);
       let response = await dispatch(createCheckinsThunk(checkin));
       if (response) {
         setErrors(response);
@@ -91,12 +90,12 @@ console.log("DISTILLERY", distillery);
               <option value="" disabled>
                 --Rating--
               </option>
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+              <option value={0}>0</option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
             </select>
           </div>
           {/* <div>
@@ -113,7 +112,7 @@ console.log("DISTILLERY", distillery);
               ))}
             </select>
           </div> */}
-        </div> 
+        </div>
         <div className={styles.formSection}>
           <input
             value={checkinImage}
