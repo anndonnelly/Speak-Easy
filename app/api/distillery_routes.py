@@ -13,11 +13,9 @@ distillery_routes = Blueprint(
     'distilleries', __name__, url_prefix='/distilleries')
 
 
-
 @distillery_routes.route('/', methods=['GET', 'POST'])
 # @login_required
 def distilleries_cards():
-
     form = DistillerySignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -34,9 +32,6 @@ def distilleries_cards():
         return distillery.to_dict()
     return {distillery.id: distillery.to_card_dict() for distillery
             in Distillery.query.all()}
-
- 
-
 
 
 @distillery_routes.route('/<int:id>')

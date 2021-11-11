@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { loginDistillery } from "../../store/distillery_session";
 import { hideModal } from "../../store/modal";
 import "./LoginForm.css";
 
-const DistilleryLoginForm = () => {
+const DistillerySignUpForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const [name, setName] = useState("");
+    const [street, setStree] = useState("");
     const [errors, setErrors] = useState([]);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const DISTILLERY = useSelector(
-        (state) => state.distilleriesSesssion?.distilleries
-    );
 
     const distilleryLogin = async (e) => {
         e.preventDefault();
@@ -40,22 +36,10 @@ const DistilleryLoginForm = () => {
         //TODO need to fix redirect
     };
 
-    const updateEmail = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const updatePassword = (e) => {
-        setPassword(e.target.value);
-    };
-
-    //   if (user) {
-    //      history.push('/')
-    //   }
-
     return (
         <>
             <form className="loginModal">
-                <h2>Distillery Login</h2>
+                <h2>Create Distillery</h2>
                 <div>
                     {errors.map((error, ind) => (
                         <div key={ind}>{error}</div>
@@ -92,4 +76,4 @@ const DistilleryLoginForm = () => {
     );
 };
 
-export default DistilleryLoginForm;
+export default DistillerySignUpForm;
