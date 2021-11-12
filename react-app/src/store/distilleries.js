@@ -66,8 +66,8 @@ export const updateDistillery = (distillery) => async (dispatch) => {
     }
 };
 
-export const deleteDistillery = (distillery) => async (dispatch) => {
-    const res = await fetch(`/api/distilleries/${distillery.id}`, {
+export const deleteDistillery = (distilleryId) => async (dispatch) => {
+    const res = await fetch(`/api/distilleries/${distilleryId}`, {
         method: "DELETE",
     });
     if (res.ok) {
