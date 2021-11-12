@@ -7,7 +7,7 @@ import styles from "../Navigation/NavBar.module.css";
 const LogoutButton = () => {
     const history = useHistory()
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state?.session?.user?.id)
     const onLogout = async (e) => {
         e.preventDefault();
         window.localStorage.clear();
@@ -24,7 +24,7 @@ const LogoutButton = () => {
             <button className={styles.navButton} onClick={onLogout}>
                 Logout
             </button>
-            <button onClick={profile}>My Profile</button>
+            <button className={styles.navButton} onClick={profile}>My Profile</button>
         </div>
     );
 };

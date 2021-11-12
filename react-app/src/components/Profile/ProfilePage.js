@@ -15,7 +15,6 @@ const ProfilePage = () => {
     const user = useSelector(state => state.session.user)
     const distilleries = useSelector(state => state.distilleries)
     const ownedDistilleries = useSelector(state => state.users.distilleries)
-    console.log("????????????", distilleries)
 
     useEffect(() => {
         dispatch(loadOneUser(user.id))
@@ -26,7 +25,7 @@ const ProfilePage = () => {
     if (ownedDistilleries){
         distilleryCards = Object.values(distilleries).map((distillery) => {
             if (ownedDistilleries.includes(distillery.id)){
-                return <DistilleryCard distillery={distillery} />
+                return <DistilleryCard key={distillery.id} distillery={distillery} />
             }
             // console.log(distilleryId)
         })
