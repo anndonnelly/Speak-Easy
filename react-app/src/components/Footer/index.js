@@ -15,7 +15,7 @@ function Footer () {
           </a>
           <a href="https://www.linkedin.com/in/ann-donnelly/">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
+              src="https://res.cloudinary.com/dis83syog/image/upload/v1636761524/SpeakEasy/forAnn_nv1lpr.png"
               alt="linkedInLogo"
             />
           </a>
