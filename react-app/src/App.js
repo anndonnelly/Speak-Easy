@@ -36,9 +36,6 @@ export default function App() {
                 <Route path="/sign-up" exact={true}>
                     <SplashPage />
                 </Route>
-                <ProtectedRoute path="/users" exact={true}>
-                    <UsersList />
-                </ProtectedRoute>
                 <ProtectedRoute path="/users/:userId" exact={true}>
                     <ProfilePage />
                 </ProtectedRoute>
