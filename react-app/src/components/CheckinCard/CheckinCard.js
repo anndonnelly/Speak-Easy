@@ -17,8 +17,18 @@ function CheckinCard({ checkin }) {
     // const [editDrinkId, setEditDrinkId] = useState(checkin.drink_id);
     const [errors, setErrors] = useState([]);
 
-    // const checkins = useSelector((state) => Object.values(state.checkins));
-    const checkinId = checkin.id;
+  const checkins = useSelector((state) => Object.values(state.checkins));
+  const checkinId = checkin.id;
+    // console.log("LOCATION", checkin)
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    const editedCheckin = {
+      checkinId: checkin.id,
+      // editDrinkId,
+      review: editReview,
+      rating: editRating,
+    //   location: location
+    };
 
     const handleEdit = async (e) => {
         e.preventDefault();

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
 // import "../../index.css";
@@ -13,26 +13,33 @@ function CreateCheckin() {
     const [rating, setRating] = useState();
     const [checkinImage, setCheckinImage] = useState("");
     //   const [location, setLocation] = useState("")
+    //   const [submitted, setSubmitted] = useState(false)
 
-    //   const currentUser = useSelector((state) => state.session.user);
+    const currentUser = useSelector((state) => state.session.user);
     const distillery = useSelector((state) => state?.selectedDistillery);
     const drink = useSelector((state) => state?.selectedDrink);
     const checkedInUser = useSelector((state) => state?.session.user);
-    //   const checkins = useSelector((state) => Object.values(state?.checkins));
-    //   const checkinLocations = checkins
-    // console.log("DRINK", drink.id)
-    // console.log("DISTILLERY", distillery);
+    const checkins = useSelector((state) => Object.values(state?.checkins));
+
+    const valErrors = [];
+    //     if (review.length > 1 && review.length < 5) {
+    //         valErrors.push("--Review must be at least 5 characters long--")
+    //         setErrors(valErrors);
+    //     };
+
+    useEffect(() => {
+        if (review.length > 0 && review.length < 5)
+            valErrors.push("--Review must be at least 5 characters long--");
+
+        setErrors(valErrors);
+        console.log("ddddddd---->", errors);
+        console.log("REVIEW", review);
+    }, [review]);
+
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (review && rating) {
-            if (rating < 0 || rating > 5) {
-                setErrors([
-                    ...errors,
-                    "Please include a rating for your drink",
-                ]);
-                return;
-            }
+        if (review) {
             const checkin = {
                 review: review,
                 rating: rating,
@@ -43,17 +50,18 @@ function CreateCheckin() {
                 distillery_id: distillery.id,
                 drink_name: drink.name,
             };
-            //   console.log("-------->", checkin);
-            let response = await dispatch(createCheckinsThunk(checkin));
-            if (response) {
-                setErrors(response);
-            }
 
-            if (!response) {
-                setReview("");
-                setErrors([]);
-            }
+            dispatch(createCheckinsThunk(checkin));
+            //   if (response) {
+            //     setErrors(response);
+            //   }
+
+            //   if (!response) {
+            //     setReview("");
+            //     setErrors([]);
+            //   }
         }
+
         dispatch(hideModal());
     };
 
@@ -68,14 +76,17 @@ function CreateCheckin() {
             </div>
             <form className={styles.checkinForm} onSubmit={onSubmit}>
                 <ul>
-                    {errors.map((error) => (
-                        <li key={error}>{error}</li>
-                    ))}
+                    {errors.length > 0
+                        ? errors.map((valError) => (
+                              <li key={valError}>{valError}</li>
+                          ))
+                        : null}
                 </ul>
                 <div className={styles.formSection}>
                     <label className={styles.checkinLabel}>Review</label>
                     <textarea
                         name="review"
+                        required
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
                         placeholder="What did you think?"
@@ -90,10 +101,9 @@ function CreateCheckin() {
                             className={styles.checkinSelect}
                             name="rating"
                             value={rating}
+                            required
                             onChange={(e) => setRating(e.target.value)}>
-                            <option value="" disabled>
-                                --Rating--
-                            </option>
+                            <option value="">--Rating--</option>
                             <option value={0}>0</option>
                             <option value={1}>1</option>
                             <option value={2}>2</option>
@@ -102,20 +112,6 @@ function CreateCheckin() {
                             <option value={5}>5</option>
                         </select>
                     </div>
-                    {/* <div>
-            <label className={styles.checkinLabelTwo}>Location</label>
-            <select
-              className={styles.checkinSelect}
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            >
-              {checkins.map((checkin) => (
-                <option value={checkin.location} key={checkin.id}>
-                  {checkin.location}
-                </option>
-              ))}
-            </select>
-          </div> */}
                 </div>
                 <div className={styles.formSection}>
                     <input
@@ -128,7 +124,11 @@ function CreateCheckin() {
                         }></input>
                 </div>
                 <div className={styles.checkinButtonWrap}>
-                    <button className={styles.checkinButton}>Checkin</button>
+                    <button
+                        disabled={errors.length > 0}
+                        className={styles.checkinButton}>
+                        Checkin
+                    </button>
                 </div>
             </form>
         </div>
