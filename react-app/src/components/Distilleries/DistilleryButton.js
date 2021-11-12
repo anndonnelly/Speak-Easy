@@ -7,7 +7,7 @@ const DistilleryButton = () => {
     const history = useHistory();
 
     const distillery = () => {
-        return history.push("/distilleries");
+        history.push("/distilleries");
     };
 
     return (
