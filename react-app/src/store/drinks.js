@@ -57,7 +57,7 @@ export const addADrinkThunk = (drink) => async (dispatch) => {
     formData.append("description", drink.description);
     formData.append("image", drink.image);
     formData.append("abv", drink.abv);
-    formData.append("rating", drink.rating);
+    // formData.append("rating", drink.rating);
     formData.append("distillery_id", drink.distillery_id);
     const res = await fetch("/api/drinks", {
         method: "POST",
@@ -127,6 +127,8 @@ const drinks = (state = initalState, action) => {
             };
         }
         case ADD_DRINK:
+            newState[action.drink.id] = action.drink;
+            return newState;
         case UPDATE_DRINK: {
             return {
                 ...state,

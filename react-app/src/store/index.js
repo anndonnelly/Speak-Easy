@@ -4,6 +4,7 @@ import session from "./session";
 import checkins from "./checkins";
 import drinks from "./drinks";
 import distilleries from "./distilleries";
+import distillery from "./distillery";
 import modal from "./modal";
 import selectedDistillery from "./checkinmodal";
 import selectedDrink from "./checkinmodal_pagetwo";
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     checkins,
     drinks,
     distilleries,
+    distillery,
     selectedDistillery,
     selectedDrink,
     selectedUser,

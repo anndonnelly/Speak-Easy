@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showModal, setCurrentModal } from "../../store/modal";
-import { loadOneDistillery } from "../../store/distilleries";
+import { loadOneDistillery } from "../../store/distillery";
 import { getCheckinsThunk } from "../../store/checkins";
 import { loadAllDrinks } from "../../store/drinks";
 import { useParams } from "react-router-dom";
@@ -18,11 +18,10 @@ const SingleDistillery = () => {
     const dispatch = useDispatch();
     const [selection, setSelection] = useState(false);
 
-    const distillery = useSelector((state) => state.distilleries);
+    const distillery = useSelector((state) => state.distillery);
     const checkins = useSelector((state) => state.checkins);
     const drinks = useSelector((state) => state.drinks);
-    const currentUser = useSelector((state) => state.session.user)
-
+    const currentUser = useSelector((state) => state.session.user);
 
     useEffect(() => {
         dispatch(loadOneDistillery(distilleryId));
@@ -57,12 +56,13 @@ const SingleDistillery = () => {
             return null;
         });
     }
-
     return (
         <div>
-            {currentUser.id === distillery.owner_id ? <div>
-                <button onClick={createDrinkModal}>Add a Drink</button>
-            </div> : null}
+            {currentUser.id === distillery.owner_id ? (
+                <div>
+                    <button onClick={createDrinkModal}>Add a Drink</button>
+                </div>
+            ) : null}
             <div className={styles.singleDistillContainer}>
                 <div>
                     <img src={distillery.logo} alt="Distillery Logo" />
@@ -73,11 +73,23 @@ const SingleDistillery = () => {
                 <div>{distillery.state}</div>
                 <div>{distillery.drink_ids}</div>
             </div>
-        
+
             <div className={styles.feedContainer}>
                 <div className={styles.titleContainer}>
                     <div className={styles.title}>
-                        {selection ? <div>Checkins</div> : <div>Drinks</div>}
+                        {selection ? (
+                            <button
+                                className={styles.button}
+                                onClick={() => setSelection(!selection)}>
+                                Checkins
+                            </button>
+                        ) : (
+                            <button
+                                className={styles.button}
+                                onClick={() => setSelection(!selection)}>
+                                Drinks
+                            </button>
+                        )}
                     </div>
                 </div>
                 <div className={styles.feed}>
