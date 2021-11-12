@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-// import React, { useEffect, useState } from "react";
-
-// import { getCheckinsThunk } from "../../store/checkins";
+import React, { useEffect, useState } from "react";
+import { getCheckinsThunk } from "../../store/checkins";
 import { useDispatch, useSelector } from "react-redux";
 import "./CheckinCard.css";
 import { editCheckinsThunk } from "../../store/checkins";
@@ -13,23 +11,13 @@ function CheckinCard({ checkin }) {
     const [edit, setEdit] = useState(false);
     const [editReview, setEditReview] = useState(checkin.review);
     const [editRating, setEditRating] = useState(checkin.rating);
-    // const [editLocation, setEditLocation] = useState(checkin.location);
-    // const [editDrinkId, setEditDrinkId] = useState(checkin.drink_id);
+    const [editLocation, setEditLocation] = useState(checkin.location);
+    const [editDrinkId, setEditDrinkId] = useState(checkin.drink_id);
     const [errors, setErrors] = useState([]);
 
-  const checkins = useSelector((state) => Object.values(state.checkins));
-  const checkinId = checkin.id;
+    const checkins = useSelector((state) => Object.values(state.checkins));
+    const checkinId = checkin.id;
     // console.log("LOCATION", checkin)
-  const handleEdit = async (e) => {
-    e.preventDefault();
-    const editedCheckin = {
-      checkinId: checkin.id,
-      // editDrinkId,
-      review: editReview,
-      rating: editRating,
-    //   location: location
-    };
-
     const handleEdit = async (e) => {
         e.preventDefault();
         const editedCheckin = {
@@ -59,11 +47,11 @@ function CheckinCard({ checkin }) {
         return (
             <div className="edit-card">
                 <form onSubmit={handleEdit}>
-                    <ul>
-                        {errors.map((error) => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
+                    {/* <ul>
+                {errors.map((error) => (
+                <li key={error}>{error}</li>
+                ))}
+            </ul> */}
                     <div>
                         <label>Review</label>
                         <textarea
