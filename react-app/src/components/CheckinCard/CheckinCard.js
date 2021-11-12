@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { getCheckinsThunk } from "../../store/checkins";
+import React, {useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./CheckinCard.css";
 import { editCheckinsThunk } from "../../store/checkins";
@@ -11,11 +10,11 @@ function CheckinCard({ checkin }) {
     const [edit, setEdit] = useState(false);
     const [editReview, setEditReview] = useState(checkin.review);
     const [editRating, setEditRating] = useState(checkin.rating);
-    const [editLocation, setEditLocation] = useState(checkin.location);
-    const [editDrinkId, setEditDrinkId] = useState(checkin.drink_id);
+    // const [editLocation, setEditLocation] = useState(checkin.location);
+    // const [editDrinkId, setEditDrinkId] = useState(checkin.drink_id);
     const [errors, setErrors] = useState([]);
 
-    const checkins = useSelector((state) => Object.values(state.checkins));
+    // const checkins = useSelector((state) => Object.values(state.checkins));
     const checkinId = checkin.id;
     // console.log("LOCATION", checkin)
     const handleEdit = async (e) => {

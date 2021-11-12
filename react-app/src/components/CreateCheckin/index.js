@@ -15,11 +15,11 @@ function CreateCheckin() {
     //   const [location, setLocation] = useState("")
     //   const [submitted, setSubmitted] = useState(false)
 
-    const currentUser = useSelector((state) => state.session.user);
+    // const currentUser = useSelector((state) => state.session.user);
     const distillery = useSelector((state) => state?.selectedDistillery);
     const drink = useSelector((state) => state?.selectedDrink);
     const checkedInUser = useSelector((state) => state?.session.user);
-    const checkins = useSelector((state) => Object.values(state?.checkins));
+    // const checkins = useSelector((state) => Object.values(state?.checkins));
 
     const valErrors = [];
     //     if (review.length > 1 && review.length < 5) {
@@ -28,13 +28,14 @@ function CreateCheckin() {
     //     };
 
     useEffect(() => {
-        if (review.length > 0 && review.length < 5)
+        if (review.length > 0 && review.length < 5){
             valErrors.push("--Review must be at least 5 characters long--");
+        }
 
         setErrors(valErrors);
         console.log("ddddddd---->", errors);
         console.log("REVIEW", review);
-    }, [review]);
+    }, [review, errors, valErrors]);
 
     const onSubmit = async (e) => {
         e.preventDefault();

@@ -1,7 +1,7 @@
 
-import React, {useState} from 'react'
+import React from 'react'
 import "./SplashPage.css"
-import Search from '../Search/SearchBar/index'
+// import Search from '../Search/SearchBar/index'
 import Footer from "../Footer/index"
 
 
@@ -19,7 +19,7 @@ export default function SplashPage() {
                     <div className="splashText">
                         <h1 className="splashTitle">Booze For All The <span className="splashSpan">Speakeasy</span> Working Stiffs</h1>
                     </div>
-                    
+
             </div>
             <Footer />
        </>
