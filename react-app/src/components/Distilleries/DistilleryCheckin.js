@@ -5,7 +5,7 @@ import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
 // import "../../index.css";
 import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function DistilleryCheckin() {
     const dispatch = useDispatch();
@@ -13,32 +13,30 @@ function DistilleryCheckin() {
     const [review, setReview] = useState("");
     const [rating, setRating] = useState();
     const [checkinImage, setCheckinImage] = useState("");
-    //   const [location, setLocation] = useState("");
+    const [location, setLocation] = useState("");
     //   const { distilleryId } = useParams();
     //   console.log("USEPARAMS", distilleryId);
 
-//   const currentUser = useSelector((state) => state.session.user);
-  const distillery = useSelector((state) => state?.selectedDistillery);
-  const drink = useSelector((state) => state?.selectedDrink);
-//   const checkedInUser = useSelector((state) => state?.session.user);
-//   const checkins = useSelector((state) => Object.values(state?.checkins));
-  //   const checkinLocations = checkins
-  // console.log("DRINK", drink.id)
-  // console.log("DISTILLERY", distillery);
+    //   const currentUser = useSelector((state) => state.session.user);
+    const distillery = useSelector((state) => state?.selectedDistillery);
+    const drink = useSelector((state) => state?.selectedDrink);
+    //   const checkedInUser = useSelector((state) => state?.session.user);
+    //   const checkins = useSelector((state) => Object.values(state?.checkins));
+    //   const checkinLocations = checkins
+    // console.log("DRINK", drink.id)
+    // console.log("DISTILLERY", distillery);
 
+    const valErrors = [];
+    useEffect(() => {
+        if (review.length > 0 && review.length < 5)
+            valErrors.push("--Review must be at least 5 characters long--");
 
-
-  const valErrors = [];
-  useEffect(() => {
-    if (review.length > 0 && review.length < 5)
-      valErrors.push("--Review must be at least 5 characters long--");
-
-    setErrors(valErrors);
-    console.log("ddddddd---->", errors);
-    console.log("REVIEW", review);
-  }, [review]);
-  const onSubmit = async (e) => {
-    e.preventDefault();
+        setErrors(valErrors);
+        console.log("ddddddd---->", errors);
+        console.log("REVIEW", review);
+    }, [review]);
+    const onSubmit = async (e) => {
+        e.preventDefault();
 
         if (review && rating) {
             if (rating < 0 || rating > 5) {
@@ -142,30 +140,14 @@ function DistilleryCheckin() {
                         }></input>
                 </div>
                 <div className={styles.checkinButtonWrap}>
-                    <button className={styles.checkinButton}>Checkin</button>
+                    <button
+                        disabled={errors.length > 0}
+                        className={styles.checkinButton}>
+                        Checkin
+                    </button>
                 </div>
             </form>
         </div>
-<<<<<<< HEAD
     );
-=======
-        <div className={styles.formSection}>
-          <input
-            value={checkinImage}
-            type="file"
-            id="input"
-            multiple
-            onChange={(e) => setCheckinImage(e.target.value)}
-          ></input>
-        </div>
-        <div className={styles.checkinButtonWrap}>
-          <button disabled={errors.length > 0} className={styles.checkinButton}>
-            Checkin
-          </button>
-        </div>
-      </form>
-    </div>
-  );
->>>>>>> main
 }
 export default DistilleryCheckin;
