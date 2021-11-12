@@ -60,7 +60,7 @@ const SignUpForm = () => {
                 ))}
             </ul>
             <div>
-                <label>User Name</label>
+                <label htmlFor="username">User Name</label>
                 <input
                     type="text"
                     name="username"
@@ -69,7 +69,7 @@ const SignUpForm = () => {
                     required={true}></input>
             </div>
             <div>
-                <label>Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                     type="email"
                     name="email"
