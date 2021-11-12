@@ -14,7 +14,7 @@ import DrinkCard from "./DrinkCard";
 
 const SingleDistillery = () => {
      const { distilleryId } = useParams();
-     
+
     const dispatch = useDispatch();
     const [selection, setSelection] = useState(false);
 
@@ -36,7 +36,7 @@ const SingleDistillery = () => {
                 return <CheckinCard checkin={checkin} />;
             }
             return null;
-        });
+        }).reverse();
     }
 
     const createDrinkModal = (e) => {

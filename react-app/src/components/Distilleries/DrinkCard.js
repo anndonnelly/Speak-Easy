@@ -14,13 +14,14 @@ const DrinkCard = ({ drink }) => {
 
     const checkin = (e) => {
         e.preventDefault();
+        dispatch(loadSelectedDistillery(distillery.id));
+        dispatch(loadSelectedDrink(drink.id));
         dispatch(setCurrentModal(DistilleryCheckin));
-        dispatch(loadSelectedDistillery(distillery));
-        dispatch(loadSelectedDrink(drink));
+        console.log("test sfljkasf", distillery.id, drink.id)
         dispatch(showModal());
     };
-    console.log("DRINK",drink)
-    console.log("DISTIL", distillery)
+    // console.log("DRINK",drink)
+    // console.log("DISTIL", distillery)
     return (
         <div className={styles.drinkContainer}>
             <div className={styles.name}>{drink.name}</div>

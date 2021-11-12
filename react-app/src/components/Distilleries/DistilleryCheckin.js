@@ -14,14 +14,14 @@ function DistilleryCheckin() {
   const [rating, setRating] = useState();
   const [checkinImage, setCheckinImage] = useState("");
   const [location, setLocation] = useState("");
-  const { distilleryId } = useParams();
-  console.log("USEPARAMS", distilleryId);
+//   const { distilleryId } = useParams();
+//   console.log("USEPARAMS", distilleryId);
 
-  const currentUser = useSelector((state) => state.session.user);
+//   const currentUser = useSelector((state) => state.session.user);
   const distillery = useSelector((state) => state?.selectedDistillery);
   const drink = useSelector((state) => state?.selectedDrink);
-  const checkedInUser = useSelector((state) => state?.session.user);
-  const checkins = useSelector((state) => Object.values(state?.checkins));
+//   const checkedInUser = useSelector((state) => state?.session.user);
+//   const checkins = useSelector((state) => Object.values(state?.checkins));
   //   const checkinLocations = checkins
   // console.log("DRINK", drink.id)
   // console.log("DISTILLERY", distillery);
@@ -38,12 +38,12 @@ function DistilleryCheckin() {
         rating: rating,
         location: distillery.name,
         checkinImage: checkinImage,
-        user_id: currentUser.id,
+        // user_id: currentUser.id,
         drink_id: drink.id,
         distillery_id: distillery.id,
         drink_name: drink.name,
       };
-   
+
       let response = await dispatch(createCheckinsThunk(checkin));
       if (response) {
         setErrors(response);
