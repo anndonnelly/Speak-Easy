@@ -57,7 +57,7 @@ const NavBar = () => {
                     </>
                 )}
                 {user && sessionLoaded && (
-                    <div>
+                    <div className={styles.navRightButtons}>
                         <ProfileButton />
                         <LogoutButton />
                     </div>
