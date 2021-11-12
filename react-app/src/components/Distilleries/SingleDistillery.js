@@ -21,6 +21,8 @@ const SingleDistillery = () => {
     const distillery = useSelector((state) => state.distilleries);
     const checkins = useSelector((state) => state.checkins);
     const drinks = useSelector((state) => state.drinks);
+    const currentUser = useSelector((state) => state.session.user)
+
 
     useEffect(() => {
         dispatch(loadOneDistillery(distilleryId));
@@ -58,9 +60,9 @@ const SingleDistillery = () => {
 
     return (
         <div>
-            <div>
+            {currentUser.id === distillery.owner_id ? <div>
                 <button onClick={createDrinkModal}>Add a Drink</button>
-            </div>
+            </div> : null}
             <div className={styles.singleDistillContainer}>
                 <div>
                     <img src={distillery.logo} alt="Distillery Logo" />

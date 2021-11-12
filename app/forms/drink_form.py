@@ -7,5 +7,5 @@ class DrinkForm(FlaskForm):
     description = TextAreaField('rating', validators=[DataRequired()])
     image = StringField('image')
     abv = IntegerField('abv')
-    rating = IntegerField('rating')
+    # rating = IntegerField('rating')
     distillery_id = IntegerField('distillery_id', validators=[DataRequired()])
