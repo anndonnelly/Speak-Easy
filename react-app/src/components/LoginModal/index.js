@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+// import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal } from "../../context/Modal";
+// import { Modal } from "../../context/Modal";
 import LoginForm from "../auth/LoginForm";
 import styles from "./LoginModal.module.css";
-import {showModal, setCurrentModal} from "../../store/modal"
+import { showModal, setCurrentModal } from "../../store/modal";
 
 function LoginFormModal() {
     // const [showModal, setShowModal] = useState(false);
@@ -16,15 +17,13 @@ function LoginFormModal() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch(setCurrentModal(LoginForm))
-        dispatch(showModal())
-    }
+        dispatch(setCurrentModal(LoginForm));
+        dispatch(showModal());
+    };
 
     return (
         <>
-            <button
-                className={styles.navButton}
-                onClick={handleLogin}>
+            <button className={styles.navButton} onClick={handleLogin}>
                 Log In
             </button>
             {/* {showModal && (

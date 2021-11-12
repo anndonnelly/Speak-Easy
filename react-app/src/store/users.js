@@ -6,7 +6,7 @@ const loadOne = (user) => ({
     user
 })
 /*-------------THUNK CREATORS-------------*/
-export const loadOneDistillery = (id) => async (dispatch) => {
+export const loadOneUser = (id) => async (dispatch) => {
     const res = await fetch(`/api/users/${id}`);
     if (res.ok) {
         const user = await res.json();
@@ -28,7 +28,7 @@ const users = (state = initialState, action) => {
         case LOAD_ONE_USER: {
             return {
                 ...state,
-                ...action.distillery,
+                ...action.user,
             };
         }
         default:

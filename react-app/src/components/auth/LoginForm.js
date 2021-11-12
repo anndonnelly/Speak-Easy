@@ -1,34 +1,36 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import { login } from "../../store/session";
 import { hideModal } from "../../store/modal";
-import "./LoginForm.css";
+
+import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const user = useSelector((state) => state.session.user);
+    const sessionLoaded = useSelector((state) => state.session.loaded);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const onLogin = async (e) => {
+    const onLogin = (e) => {
         e.preventDefault();
-        const data = await dispatch(login(email, password));
-        if (data) {
-            setErrors(data);
-        }
-        await dispatch(hideModal());
+        dispatch(login(email, password)).catch((err) => setErrors(err.errors));
+        dispatch(hideModal());
         history.push("/");
     };
 
-    const demoLogin = async (e) => {
+    const demoLogin = (e) => {
         e.preventDefault();
         const email = "demo@aa.io";
         const password = "password";
-        await dispatch(login(email, password));
-        await dispatch(hideModal());
+        dispatch(login(email, password));
+        dispatch(hideModal());
         history.push("/");
     };
 
@@ -40,43 +42,45 @@ const LoginForm = () => {
         setPassword(e.target.value);
     };
 
+    if (sessionLoaded && user) {
+        history.push("/");
+    }
+
     return (
-        <>
-            <form className="loginModal">
-                <h2>User Login</h2>
-                <div>
-                    {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
-                    ))}
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        name="email"
-                        type="text"
-                        placeholder="Email"
-                        value={email}
-                        onChange={updateEmail}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={updatePassword}
-                    />
-                    <button type="submit" onClick={onLogin}>
-                        Login
-                    </button>
-                    <button type="submit" onClick={demoLogin}>
-                        User Demo Login
-                    </button>
-                </div>
-            </form>
-        </>
+        <form className={styles.loginModal}>
+            <h2>User Login</h2>
+            <div>
+                {errors.map((error, idx) => (
+                    <div key={idx}>{error}</div>
+                ))}
+            </div>
+            <div>
+                <label htmlFor="email">Email</label>
+                <input
+                    name="email"
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                    onChange={updateEmail}
+                />
+            </div>
+            <div>
+                <label htmlFor="password">Password</label>
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={updatePassword}
+                />
+                <button type="submit" onClick={onLogin}>
+                    Login
+                </button>
+                <button type="submit" onClick={demoLogin}>
+                    User Demo Login
+                </button>
+            </div>
+        </form>
     );
 };
 

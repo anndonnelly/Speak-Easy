@@ -1,22 +1,24 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import { logout } from "../../store/session";
-import styles from "../Navigation/NavBar.module.css";
+
+import styles from "./LogoutButton.module.css";
 
 const LogoutButton = () => {
     const dispatch = useDispatch();
-    const onLogout = async (e) => {
-        e.preventDefault();
-        window.localStorage.clear();
-        await dispatch(logout());
+    const history = useHistory();
+
+    const onLogout = () => {
+        dispatch(logout());
+        history.push("/login");
     };
 
     return (
-        <div className="nav-link">
-            <button className={styles.navButton} onClick={onLogout}>
-                Logout
-            </button>
-        </div>
+        <button className={styles.navButton} onClick={onLogout}>
+            Logout
+        </button>
     );
 };
 

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+// import React, { useEffect, useState } from "react";
 import { getCheckinsThunk } from "../../store/checkins";
 import { useDispatch, useSelector } from "react-redux";
 import CheckinCard from "../CheckinCard/CheckinCard";
@@ -30,7 +31,6 @@ function CheckinsFeed() {
                     onClick={showCheckinModal}>
                     Checkin
                 </button>{" "}
-                
             </div>
             {checkins
                 .map((checkin) => (
