@@ -12,13 +12,13 @@ import { loadDistilleries } from "../../store/distilleries";
 
 const ProfilePage = () => {
     const dispatch = useDispatch()
-    const userId = useSelector(state => state.session.user.id)
+    const user = useSelector(state => state.session.user)
     const distilleries = useSelector(state => state.distilleries)
     const ownedDistilleries = useSelector(state => state.users.distilleries)
     console.log("????????????", distilleries)
 
     useEffect(() => {
-        dispatch(loadOneUser(userId))
+        dispatch(loadOneUser(user.id))
         dispatch(loadDistilleries())
     }, [dispatch])
 
@@ -34,6 +34,7 @@ const ProfilePage = () => {
 
     return (
         <>
+            <div>{user.username}</div>
             <div>{distilleryCards}</div>
         </>
     )
