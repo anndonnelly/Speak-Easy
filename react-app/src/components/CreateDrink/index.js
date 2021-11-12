@@ -57,6 +57,7 @@ function CreateDrink() {
             type="text"
             name="name"
             value={drinkName}
+            required
             onChange={(e) => setDrinkName(e.target.value)}
             placeholder="Drink Name"
           />
@@ -66,6 +67,7 @@ function CreateDrink() {
           <textarea
             type="text"
             name="description"
+            required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description"
@@ -76,6 +78,7 @@ function CreateDrink() {
             value={drinkImage}
             type="file"
             id="input"
+            required
             multiple
             onChange={(e) => setDrinkImage(e.target.value)}
           ></input>
@@ -85,6 +88,7 @@ function CreateDrink() {
             <input
               type="number"
               id="abv"
+              required
               value={abv}
               placeholder="ABV"
               onChange={(e) => setAbv(e.target.value)}
@@ -99,6 +103,7 @@ function CreateDrink() {
           <label>Rating</label>
           <select
             name="rating"
+            required
             value={rating}
             onChange={(e) => setRating(e.target.value)}
           >
