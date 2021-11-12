@@ -8,8 +8,8 @@ import { ModalProvider } from "./context/Modal";
 import { BrowserRouter } from "react-router-dom";
 import * as drinksActions from "./store/drinks";
 import * as distilleryActions from "./store/distilleries";
-import { setModalMount } from "./store/modal";
-import { useDispatch } from "react-redux";
+// import { setModalMount } from "./store/modal";
+// import { useDispatch } from "react-redux";
 
 const store = configureStore();
 
@@ -20,31 +20,35 @@ if (process.env.NODE_ENV !== "production") {
     window.drinksActions = drinksActions;
     window.distilleryActions = distilleryActions;
 }
-
-const Root = () => {
-    const dispatch = useDispatch();
-    const modalMooringRef = useRef(null);
-
-    useEffect(() => {
-        dispatch(setModalMount(modalMooringRef.current));
-    }, [dispatch]);
+function Root() {
     return (
-        <>
-            <App />
-            <div ref={modalMooringRef} className="modal"></div>
-        </>
-    );
-};
-
-ReactDOM.render(
-    <React.StrictMode>
         <Provider store={store}>
             <ModalProvider>
                 <BrowserRouter>
-                    <Root />
+                    <App />
                 </BrowserRouter>
             </ModalProvider>
         </Provider>
+    );
+}
+// const Root = () => {
+//     const dispatch = useDispatch();
+//     const modalMooringRef = useRef(null);
+
+//     useEffect(() => {
+//         dispatch(setModalMount(modalMooringRef.current));
+//     }, [dispatch]);
+//     return (
+//         <>
+//             <App />
+//             <div ref={modalMooringRef} className="modal"></div>
+//         </>
+//     );
+// };
+
+ReactDOM.render(
+    <React.StrictMode>
+        <Root />
     </React.StrictMode>,
     document.getElementById("root")
 );

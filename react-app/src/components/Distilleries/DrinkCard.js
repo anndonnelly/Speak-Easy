@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CreateCheckin from "../../components/CreateCheckin/index";
+// import CreateCheckin from "../../components/CreateCheckin/index";
 import { showModal, setCurrentModal } from "../../store/modal";
 import styles from "./DrinkCard.module.css";
 import DistilleryCheckin from "./DistilleryCheckin";
