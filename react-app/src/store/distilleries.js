@@ -1,3 +1,5 @@
+// import { createSelector } from "@reduxjs/toolkit";
+
 /*-------------ACTION.TYPES-------------*/
 const LOAD_DISTILLERIES = "distillery/LOAD_DISTILLERIES";
 const LOAD_ONE_DISTILLERY = "distillery/LOAD_ONE_DISTILLERY";
@@ -29,6 +31,7 @@ const remove = (distillery) => ({
     type: REMOVE_DISTILLERY,
     distillery,
 });
+/*-------------MEMOIZED SELECTORS-------------*/
 
 /*-------------THUNK CREATORS-------------*/
 export const loadDistilleries = () => async (dispatch) => {
@@ -48,7 +51,6 @@ export const loadOneDistillery = (id) => async (dispatch) => {
 };
 
 export const createDistillery = (distillery) => async (dispatch) => {
-    // const { name, street, city, state, logo } = distillery;
     const res = await fetch("/api/distilleries", {
         method: "POST",
         headers: {
@@ -57,10 +59,10 @@ export const createDistillery = (distillery) => async (dispatch) => {
         body: JSON.stringify(distillery),
     });
     if (res.ok) {
-        console.log("hittttt", res)
+        console.log("hittttt", res);
         const distillery = await res.json();
         dispatch(create(distillery));
-        return distillery
+        return distillery;
     }
 };
 

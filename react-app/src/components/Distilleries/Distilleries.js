@@ -6,28 +6,27 @@ import styles from "./Distilleries.module.css";
 
 const Distilleries = () => {
     const dispatch = useDispatch();
-    const distilleries = useSelector((state) =>
-        Object.values(state.distilleries)
-    );
+    const distilleries = useSelector((state) => state.distilleries);
 
     useEffect(() => {
         dispatch(loadDistilleries());
     }, [dispatch]);
 
-    if (!distilleries.length) {
+    if (!distilleries) {
         return null;
     }
 
     return (
         <div className={styles.feedWrapper}>
-            {distilleries.map((distillery, idx) => (
-                <div key={idx} className={styles.distilleryCard}>
-                    <DistilleryCard
-                        key={distillery.id}
-                        distillery={distillery}
-                    />
-                </div>
-            ))}
+            {distilleries &&
+                Object.values(distilleries).map((distillery, idx) => (
+                    <div key={idx} className={styles.distilleryCard}>
+                        <DistilleryCard
+                            key={distillery.id}
+                            distillery={distillery}
+                        />
+                    </div>
+                ))}
         </div>
     );
 };
