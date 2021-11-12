@@ -1,6 +1,7 @@
+// import { createSelector } from "@reduxjs/toolkit";
+
 /*-------------ACTION.TYPES-------------*/
 const LOAD_DISTILLERIES = "distillery/LOAD_DISTILLERIES";
-const LOAD_ONE_DISTILLERY = "distillery/LOAD_ONE_DISTILLERY";
 const CREATE_DISTILLERY = "distillery/CREATE_DISTILLERY";
 const UPDATE_DISTILLERY = "distillery/UPDATE_DISTILLERY";
 const REMOVE_DISTILLERY = "distillery/REMOVE_DISTILLERY";
@@ -8,11 +9,6 @@ const REMOVE_DISTILLERY = "distillery/REMOVE_DISTILLERY";
 const load = (distilleries) => ({
     type: LOAD_DISTILLERIES,
     distilleries,
-});
-
-const loadOne = (distillery) => ({
-    type: LOAD_ONE_DISTILLERY,
-    distillery,
 });
 
 const create = (distillery) => ({
@@ -29,6 +25,7 @@ const remove = (distillery) => ({
     type: REMOVE_DISTILLERY,
     distillery,
 });
+/*-------------MEMOIZED SELECTORS-------------*/
 
 /*-------------THUNK CREATORS-------------*/
 export const loadDistilleries = () => async (dispatch) => {
@@ -39,16 +36,7 @@ export const loadDistilleries = () => async (dispatch) => {
     }
 };
 
-export const loadOneDistillery = (id) => async (dispatch) => {
-    const res = await fetch(`/api/distilleries/${id}`);
-    if (res.ok) {
-        const distillery = await res.json();
-        dispatch(loadOne(distillery));
-    }
-};
-
 export const createDistillery = (distillery) => async (dispatch) => {
-    // const { name, street, city, state, logo } = distillery;
     const res = await fetch("/api/distilleries", {
         method: "POST",
         headers: {
@@ -57,14 +45,13 @@ export const createDistillery = (distillery) => async (dispatch) => {
         body: JSON.stringify(distillery),
     });
     if (res.ok) {
-        console.log("hittttt", res)
+        console.log("hittttt", res);
         const distillery = await res.json();
         dispatch(create(distillery));
-        return distillery
+        return distillery;
     }
 };
 
-// TODO update single distillery
 export const updateDistillery = (distillery) => async (dispatch) => {
     const res = await fetch(`/api/distilleries/${distillery.id}`, {
         method: "PUT",
@@ -79,7 +66,6 @@ export const updateDistillery = (distillery) => async (dispatch) => {
     }
 };
 
-//TODO delete single distillery
 export const deleteDistillery = (distillery) => async (dispatch) => {
     const res = await fetch(`/api/distilleries/${distillery.id}`, {
         method: "DELETE",
@@ -98,12 +84,6 @@ const distilleries = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.distilleries,
-            };
-        }
-        case LOAD_ONE_DISTILLERY: {
-            return {
-                ...state,
-                ...action.distillery,
             };
         }
         case CREATE_DISTILLERY:

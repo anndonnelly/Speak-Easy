@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./DistilleryCard.module.css";
 
 const DistilleryCard = ({ distillery }) => {
-    if (!distillery) return null;
     return (
         <div className={styles.distilleryContainer}>
             <div className={styles.name}>
