@@ -17,6 +17,7 @@ const NavBar = () => {
     const sessionLoaded = useSelector((state) => state.session.loaded);
 
     return (
+        <header className={styles.header}>
         <nav className={styles.nav}>
             <div className={styles.navbarLeft}>
                 <NavLink to="/" exact={true} activeClassName={styles.active}>
@@ -54,6 +55,7 @@ const NavBar = () => {
                 )}
             </div>
         </nav>
+        </header>
     );
 };
 

@@ -26,10 +26,7 @@ const SignUpForm = () => {
             dispatch(signUp(username, email, password)).catch((err) =>
                 setErrors(err.errors)
             );
-            if (!errors) {
-                dispatch(hideModal());
-                history.push("/");
-            }
+            console.log(errors);
         }
     };
 
@@ -49,7 +46,8 @@ const SignUpForm = () => {
         setRepeatPassword(e.target.value);
     };
 
-    if (user && sessionLoaded) {
+    if (sessionLoaded && user) {
+        dispatch(hideModal());
         history.push("/");
     }
 
