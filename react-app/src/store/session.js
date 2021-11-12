@@ -68,7 +68,7 @@ export const logout = () => async (dispatch) => {
             "Content-Type": "application/json",
         },
     });
-    dispatch(destroySession);
+    dispatch(destroySession());
 };
 /*-------------REDUCER-------------*/
 

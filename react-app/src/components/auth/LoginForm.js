@@ -21,6 +21,7 @@ const LoginForm = () => {
         e.preventDefault();
         dispatch(login(email, password)).catch((err) => setErrors(err.errors));
         dispatch(hideModal());
+        return <Redirect path="/users/:userId" />;
     };
 
     const demoLogin = (e) => {
@@ -29,6 +30,7 @@ const LoginForm = () => {
         const password = "password";
         dispatch(login(email, password));
         dispatch(hideModal());
+        return <Redirect to="/" />;
     };
 
     const updateEmail = (e) => {

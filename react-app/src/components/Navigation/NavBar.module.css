@@ -55,3 +55,8 @@
     transition: all 0.2s;
     text-decoration: none;
 }
+
+.leftWrapper {
+    display: flex;
+    align-items: flex-end;
+}

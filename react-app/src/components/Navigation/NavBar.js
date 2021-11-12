@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import LogoutButton from "../auth/LogoutButton";
@@ -8,10 +9,14 @@ import SignUpFormModal from "../SignUpModal/index";
 import SearchBar from "../Search/SearchBar";
 
 import styles from "./NavBar.module.css";
+import DistilleryButton from "../Distilleries/DistilleryButton";
 
 //TODO Profile and LogoutButton need styling
 
-const NavBar = ({ user }) => {
+const NavBar = () => {
+    const user = useSelector((state) => state.session.user);
+    const sessionLoaded = useSelector((state) => state.session.loaded);
+
     return (
         <nav className={styles.nav}>
             <div className={styles.navbarLeft}>
@@ -22,14 +27,16 @@ const NavBar = ({ user }) => {
                         alt="logo"></img>
                 </NavLink>
             </div>
-            {user && (
-                <div className={styles.dContainer}>
-                    <NavLink to="/distilleries">Distilleries</NavLink>
+            {user && sessionLoaded && (
+                <div className={styles.leftWrapper}>
+                    <div className={styles.dContainer}>
+                        <DistilleryButton />
+                    </div>
+                    <div>
+                        <SearchBar />
+                    </div>
                 </div>
             )}
-            <div>
-                <SearchBar />
-            </div>
             <div className={styles.navbarRight}>
                 {!user && (
                     <>
@@ -49,7 +56,7 @@ const NavBar = ({ user }) => {
                         </NavLink>
                     </>
                 )}
-                {user && (
+                {user && sessionLoaded && (
                     <div>
                         <ProfileButton />
                         <LogoutButton />

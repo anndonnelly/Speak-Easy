@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { logout } from "../../store/session";
 
@@ -10,14 +11,13 @@ const LogoutButton = () => {
 
     const onLogout = () => {
         dispatch(logout());
+        return <Redirect to="/" />;
     };
 
     return (
-        <div className={styles.navLink}>
-            <button className={styles.navButton} onClick={onLogout}>
-                Logout
-            </button>
-        </div>
+        <button className={styles.navButton} onClick={onLogout}>
+            Logout
+        </button>
     );
 };
 
