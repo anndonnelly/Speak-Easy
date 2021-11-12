@@ -23,34 +23,29 @@ export default function App() {
     }, [dispatch]);
 
     return (
-
-      <>
-        <NavBar />
-        <Modal />
-        <Switch>
-          <Route path="/login" exact={true}>
-            <SplashPage />
-          </Route>
-          <Route path="/sign-up" exact={true}>
-            <SplashPage />
-          </Route>
-          <ProtectedRoute path="/users" exact={true}>
-            <UsersList />
-          </ProtectedRoute>
-          <ProtectedRoute path="/users/:userId" exact={true}>
-            <User />
-          </ProtectedRoute>
-          <ProtectedRoute path="/" exact={true}>
-            <CheckinsFeed />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/distilleries">
-            <Distilleries />
-          </ProtectedRoute>
-          <ProtectedRoute path="/distilleries/:distilleryId">
-            <SingleDistillery />
-          </ProtectedRoute>
-        </Switch>
-      </>
-
+        <>
+            <NavBar />
+            <Modal />
+            <Switch>
+                <Route path="/login" exact={true}>
+                    <SplashPage />
+                </Route>
+                <Route path="/sign-up" exact={true}>
+                    <SplashPage />
+                </Route>
+                <ProtectedRoute path="/users/:userId" exact={true}>
+                    <ProfilePage />
+                </ProtectedRoute>
+                <ProtectedRoute path="/" exact={true}>
+                    <CheckinsFeed />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/distilleries">
+                    <Distilleries />
+                </ProtectedRoute>
+                <ProtectedRoute path="/distilleries/:distilleryId">
+                    <SingleDistillery />
+                </ProtectedRoute>
+            </Switch>
+        </>
     );
 }
