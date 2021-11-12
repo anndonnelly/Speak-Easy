@@ -32,7 +32,6 @@ const SingleDistillery = () => {
     if (checkins) {
         checkinCards = Object.values(checkins).map((checkin) => {
             if (distillery.checkin_ids?.includes(checkin.id)) {
-                //includes showing undefined
                 return <CheckinCard checkin={checkin} />;
             }
             return null;

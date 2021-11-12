@@ -12,6 +12,7 @@ import CheckinsFeed from "./components/CheckinFeed";
 import Modal from "./components/CheckinModal";
 import Distilleries from "./components/Distilleries";
 import SingleDistillery from "./components/Distilleries/SingleDistillery";
+import ProfilePage from "./components/Profile/ProfilePage";
 // import CreateDrink from "./components/CreateDrink";
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
                     <UsersList />
                 </ProtectedRoute>
                 <ProtectedRoute path="/users/:userId" exact={true}>
-                    <User />
+                    <ProfilePage />
                 </ProtectedRoute>
                 <ProtectedRoute path="/" exact={true}>
                     <CheckinsFeed />
