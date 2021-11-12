@@ -7,18 +7,22 @@ import { loadAllDrinks } from "../../store/drinks";
 import { useParams } from "react-router-dom";
 import styles from "./SingleDistillery.module.css";
 import CheckinCard from "../CheckinCard/CheckinCard";
+// import DistilleryCheckin from "./DistilleryCheckin";
 
 import CreateDrink from "../CreateDrink";
 import DrinkCard from "./DrinkCard";
 
 const SingleDistillery = () => {
     const { distilleryId } = useParams();
+
     const dispatch = useDispatch();
     const [selection, setSelection] = useState(false);
-    console.log(selection, "@@@@@@@@@@@");
+
     const distillery = useSelector((state) => state.distilleries);
     const checkins = useSelector((state) => state.checkins);
     const drinks = useSelector((state) => state.drinks);
+    const currentUser = useSelector((state) => state.session.user)
+
 
     useEffect(() => {
         dispatch(loadOneDistillery(distilleryId));
@@ -28,13 +32,14 @@ const SingleDistillery = () => {
 
     let checkinCards;
     if (checkins) {
-        checkinCards = Object.values(checkins).map((checkin) => {
-            if (distillery.checkin_ids?.includes(checkin.id)) {
-                //includes showing undefined
-                return <CheckinCard checkin={checkin} />;
-            }
-            return null;
-        });
+        checkinCards = Object.values(checkins)
+            .map((checkin) => {
+                if (distillery.checkin_ids?.includes(checkin.id)) {
+                    return <CheckinCard checkin={checkin} />;
+                }
+                return null;
+            })
+            .reverse();
     }
 
     const createDrinkModal = (e) => {
@@ -44,10 +49,10 @@ const SingleDistillery = () => {
     };
 
     let drinkCards;
-    if (drinks) {
+    if (drinks && distillery) {
         drinkCards = Object.values(drinks).map((drink) => {
             if (distillery.drink_ids?.includes(drink.id)) {
-                return <DrinkCard drink={drink} />;
+                return <DrinkCard key={drink.id} drink={drink} />;
             }
             return null;
         });
@@ -55,9 +60,9 @@ const SingleDistillery = () => {
 
     return (
         <div>
-            <div>
+            {currentUser.id === distillery.owner_id ? <div>
                 <button onClick={createDrinkModal}>Add a Drink</button>
-            </div>
+            </div> : null}
             <div className={styles.singleDistillContainer}>
                 <div>
                     <img src={distillery.logo} alt="Distillery Logo" />
@@ -68,21 +73,7 @@ const SingleDistillery = () => {
                 <div>{distillery.state}</div>
                 <div>{distillery.drink_ids}</div>
             </div>
-            <div className={styles.feedToggle}>
-                {selection ? (
-                    <button
-                        className={styles.button}
-                        onClick={() => setSelection(!selection)}>
-                        Drinks
-                    </button>
-                ) : (
-                    <button
-                        className={styles.button}
-                        onClick={() => setSelection(!selection)}>
-                        Checkins
-                    </button>
-                )}
-            </div>
+        
             <div className={styles.feedContainer}>
                 <div className={styles.titleContainer}>
                     <div className={styles.title}>

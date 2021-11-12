@@ -1,0 +1,16 @@
+.loginModal {
+    width: 400px;
+    margin: 50px;
+    border-radius: 4px;
+}
+
+.errors {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+.error {
+    color: red;
+    padding: 2px;
+}

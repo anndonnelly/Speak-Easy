@@ -1,112 +1,146 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
+// import "../../index.css";
 import styles from "./CreateCheckin.module.css";
 
 function CreateCheckin() {
-  const dispatch = useDispatch();
-  const [errors, setErrors] = useState([]);
-  const [review, setReview] = useState("");
-  const [rating, setRating] = useState("");
-  // const [location, setLocation] = useState("");
+    const dispatch = useDispatch();
+    const [errors, setErrors] = useState([]);
+    const [review, setReview] = useState("");
+    const [rating, setRating] = useState();
+    const [checkinImage, setCheckinImage] = useState("");
+    //   const [location, setLocation] = useState("")
+    //   const [submitted, setSubmitted] = useState(false)
 
-  const currentUser = useSelector((state) => state.session.user);
-  const distillery = useSelector((state) => state?.selectedDistillery);
-  const drink = useSelector((state) => state?.selectedDrink);
-  console.log("hhhhhhh", drink)
-  const onSubmit = async (e) => {
-    e.preventDefault();
+    // const currentUser = useSelector((state) => state.session.user);
+    const distillery = useSelector((state) => state?.selectedDistillery);
+    const drink = useSelector((state) => state?.selectedDrink);
+    const checkedInUser = useSelector((state) => state?.session.user);
+    // const checkins = useSelector((state) => Object.values(state?.checkins));
 
-    if (review && rating) {
-      if (rating < 0 || rating > 5) {
-        setErrors([...errors, "Please include a rating for your drink"]);
-        return;
-      }
-      const checkin = {
-        review: review,
-        rating: rating,
-        // location: location
-        user_id: currentUser.id,
-        // drink_id: currentDrink.id,
-        // distillery_id: currentDistillery.id,
-      };
-      let response = await dispatch(createCheckinsThunk(checkin));
-      if (response) {
-        setErrors(response);
-      }
+    const valErrors = [];
+    //     if (review.length > 1 && review.length < 5) {
+    //         valErrors.push("--Review must be at least 5 characters long--")
+    //         setErrors(valErrors);
+    //     };
 
-      if (!response) {
-        setReview("");
-        setErrors([]);
-      }
-    }
-    dispatch(hideModal());
-  };
 
-  return (
-    <>
-      <div>
-        <h1 className={styles.checkinModalTitle}>Checkin</h1>
-        <br />
-        <div>{distillery.name}</div>
-      </div>
-      <br />
-      <div>
-        <div>{drink.name}</div>
-      </div>
-      <form onSubmit={onSubmit}>
-        <ul>
-          {errors.map((error) => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul>
-        <div>
-          <label>Review</label>
-          <textarea
-            name="review"
-            value={review}
-            onChange={(e) => setReview(e.target.value)}
-            placeholder="What did you think?"
-          />
+    // useEffect(() => {
+    //     if (review.length > 0 && review.length < 5)
+    //         valErrors.push("--Review must be at least 5 characters long--");
+
+    //     setErrors(valErrors);
+    //     console.log("ddddddd---->", errors);
+    //     console.log("REVIEW", review);
+    // }, [review]);
+  
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        if (review) {
+            const checkin = {
+                review: review,
+                rating: rating,
+                location: distillery.name,
+                image: checkinImage,
+                // user_id: currentUser.id,
+                drink_id: drink.id,
+                distillery_id: distillery.id,
+                drink_name: drink.name,
+            };
+
+            dispatch(createCheckinsThunk(checkin));
+            //   if (response) {
+            //     setErrors(response);
+            //   }
+
+            //   if (!response) {
+            //     setReview("");
+            //     setErrors([]);
+            //   }
+        }
+
+        dispatch(hideModal());
+    };
+
+    return (
+      <div className={styles.checkinContainer}>
+        <div className={styles.checkinFormHeader}>
+          <h1 className={styles.checkinModalTitle}>Checkin</h1>
         </div>
-        {/* <div>
-            <label>Location</label>
-            <select
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+        <div>
+          {checkedInUser.username} is at {distillery.name} drinking a{" "}
+          {drink.name}
+        </div>
+        <form className={styles.checkinForm} onSubmit={onSubmit}>
+          <ul>
+            {errors.length > 0
+              ? errors.map((valError) => <li key={valError}>{valError}</li>)
+              : null}
+          </ul>
+          <div className={styles.formSection}>
+            <label className={styles.checkinLabel}>Review</label>
+            <textarea
+              name="review"
+              required
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              placeholder="What did you think?"
+              className={styles.checkinText}
+              rows={4}
+            />
+          </div>
+          <div className={styles.formSectionFlex}>
+            <div>
+              <label className={styles.checkinLabelTwo}>Rating</label>
+              <select
+                className={styles.checkinSelect}
+                name="rating"
+                value={rating}
+                required
+                onChange={(e) => setRating(e.target.value)}
+              >
+                <option value="">--Rating--</option>
+                <option value={0}>0</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+              </select>
+            </div>
+          </div>
+          <div className={styles.formSection}>
+            <label>Image</label>
+            <input
+              value={checkinImage}
+              type="text"
+              id="input"
+              multiple
+              onChange={(e) => setCheckinImage(e.target.value)}
+            ></input>
+          </div>
+          <div className={styles.checkinButtonWrap}>
+            <button
+              disabled={errors.length > 0}
+              className={styles.checkinButton}
             >
-              {eventLocations.map((location) => (
-                <option value={location.id} key={location.id}>
-                  {location.name}
-                </option>
-              ))}
-            </select>
-          </div> */}
-        <div>
-          <label>Rating</label>
-          <select
-            name="rating"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-          >
-            <option value="" disabled>
-              --Rating--
-            </option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <div>
-          <button>Checkin</button>
-        </div>
-      </form>
-    </>
-  );
+              Checkin
+            </button>
+          </div>
+        </form>
+      </div>
+    );
 }
 export default CreateCheckin;
+
+
+
+
+
+
+

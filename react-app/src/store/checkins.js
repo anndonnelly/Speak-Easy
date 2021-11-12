@@ -45,12 +45,18 @@ export const getCheckinsThunk = () => async (dispatch) => {
 };
 
 export const createCheckinsThunk = (checkin) => async (dispatch) => {
+
+    const formData = new FormData()
+    formData.append("review", checkin.review)
+    formData.append("rating", checkin.rating)
+    formData.append("image", checkin.image)
+    formData.append("location", checkin.location);
+    formData.append("drink_name", checkin.drink_name);
+    formData.append("drink_id", checkin.drink_id)
+    formData.append("distillery_id", checkin.distillery_id)
     const res = await fetch("/api/checkins/new", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(checkin),
+        body: formData
     });
     if (res.ok) {
         let newCheckin = await res.json();

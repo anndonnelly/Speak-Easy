@@ -6,11 +6,11 @@ def seed_drinks():
     drink1 = Drink(
         name='Pineapple Whiskey Lemonade', description="1 1/2 ounces Old Humble Special Reserve. 2 1/2 ounces lemonade. 1 1/2 ounces pineapple juice", image='https://res.cloudinary.com/dis83syog/image/upload/v1636245376/SpeakEasy/Screen_Shot_2021-11-06_at_8.36.01_PM_ic8pi5.png', abv=1, rating=2, distillery_id=1)
     drink2 = Drink(
-        name='The Perfect Manhattan', description='2 ounces Old Humble Special Reserve Whiskey. 3/4 ounce sweet vermouth. Two dashes bitters. ', image='https://res.cloudinary.com/dis83syog/image/upload/v1636245015/SpeakEasy/Screen_Shot_2021-11-06_at_8.29.26_PM_lme7zp.png', abv=30, rating=3, distillery_id=2)
+        name='Perfect Manhattan', description='2 ounces Old Humble Special Reserve Whiskey. 3/4 ounce sweet vermouth. Two dashes bitters. ', image='https://res.cloudinary.com/dis83syog/image/upload/v1636245015/SpeakEasy/Screen_Shot_2021-11-06_at_8.29.26_PM_lme7zp.png', abv=30, rating=3, distillery_id=2)
     drink3 = Drink(
-        name='The Old Fashioned', description='2 ounces Old Humble Straight Whiskey. 3/4 ounces simple syrup. 2 dashes bitters', image='https://res.cloudinary.com/dis83syog/image/upload/v1636245141/SpeakEasy/Screen_Shot_2021-11-06_at_8.32.07_PM_nma6qe.png', abv=27, rating=4, distillery_id=3)
+        name=' Texan Old Fashioned', description='2 ounces Old Humble Straight Whiskey. 3/4 ounces simple syrup. 2 dashes bitters', image='https://res.cloudinary.com/dis83syog/image/upload/v1636245141/SpeakEasy/Screen_Shot_2021-11-06_at_8.32.07_PM_nma6qe.png', abv=27, rating=4, distillery_id=3)
     drink4 = Drink(
-        name='The Boulevardier', description="1 1/2 ounce Old Humble Special Reserve. 1 ounce Campari. 1 ounce sweet vermouth", image='https://res.cloudinary.com/dis83syog/image/upload/v1636245542/SpeakEasy/Screen_Shot_2021-11-06_at_8.38.46_PM_av5mqc.png', abv=25, rating=3, distillery_id=4)
+        name='Boulevardier', description="1 1/2 ounce Old Humble Special Reserve. 1 ounce Campari. 1 ounce sweet vermouth", image='https://res.cloudinary.com/dis83syog/image/upload/v1636245542/SpeakEasy/Screen_Shot_2021-11-06_at_8.38.46_PM_av5mqc.png', abv=25, rating=3, distillery_id=4)
     drink5 = Drink(
         name='TX Strawberry Lemonade', description='2 parts TX Whiskey. 2.75 parts Lemonade. 0.25 parts Strawberry Daiquiri Mix. 1 Strawberry Slice garnish', image='https://res.cloudinary.com/dis83syog/image/upload/v1636246017/SpeakEasy/Screen_Shot_2021-11-06_at_8.46.35_PM_yo6k91.png', abv=5, rating=1, distillery_id=5)
     drink6 = Drink(

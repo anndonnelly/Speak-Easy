@@ -1,5 +1,6 @@
 import "./Footer.css";
-export const Footer = () => {
+
+function Footer () {
   return (
     <div className="footerDiv">
       <div className="socialMedia">
@@ -8,7 +9,7 @@ export const Footer = () => {
           <label>Ann Donnelly</label>
           <a href="https://github.com/anndonnelly">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+              src="https://cdn.discordapp.com/attachments/882683127162613780/908752305325740122/GitHub-Mark-Light-64px.png"
               alt="githubLogo"
             />
           </a>
@@ -23,7 +24,7 @@ export const Footer = () => {
           <label>Brandon Mohan</label>
           <a href="https://github.com/BrandonMohan">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+              src="https://cdn.discordapp.com/attachments/882683127162613780/908752305325740122/GitHub-Mark-Light-64px.png"
               alt="githubLogo"
             />
           </a>
@@ -38,7 +39,7 @@ export const Footer = () => {
           <label>James Thompson</label>
           <a href="https://github.com/jt989073">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+              src="https://cdn.discordapp.com/attachments/882683127162613780/908752305325740122/GitHub-Mark-Light-64px.png"
               alt="githubLogo"
             />
           </a>
@@ -53,7 +54,7 @@ export const Footer = () => {
           <label>Robert Kauth</label>
           <a href="https://github.com/Robert-Kauth">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+              src="https://cdn.discordapp.com/attachments/882683127162613780/908752305325740122/GitHub-Mark-Light-64px.png"
               alt="githubLogo"
             />
           </a>
@@ -68,3 +69,5 @@ export const Footer = () => {
     </div>
   );
 };
+
+export default Footer;

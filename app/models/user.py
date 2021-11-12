@@ -11,6 +11,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    distilleries = db.relationship(
+        "Distillery", back_populates="owner", cascade='all,delete')
     checkins = db.relationship(
         "Checkin", back_populates="user", cascade="all, delete")
 
@@ -29,5 +31,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'checkin_ids': [checkin.id for checkin in self.checkins],
+            'distilleries': [distillery.id for distillery in self.distilleries]
         }

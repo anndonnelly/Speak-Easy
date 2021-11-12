@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from "react-redux";
-import "./CheckinModal.css"
+import "./CheckinModal.css";
 import { hideModal } from '../../store/modal';
 
 export default function Modal(){

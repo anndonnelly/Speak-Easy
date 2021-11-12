@@ -1,13 +1,15 @@
 .footerDiv {
   display: flex;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   justify-content: space-around;
-  position: relative;
+  position: absolute;
   bottom: 0px;
   width: 100%;
-  margin-top: 50px;
+  background: transparent;
+  /* margin-top: 50px; */
   /* height: 50px; */
-
+  padding: 16px 0;
+color:white;
 }
 
 .footerDiv a img {

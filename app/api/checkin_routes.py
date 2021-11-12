@@ -33,14 +33,17 @@ def checkin():
     userid = current_user.get_id()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("validated------>")
         data = form.data
         new_checkin = Checkin(
             review=data["review"],
             rating=data["rating"],
-            # location=data["location"],
-            user_id= userid,)
-            # drink_id=data["drink_id"],
-            # distillery_id=["istillery_id"])
+            location=data["location"],
+            drink_name=data["drink_name"],
+            image=data["image"],
+            user_id= userid,
+            drink_id=data["drink_id"],
+            distillery_id=data["distillery_id"])
         db.session.add(new_checkin)
         db.session.commit()
         return new_checkin.to_dict()
@@ -56,6 +59,7 @@ def checkin_edit(id):
         edit_checkin= Checkin.query.get(id)
         edit_checkin.review = form.data["review"]
         edit_checkin.rating = form.data["rating"]
+        edit_checkin.image = form.data["image"]
         db.session.commit()
         # return redirect("/")
         return edit_checkin.to_dict()

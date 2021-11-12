@@ -1,97 +1,86 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 import { login } from "../../store/session";
-import { showModal, setCurrentModal, hideModal } from "../../store/modal";
-import "./LoginForm.css";
-import DistilleryLoginForm from "./DistilleryLoginForm";
+import { hideModal } from "../../store/modal";
+
+import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const user = useSelector((state) => state.session.user);
-  const dispatch = useDispatch();
-  const history = useHistory();
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  const onLogin = async (e) => {
-    e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
+    const user = useSelector((state) => state.session.user);
+    const sessionLoaded = useSelector((state) => state.session.loaded);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState([]);
+
+    const onLogin = (e) => {
+        e.preventDefault();
+        dispatch(login(email, password)).catch((err) => setErrors(err.errors));
+    };
+
+    const demoLogin = (e) => {
+        e.preventDefault();
+        const email = "demo@aa.io";
+        const password = "password";
+        dispatch(login(email, password)).catch((err) => setErrors(err.errors));
+    };
+
+    const updateEmail = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const updatePassword = (e) => {
+        setPassword(e.target.value);
+    };
+
+    if (sessionLoaded && user) {
+        dispatch(hideModal());
+        history.push("/");
     }
-    dispatch(hideModal());
-    history.push("/");
-  };
 
-  const demoLogin = async (e) => {
-    e.preventDefault();
-    const email = "demo@aa.io";
-    const password = "password";
-    const demo = await dispatch(login(email, password));
-    dispatch(hideModal());
-
-    return history.push("/");
-
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const distilleryLoginButton = (e) => {
-    e.preventDefault();
-    dispatch(setCurrentModal(DistilleryLoginForm));
-    dispatch(showModal());
-  };
-
-  //   if (user) {
-  //      history.push('/')
-  //   }
-
-  return (
-    <>
-      <form className="loginModal" onSubmit={onLogin}>
-        <h2>User Login</h2>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={updatePassword}
-          />
-          <button type="submit" onClick={(e) => onLogin(e)}>
-            Login
-          </button>
-          <button type="submit" onClick={demoLogin}>
-            User Demo Login
-          </button>
-          <button onClick={distilleryLoginButton}>Distillery Login</button>
-        </div>
-      </form>
-    </>
-  );
+    return (
+        <form className={styles.loginModal}>
+            <h2>User Login</h2>
+            <ul className={styles.errors}>
+                {errors.map((error, idx) => (
+                    <li className={styles.error} key={idx}>
+                        {error}
+                    </li>
+                ))}
+            </ul>
+            <div>
+                <label htmlFor="email">Email</label>
+                <input
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={updateEmail}
+                />
+            </div>
+            <div>
+                <label htmlFor="password">Password</label>
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={updatePassword}
+                />
+                <button type="submit" onClick={onLogin}>
+                    Login
+                </button>
+                <button type="submit" onClick={demoLogin}>
+                    User Demo Login
+                </button>
+            </div>
+        </form>
+    );
 };
 
 export default LoginForm;

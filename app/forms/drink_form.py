@@ -1,9 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, IntegerField,SelectField
+from wtforms import TextAreaField, IntegerField, StringField
 from wtforms.validators import DataRequired, NumberRange
 
 class DrinkForm(FlaskForm):
     name = TextAreaField('name', validators=[DataRequired()])
     description = TextAreaField('rating', validators=[DataRequired()])
-    image = TextAreaField('image', validators=[DataRequired()])
-    abv = IntegerField('abv', validators=[DataRequired()])
+    image = StringField('image')
+    abv = IntegerField('abv')
+    # rating = IntegerField('rating')
+    distillery_id = IntegerField('distillery_id', validators=[DataRequired()])

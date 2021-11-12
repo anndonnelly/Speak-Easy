@@ -15,18 +15,22 @@ drink_routes = Blueprint("drinks", __name__, url_prefix="/drinks")
 # @login_required
 def load_drinks():
     form = DrinkForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_drink = Drink(
             name=data["name"],
             description=data["description"],
             image=data["image"],
-            abv=data["abv"]
+            abv=data["abv"],
+            distillery_id=data["distillery_id"],
+            # rating=data["rating"]
         )
         db.session.add(new_drink)
         db.session.commit()
         return new_drink.to_dict()
-    return {drink.id: drink.to_card_dict() for drink in Drink.query.all()}
+    print(form.errors)
+    return {drink.id: drink.to_dict() for drink in Drink.query.all()}
 
 
 @drink_routes.route("/<int:id>", methods=["GET", "PUT"])
@@ -38,6 +42,7 @@ def one_drink(id):
         drink.name = form.data['name']
         drink.description = form.data['description']
         drink.image = form.data['image']
+        # drink.rating = form.data['rating']
         drink.abv = form.data['abv']
         db.session.commit()
         return drink.to_dict()

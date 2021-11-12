@@ -1,9 +1,10 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Distillery, db
-from app.forms import DistillerySignUpForm, DistilleryLoginForm
+from app.forms import DistillerySignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
-distillery_auth_routes = Blueprint('distillery_auth', __name__, url_prefix="/distilleries")
+distillery_auth_routes = Blueprint(
+    'distillery_auth', __name__, url_prefix="/distilleries")
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -23,7 +24,7 @@ def authenticate():
     Authenticates a Distillery.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        return current_user.login_to_dict()
     return {'errors': ['Unauthorized']}
 
 
@@ -38,9 +39,10 @@ def login():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        distillery = Distillery.query.filter(Distillery.email == form.data['email']).first()
+        distillery = Distillery.query.filter(
+            Distillery.email == form.data['email']).first()
         login_user(distillery)
-        return distillery.to_dict()
+        return distillery.login_to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

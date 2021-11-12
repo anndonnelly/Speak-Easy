@@ -1,3 +1,91 @@
+/* @import "../../index.css"; */
 .checkinModalTitle{
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+
+    
+}
+
+/* .checkinContainer{
+    background-color: coral;
+    padding: 32px;
+
+} */
+
+.checkinForm{
+    width: 100%;
+    margin-top: 16px;
+    /* font-family: sans-serif; */
+}
+
+/* css placeholder style !!*/
+.checkinFormHeader{
+    width: 100%;
+    padding: 16px 0;
+    border-bottom: 2px solid black;
+}
+
+.checkinLabel{
+    display: block;
+    margin-bottom: 4px;
+}
+
+.checkinText{
+    width: 100%;
+    border-radius: 4px;
+}
+
+.checkinButtonWrap{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.checkinButton{
+    padding: 8px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4px;
+    background-color: darkgray;
+    color: white;
+    transition: all 0.2s;
+    border: 0;
+    margin: 0;
+    /* font-family: sans-serif; */
+
+}
+
+.checkinButton:hover {
+    transform: scale(1.1);
+
+}
+
+.formSection{
+    margin-bottom: 8px;
+}
+
+.formSectionFlex{
+    margin-bottom: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.formSectionFlex > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.checkinLabelTwo{
+    margin-right: 16px;
+    /* flex: 0 0 auto; */
+
+}
+
+.checkinSelect{
+    /* flex: 1 1 auto; */
 }
