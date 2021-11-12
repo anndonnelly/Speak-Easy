@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+
 import { signUp } from "../../store/session";
-import "./SignUpForm.css";
+
+import styles from "./SignUpForm.module.css";
 
 const SignUpForm = () => {
+    const dispatch = useDispatch();
+
+    const user = useSelector((state) => state.session.user);
+    const sessionLoaded = useSelector((state) => state.session.loaded);
+
     const [errors, setErrors] = useState([]);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
-    const user = useSelector((state) => state.session.user);
-    const dispatch = useDispatch();
-    const history = useHistory();
 
-    const onSignUp = async (e) => {
+    const onSignUp = (e) => {
         e.preventDefault();
         if (password === repeatPassword) {
-            const data = await dispatch(signUp(username, email, password));
-            if (data) {
-                setErrors(data);
-            }
+            dispatch(signUp(username, email, password)).catch((err) =>
+                setErrors(err.errors)
+            );
         }
-        history.push("/");
     };
 
     const updateUsername = (e) => {
@@ -41,15 +43,15 @@ const SignUpForm = () => {
         setRepeatPassword(e.target.value);
     };
 
-    if (user) {
+    if (user && sessionLoaded) {
         return <Redirect to="/" />;
     }
 
     return (
-        <form className="signUpModal">
+        <form className={styles.signUpModal}>
             <div>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
+                {errors.map((error, idx) => (
+                    <div key={idx}>{error}</div>
                 ))}
             </div>
             <div>
