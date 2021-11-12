@@ -48,25 +48,16 @@ export const loadOneDistillery = (id) => async (dispatch) => {
 };
 
 export const createDistillery = (distillery) => async (dispatch) => {
-    const { name, street, city, state, latitude, longtitude, logo, owner_id } =
-        distillery;
+    // const { name, street, city, state, logo } = distillery;
     const res = await fetch("/api/distilleries", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            name,
-            street,
-            city,
-            state,
-            latitude,
-            longtitude,
-            logo,
-            owner_id,
-        }),
+        body: JSON.stringify(distillery),
     });
     if (res.ok) {
+        console.log("hittttt", res)
         const distillery = await res.json();
         dispatch(create(distillery));
     }
