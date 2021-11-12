@@ -25,7 +25,7 @@ export default function PickDrink() {
   }, [dispatch]);
 
   const handlePickDrink = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     dispatch(setCurrentModal(CreateCheckin));
     dispatch(loadSelectedDrink(+e.target.value));
   };
@@ -33,7 +33,6 @@ export default function PickDrink() {
   return (
     <>
       <h1>Checkin</h1>
-      {/* TODO not sure if Checkin needs to go seperately on the 3 pages */}
       <div>
         {currentUser.username} is at {distillery.name}
       </div>
