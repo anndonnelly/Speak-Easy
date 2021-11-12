@@ -11,7 +11,6 @@ const Distilleries = () => {
         Object.values(state.distilleries)
     );
 
-   
     useEffect(() => {
         dispatch(loadDistilleries());
     }, [dispatch]);
@@ -21,19 +20,16 @@ const Distilleries = () => {
     }
 
     return (
-        <>
-            
-            <div className={styles.feedWrapper}>
-                {distilleries.map((distillery, idx) => (
-                    <div key={idx} className={styles.distilleryCard}>
-                        <DistilleryCard
-                            key={distillery.id}
-                            distillery={distillery}
-                        />
-                    </div>
-                ))}
-            </div>
-        </>
+        <div className={styles.feedWrapper}>
+            {distilleries.map((distillery, idx) => (
+                <div key={idx} className={styles.distilleryCard}>
+                    <DistilleryCard
+                        key={distillery.id}
+                        distillery={distillery}
+                    />
+                </div>
+            ))}
+        </div>
     );
 };
 export default Distilleries;
