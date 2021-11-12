@@ -14,7 +14,7 @@ function CreateDrink() {
     const [abv, setAbv] = useState("");
     const [rating, setRating] = useState("");
     //   const {distilleryId} = useParams()
-    //     console.log("------>hit", distilleryId);
+  
     const currentDistillery = useSelector((state) => state.distilleries);
 
     const onSubmit = async (e) => {
@@ -26,10 +26,9 @@ function CreateDrink() {
             description: description,
             image: drinkImage,
             abv: abv,
-            rating: rating,
+            // rating: rating,
             distillery_id: currentDistillery.id,
         };
-        // console.log("*******", currentDistillery.id);
         let response = await dispatch(addADrinkThunk(newDrink));
         if (response) {
             setErrors(response);
@@ -44,11 +43,11 @@ function CreateDrink() {
                 <h1>Add a Drink</h1>
             </div>
             <form onSubmit={onSubmit}>
-                <ul>
+                {/* <ul>
                     {errors.map((error) => (
                         <li key={error}>{error}</li>
                     ))}
-                </ul>
+                </ul> */}
                 <div>
                     {/* <label>Name</label> */}
                     <input
@@ -72,11 +71,11 @@ function CreateDrink() {
                     />
                 </div>
                 <div>
+                    <label>Image</label>
                     <input
                         value={drinkImage}
-                        type="file"
+                        type="text"
                         id="text"
-                        required
                         multiple
                         onChange={(e) => setDrinkImage(e.target.value)}></input>
                 </div>
@@ -89,14 +88,14 @@ function CreateDrink() {
                             value={abv}
                             placeholder="ABV"
                             onChange={(e) => setAbv(e.target.value)}
-                            step="0.1"
+                            step="1"
                             min="1"
                             max="80"
                         />{" "}
                         <span>%</span>
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <label>Rating</label>
                     <select
                         name="rating"
@@ -113,7 +112,7 @@ function CreateDrink() {
                         <option value={4}>4</option>
                         <option value={5}>5</option>
                     </select>
-                </div>
+                </div> */}
                 <button>Create</button>
             </form>
         </>

@@ -24,13 +24,13 @@ def load_drinks():
             image=data["image"],
             abv=data["abv"],
             distillery_id=data["distillery_id"],
-            rating=data["rating"]
+            # rating=data["rating"]
         )
         db.session.add(new_drink)
         db.session.commit()
         return new_drink.to_dict()
     print(form.errors)
-    return {drink.id: drink.to_card_dict() for drink in Drink.query.all()}
+    return {drink.id: drink.to_dict() for drink in Drink.query.all()}
 
 
 @drink_routes.route("/<int:id>", methods=["GET", "PUT"])
@@ -42,6 +42,7 @@ def one_drink(id):
         drink.name = form.data['name']
         drink.description = form.data['description']
         drink.image = form.data['image']
+        # drink.rating = form.data['rating']
         drink.abv = form.data['abv']
         db.session.commit()
         return drink.to_dict()
