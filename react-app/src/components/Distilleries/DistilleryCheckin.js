@@ -5,7 +5,7 @@ import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
 // import "../../index.css";
 import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 function DistilleryCheckin() {
     const dispatch = useDispatch();
@@ -13,7 +13,7 @@ function DistilleryCheckin() {
     const [review, setReview] = useState("");
     const [rating, setRating] = useState();
     const [checkinImage, setCheckinImage] = useState("");
-    const [location, setLocation] = useState("");
+    // const [location, setLocation] = useState("");
     //   const { distilleryId } = useParams();
     //   console.log("USEPARAMS", distilleryId);
 
