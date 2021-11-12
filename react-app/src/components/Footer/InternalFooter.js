@@ -1,15 +1,16 @@
 import "./Footer.css";
+import "./InternalFooter.css";
 
-function Footer () {
+function InternalFooter() {
   return (
-    <div className="footerDiv">
+    <div className="internalFooterDiv">
       <div className="socialMedia">
         <p>Created By: </p>
         <div className="col">
           <label>Ann Donnelly</label>
           <a href="https://github.com/anndonnelly">
             <img
-              src="https://cdn.discordapp.com/attachments/882683127162613780/908752305325740122/GitHub-Mark-Light-64px.png"
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
               alt="githubLogo"
             />
           </a>
@@ -24,7 +25,7 @@ function Footer () {
           <label>Brandon Mohan</label>
           <a href="https://github.com/BrandonMohan">
             <img
-              src="https://cdn.discordapp.com/attachments/882683127162613780/908752305325740122/GitHub-Mark-Light-64px.png"
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
               alt="githubLogo"
             />
           </a>
@@ -39,7 +40,7 @@ function Footer () {
           <label>James Thompson</label>
           <a href="https://github.com/jt989073">
             <img
-              src="https://cdn.discordapp.com/attachments/882683127162613780/908752305325740122/GitHub-Mark-Light-64px.png"
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
               alt="githubLogo"
             />
           </a>
@@ -54,7 +55,7 @@ function Footer () {
           <label>Robert Kauth</label>
           <a href="https://github.com/Robert-Kauth">
             <img
-              src="https://cdn.discordapp.com/attachments/882683127162613780/908752305325740122/GitHub-Mark-Light-64px.png"
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
               alt="githubLogo"
             />
           </a>
@@ -68,6 +69,6 @@ function Footer () {
       </div>
     </div>
   );
-};
+}
 
-export default Footer;
+export default InternalFooter;

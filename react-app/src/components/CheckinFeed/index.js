@@ -6,6 +6,7 @@ import CheckinCard from "../CheckinCard/CheckinCard";
 import styles from "./CheckinFeed.module.css";
 import PickDistillery from "../CreateCheckin/PickDistillery";
 import { showModal, setCurrentModal } from "../../store/modal";
+import InternalFooter from "../Footer/InternalFooter";
 
 function CheckinsFeed() {
     const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function CheckinsFeed() {
                     <CheckinCard key={checkin.id} checkin={checkin} />
                 ))
                 .reverse()}
+                <InternalFooter/>
         </>
     );
 }
