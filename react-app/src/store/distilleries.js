@@ -126,7 +126,7 @@ const distilleries = (state = initialState, action) => {
         case LOAD_ONE_DISTILLERY: {
             return {
                 ...state,
-                ...action.distillery, //this may not work
+                ...action.distillery, 
             };
         }
         case CREATE_DISTILLERY:
