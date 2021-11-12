@@ -60,7 +60,7 @@ const SignUpForm = () => {
                 ))}
             </ul>
             <div>
-                <label>User Name</label>
+                <label htmlFor="username">User Name</label>
                 <input
                     type="text"
                     name="username"
@@ -69,8 +69,9 @@ const SignUpForm = () => {
                     required={true}></input>
             </div>
             <div>
-                <label>Email</label>
+                <label htmlFor="email">Email</label>
                 <input
+                    id="email"
                     type="email"
                     name="email"
                     onChange={updateEmail}
@@ -78,7 +79,7 @@ const SignUpForm = () => {
                     required={true}></input>
             </div>
             <div>
-                <label>Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                     type="password"
                     name="password"
@@ -87,7 +88,7 @@ const SignUpForm = () => {
                     required={true}></input>
             </div>
             <div>
-                <label>Repeat Password</label>
+                <label htmlFor="repeat_password">Repeat Password</label>
                 <input
                     type="password"
                     name="repeat_password"
