@@ -27,15 +27,16 @@ function CreateCheckin() {
     //         setErrors(valErrors);
     //     };
 
-    useEffect(() => {
-        if (review.length > 0 && review.length < 5){
-            valErrors.push("--Review must be at least 5 characters long--");
-        }
 
-        setErrors(valErrors);
-        console.log("ddddddd---->", errors);
-        console.log("REVIEW", review);
-    }, [review, errors, valErrors]);
+    // useEffect(() => {
+    //     if (review.length > 0 && review.length < 5)
+    //         valErrors.push("--Review must be at least 5 characters long--");
+
+    //     setErrors(valErrors);
+    //     console.log("ddddddd---->", errors);
+    //     console.log("REVIEW", review);
+    // }, [review]);
+  
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -67,74 +68,79 @@ function CreateCheckin() {
     };
 
     return (
-        <div className={styles.checkinContainer}>
-            <div className={styles.checkinFormHeader}>
-                <h1 className={styles.checkinModalTitle}>Checkin</h1>
-            </div>
-            <div>
-                {checkedInUser.username} is at {distillery.name} drinking a{" "}
-                {drink.name}
-            </div>
-            <form className={styles.checkinForm} onSubmit={onSubmit}>
-                <ul>
-                    {errors.length > 0
-                        ? errors.map((valError) => (
-                              <li key={valError}>{valError}</li>
-                          ))
-                        : null}
-                </ul>
-                <div className={styles.formSection}>
-                    <label className={styles.checkinLabel}>Review</label>
-                    <textarea
-                        name="review"
-                        required
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                        placeholder="What did you think?"
-                        className={styles.checkinText}
-                        rows={4}
-                    />
-                </div>
-                <div className={styles.formSectionFlex}>
-                    <div>
-                        <label className={styles.checkinLabelTwo}>Rating</label>
-                        <select
-                            className={styles.checkinSelect}
-                            name="rating"
-                            value={rating}
-                            required
-                            onChange={(e) => setRating(e.target.value)}>
-                            <option value="">--Rating--</option>
-                            <option value={0}>0</option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select>
-                    </div>
-                </div>
-                <div className={styles.formSection}>
-                    <input
-                        value={checkinImage}
-                        type="file"
-                        id="input"
-                        multiple
-                        onChange={(e) =>
-                            setCheckinImage(e.target.value)
-                        }></input>
-                </div>
-                <div className={styles.checkinButtonWrap}>
-                    <button
-                        disabled={errors.length > 0}
-                        className={styles.checkinButton}>
-                        Checkin
-                    </button>
-                </div>
-            </form>
+      <div className={styles.checkinContainer}>
+        <div className={styles.checkinFormHeader}>
+          <h1 className={styles.checkinModalTitle}>Checkin</h1>
         </div>
+        <div>
+          {checkedInUser.username} is at {distillery.name} drinking a{" "}
+          {drink.name}
+        </div>
+        <form className={styles.checkinForm} onSubmit={onSubmit}>
+          <ul>
+            {errors.length > 0
+              ? errors.map((valError) => <li key={valError}>{valError}</li>)
+              : null}
+          </ul>
+          <div className={styles.formSection}>
+            <label className={styles.checkinLabel}>Review</label>
+            <textarea
+              name="review"
+              required
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              placeholder="What did you think?"
+              className={styles.checkinText}
+              rows={4}
+            />
+          </div>
+          <div className={styles.formSectionFlex}>
+            <div>
+              <label className={styles.checkinLabelTwo}>Rating</label>
+              <select
+                className={styles.checkinSelect}
+                name="rating"
+                value={rating}
+                required
+                onChange={(e) => setRating(e.target.value)}
+              >
+                <option value="">--Rating--</option>
+                <option value={0}>0</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+              </select>
+            </div>
+          </div>
+          <div className={styles.formSection}>
+            <label>Image</label>
+            <input
+              value={checkinImage}
+              type="text"
+              id="input"
+              multiple
+              onChange={(e) => setCheckinImage(e.target.value)}
+            ></input>
+          </div>
+          <div className={styles.checkinButtonWrap}>
+            <button
+              disabled={errors.length > 0}
+              className={styles.checkinButton}
+            >
+              Checkin
+            </button>
+          </div>
+        </form>
+      </div>
     );
 }
 export default CreateCheckin;
 
-// TODO ? make a set for locations ?
+
+
+
+
+
+

@@ -59,6 +59,7 @@ def checkin_edit(id):
         edit_checkin= Checkin.query.get(id)
         edit_checkin.review = form.data["review"]
         edit_checkin.rating = form.data["rating"]
+        edit_checkin.image = form.data["image"]
         db.session.commit()
         # return redirect("/")
         return edit_checkin.to_dict()

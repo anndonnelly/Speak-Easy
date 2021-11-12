@@ -75,7 +75,7 @@ function CreateDrink() {
                     <input
                         value={drinkImage}
                         type="file"
-                        id="input"
+                        id="text"
                         required
                         multiple
                         onChange={(e) => setDrinkImage(e.target.value)}></input>
