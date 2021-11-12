@@ -10,6 +10,7 @@ import DistilleryCard from "../Distilleries/DistilleryCard";
 import CheckinCard from "../CheckinCard/CheckinCard";
 import CreateDistillery from "../CreateDistillery";
 import styles from "./ProfilePage.module.css";
+import InternalFooter from "../Footer/InternalFooter";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
@@ -94,6 +95,7 @@ const ProfilePage = () => {
                     )}
                 </div>
             </div>
+            <InternalFooter />
         </main>
     );
 };
