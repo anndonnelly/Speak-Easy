@@ -102,7 +102,9 @@ function CheckinCard({ checkin }) {
   return (
     <>
       <div className="checkin">
-        {checkin.location}
+        {checkin.user_name} is at
+        <br></br>
+        {checkin.location} drinking a
         <br></br>
         {checkin.drink_name}
         <br></br>

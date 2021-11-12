@@ -35,6 +35,7 @@ class Checkin(db.Model):
             'user_id': self.user_id,
             'drink_id': self.drink_id,
             'distillery_id': self.distillery_id,
+            'user_name': self.user.username
         }
 
 # TODO drink, distillery should be nullable=False
