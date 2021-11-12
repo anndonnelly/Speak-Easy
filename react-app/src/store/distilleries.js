@@ -33,17 +33,9 @@ const remove = (distillery) => ({
 /*-------------THUNK CREATORS-------------*/
 export const loadDistilleries = () => async (dispatch) => {
     const res = await fetch("/api/distilleries");
-
     if (res.ok) {
         const distilleries = await res.json();
         dispatch(load(distilleries));
-    } else if (res.status < 500) {
-        const data = await res.json();
-        if (data.errors) {
-            return data.errors;
-        }
-    } else {
-        return ["An error occurred. Please try again."];
     }
 };
 
@@ -52,13 +44,6 @@ export const loadOneDistillery = (id) => async (dispatch) => {
     if (res.ok) {
         const distillery = await res.json();
         dispatch(loadOne(distillery));
-    } else if (res.status < 500) {
-        const data = await res.json();
-        if (data.errors) {
-            return data.errors;
-        }
-    } else {
-        return ["An error occurred. Please try again."];
     }
 };
 
@@ -126,7 +111,7 @@ const distilleries = (state = initialState, action) => {
         case LOAD_ONE_DISTILLERY: {
             return {
                 ...state,
-                ...action.distillery, 
+                ...action.distillery,
             };
         }
         case CREATE_DISTILLERY:
