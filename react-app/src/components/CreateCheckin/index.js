@@ -23,9 +23,14 @@ function CreateCheckin() {
   const checkins = useSelector((state) => Object.values(state?.checkins));
 
 const valErrors = [];
+//     if (review.length > 1 && review.length < 5) {
+//         valErrors.push("--Review must be at least 5 characters long--")
+//         setErrors(valErrors);
+//     };
+
   useEffect(() => {
       
-        if (review.length > 1 && review.length < 5) valErrors.push("--Review must be at least 5 characters long--");
+        if (review.length > 0 && review.length < 5) valErrors.push("--Review must be at least 5 characters long--");
 
       setErrors(valErrors);
       console.log("ddddddd---->", errors);
