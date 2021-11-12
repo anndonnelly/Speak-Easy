@@ -15,7 +15,7 @@ const SignUpForm = () => {
     const sessionLoaded = useSelector((state) => state.session.loaded);
 
     const [errors, setErrors] = useState([]);
-    const [username, setUsername] = useState("");
+    const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
@@ -26,12 +26,11 @@ const SignUpForm = () => {
             dispatch(signUp(username, email, password)).catch((err) =>
                 setErrors(err.errors)
             );
-            console.log(errors);
         }
     };
 
-    const updateUsername = (e) => {
-        setUsername(e.target.value);
+    const updateUserName = (e) => {
+        setUserName(e.target.value);
     };
 
     const updateEmail = (e) => {
@@ -53,26 +52,30 @@ const SignUpForm = () => {
 
     return (
         <form className={styles.signUpModal}>
-            <div>
+            <ul className={styles.errors}>
                 {errors.map((error, idx) => (
-                    <div key={idx}>{error}</div>
+                    <li className={styles.error} key={idx}>
+                        {error}
+                    </li>
                 ))}
-            </div>
+            </ul>
             <div>
                 <label>User Name</label>
                 <input
                     type="text"
                     name="username"
-                    onChange={updateUsername}
-                    value={username}></input>
+                    onChange={updateUserName}
+                    value={username}
+                    required={true}></input>
             </div>
             <div>
                 <label>Email</label>
                 <input
-                    type="text"
+                    type="email"
                     name="email"
                     onChange={updateEmail}
-                    value={email}></input>
+                    value={email}
+                    required={true}></input>
             </div>
             <div>
                 <label>Password</label>
@@ -80,7 +83,8 @@ const SignUpForm = () => {
                     type="password"
                     name="password"
                     onChange={updatePassword}
-                    value={password}></input>
+                    value={password}
+                    required={true}></input>
             </div>
             <div>
                 <label>Repeat Password</label>
