@@ -21,17 +21,21 @@ const LoginForm = () => {
     const onLogin = (e) => {
         e.preventDefault();
         dispatch(login(email, password)).catch((err) => setErrors(err.errors));
-        dispatch(hideModal());
-        history.push("/");
+        if (!errors) {
+            dispatch(hideModal());
+            history.push("/");
+        }
     };
 
     const demoLogin = (e) => {
         e.preventDefault();
         const email = "demo@aa.io";
         const password = "password";
-        dispatch(login(email, password));
-        dispatch(hideModal());
-        history.push("/");
+        dispatch(login(email, password)).catch((err) => setErrors(err.errors));
+        if (!errors) {
+            dispatch(hideModal());
+            history.push("/");
+        }
     };
 
     const updateEmail = (e) => {

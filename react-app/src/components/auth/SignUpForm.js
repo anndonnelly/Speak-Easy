@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 import { signUp } from "../../store/session";
+import { hideModal } from "../../store/modal";
 
 import styles from "./SignUpForm.module.css";
 
 const SignUpForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const user = useSelector((state) => state.session.user);
     const sessionLoaded = useSelector((state) => state.session.loaded);
@@ -24,6 +26,10 @@ const SignUpForm = () => {
             dispatch(signUp(username, email, password)).catch((err) =>
                 setErrors(err.errors)
             );
+            if (!errors) {
+                dispatch(hideModal());
+                history.push("/");
+            }
         }
     };
 
@@ -44,7 +50,7 @@ const SignUpForm = () => {
     };
 
     if (user && sessionLoaded) {
-        return <Redirect to="/" />;
+        history.push("/");
     }
 
     return (
