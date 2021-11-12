@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { getCheckinsThunk } from "../../store/checkins";
+import React, {useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./CheckinCard.css";
 import { editCheckinsThunk } from "../../store/checkins";
@@ -7,15 +6,18 @@ import { deleteCheckinsThunk } from "../../store/checkins";
 
 function CheckinCard({ checkin }) {
     const dispatch = useDispatch();
+  
     const currentUserId = useSelector((state) => state.session.user.id);
+  
     const [edit, setEdit] = useState(false);
     const [editReview, setEditReview] = useState(checkin.review);
     const [editRating, setEditRating] = useState(checkin.rating);
     const [editImage, setEditImage] = useState(checkin.image)
     const [editDrinkId, setEditDrinkId] = useState(checkin.drink_id);
+
     const [errors, setErrors] = useState([]);
 
-    const checkins = useSelector((state) => Object.values(state.checkins));
+    // const checkins = useSelector((state) => Object.values(state.checkins));
     const checkinId = checkin.id;
 
     const handleEdit = async (e) => {

@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
-import { Footer } from "./components/Footer";
+// import { Footer } from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 import CheckinsFeed from "./components/CheckinFeed";
 import Modal from "./components/CheckinModal";

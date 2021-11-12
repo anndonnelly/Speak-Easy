@@ -73,21 +73,7 @@ const SingleDistillery = () => {
                 <div>{distillery.state}</div>
                 <div>{distillery.drink_ids}</div>
             </div>
-            <div className={styles.feedToggle}>
-                {selection ? (
-                    <button
-                        className={styles.button}
-                        onClick={() => setSelection(!selection)}>
-                        Drinks
-                    </button>
-                ) : (
-                    <button
-                        className={styles.button}
-                        onClick={() => setSelection(!selection)}>
-                        Checkins
-                    </button>
-                )}
-            </div>
+        
             <div className={styles.feedContainer}>
                 <div className={styles.titleContainer}>
                     <div className={styles.title}>

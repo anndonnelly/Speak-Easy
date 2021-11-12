@@ -46,16 +46,18 @@ const LoginForm = () => {
     return (
         <form className={styles.loginModal}>
             <h2>User Login</h2>
-            <div>
+            <ul className={styles.errors}>
                 {errors.map((error, idx) => (
-                    <div key={idx}>{error}</div>
+                    <li className={styles.error} key={idx}>
+                        {error}
+                    </li>
                 ))}
-            </div>
+            </ul>
             <div>
                 <label htmlFor="email">Email</label>
                 <input
                     name="email"
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     value={email}
                     onChange={updateEmail}

@@ -32,5 +32,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'checkin_ids': [checkin.id for checkin in self.checkins],
             'distilleries': [distillery.id for distillery in self.distilleries]
         }
