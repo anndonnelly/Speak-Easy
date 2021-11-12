@@ -10,7 +10,7 @@ import SearchBar from "../Search/SearchBar";
 import  "../Search/SearchBar/Search.css"
 
 const NavBar = ({ sessionUser }) => {
-
+    
     return (
       <header className={styles.header}>
         <nav className={styles.nav}>
@@ -31,9 +31,9 @@ const NavBar = ({ sessionUser }) => {
               <NavLink to="/distilleries">Distilleries</NavLink>
             </div>
           )}
-          <div>
+          {/* <div>
             <SearchBar />
-          </div>
+          </div> */}
           <div className={styles.navbarRight}>
             {!sessionUser && (
               <>

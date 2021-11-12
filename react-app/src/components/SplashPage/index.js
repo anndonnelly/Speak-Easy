@@ -1,17 +1,27 @@
 import React, {useState} from 'react'
 import "./SplashPage.css"
 import Search from '../Search/SearchBar/index'
+import Footer from "../Footer/index"
 
 export default function SplashPage() {
 
 
 
     return (
-      <div>
-          <img
-            className="splashPic" src="https://res.cloudinary.com/dis83syog/image/upload/v1636293369/SpeakEasy/Screen_Shot_2021-11-07_at_8.55.48_AM_krw8hj.png"
-            alt="Splash Page"/>
-        
-      </div>
+        <>
+            <div className="splashPicContainer">
+                    <img
+                    className="splashPic"
+                    src="https://res.cloudinary.com/dis83syog/image/upload/v1636689739/SpeakEasy/nd9OHIj6_y7meju.jpg"
+                    alt="Splash Page"
+                    />
+                    <div className="imageOverlay"></div>
+                    <div className="splashText">
+                        <h1 className="splashTitle">Booze For All The <span className="splashSpan">Speakeasy</span> Working Stiffs</h1>
+                    </div>
+                    
+            </div>
+            <Footer />
+       </>
     );
 }

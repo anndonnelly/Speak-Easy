@@ -31,34 +31,33 @@ function App() {
     }
 
     return (
-        <>
-            <NavBar sessionUser={sessionUser} />
-            <Modal />
-            <Switch>
-                <Route path="/login" exact={true}>
-                    <SplashPage />
-                </Route>
-                <Route path="/sign-up" exact={true}>
-                    <SplashPage />
-                </Route>
-                <ProtectedRoute path="/users" exact={true}>
-                    <UsersList />
-                </ProtectedRoute>
-                <ProtectedRoute path="/users/:userId" exact={true}>
-                    <User />
-                </ProtectedRoute>
-                <ProtectedRoute path="/" exact={true}>
-                    <CheckinsFeed />
-                </ProtectedRoute>
-                <ProtectedRoute exact path="/distilleries">
-                    <Distilleries />
-                </ProtectedRoute>
-                <ProtectedRoute path="/distilleries/:distilleryId">
-                    <SingleDistillery />
-                </ProtectedRoute>
-            </Switch>
-            <Footer />
-        </>
+      <>
+        <NavBar sessionUser={sessionUser} />
+        <Modal />
+        <Switch>
+          <Route path="/login" exact={true}>
+            <SplashPage />
+          </Route>
+          <Route path="/sign-up" exact={true}>
+            <SplashPage />
+          </Route>
+          <ProtectedRoute path="/users" exact={true}>
+            <UsersList />
+          </ProtectedRoute>
+          <ProtectedRoute path="/users/:userId" exact={true}>
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute path="/" exact={true}>
+            <CheckinsFeed />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/distilleries">
+            <Distilleries />
+          </ProtectedRoute>
+          <ProtectedRoute path="/distilleries/:distilleryId">
+            <SingleDistillery />
+          </ProtectedRoute>
+        </Switch>
+      </>
     );
 }
 
