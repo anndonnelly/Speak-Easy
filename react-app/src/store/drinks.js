@@ -65,6 +65,7 @@ export const addADrinkThunk = (drink) => async (dispatch) => {
     });
     if (res.ok) {
         const drink = await res.json();
+        console.log("drink thunk", drink);
         dispatch(addDrink(drink));
     } else if (res.status < 500) {
         const data = await res.json();
@@ -136,7 +137,7 @@ const drinks = (state = initalState, action) => {
             };
         }
         case REMOVE_DRINK: {
-            delete newState[action.drink];
+            delete newState[action.drinkId];
             return newState;
         }
         default:

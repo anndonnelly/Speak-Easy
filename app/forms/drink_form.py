@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, NumberRange
 class DrinkForm(FlaskForm):
     name = TextAreaField('name', validators=[DataRequired()])
     description = TextAreaField('rating', validators=[DataRequired()])
-    image = StringField('image')
+    # image = StringField('image')
     abv = IntegerField('abv')
     # rating = IntegerField('rating')
     distillery_id = IntegerField('distillery_id', validators=[DataRequired()])

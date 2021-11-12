@@ -35,13 +35,15 @@ def load_drinks():
 
 @drink_routes.route("/<int:id>", methods=["GET", "PUT"])
 def one_drink(id):
+    print("top of patch")
     drink = Drink.query.get(id)
     form = DrinkForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("inside form patch")
         drink.name = form.data['name']
         drink.description = form.data['description']
-        drink.image = form.data['image']
+        # drink.image = form.data['image']
         # drink.rating = form.data['rating']
         drink.abv = form.data['abv']
         db.session.commit()
