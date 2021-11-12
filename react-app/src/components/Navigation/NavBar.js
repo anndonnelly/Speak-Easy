@@ -1,66 +1,62 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// import DrinksFeed from "../DrinksFeed";
-// import Distilleries from "../Distilleries";
+
 import LogoutButton from "../auth/LogoutButton";
+import ProfileButton from "../Profile/ProfileButton";
 import LoginModal from "../LoginModal/index";
 import SignUpFormModal from "../SignUpModal/index";
-import styles from "./NavBar.module.css";
 import SearchBar from "../Search/SearchBar";
-import "../Search/SearchBar/Search.css";
 
-const NavBar = ({ sessionUser }) => {
+import styles from "./NavBar.module.css";
+
+//TODO Profile and LogoutButton need styling
+
+const NavBar = ({ user }) => {
     return (
-        <header className={styles.header}>
-            <nav className={styles.nav}>
-                <div className={styles.navbarLeft}>
-                    <NavLink
-                        to="/"
-                        exact={true}
-                        activeClassName={styles.active}>
-                        <img
-                            className={styles.logo}
-                            src="https://res.cloudinary.com/dis83syog/image/upload/v1636326107/SpeakEasy/android-chrome-512x512_w7x1ff.png"
-                            alt="logo"></img>
-                    </NavLink>
+        <nav className={styles.nav}>
+            <div className={styles.navbarLeft}>
+                <NavLink to="/" exact={true} activeClassName={styles.active}>
+                    <img
+                        className={styles.logo}
+                        src="https://res.cloudinary.com/dis83syog/image/upload/v1636326107/SpeakEasy/android-chrome-512x512_w7x1ff.png"
+                        alt="logo"></img>
+                </NavLink>
+            </div>
+            {user && (
+                <div className={styles.dContainer}>
+                    <NavLink to="/distilleries">Distilleries</NavLink>
                 </div>
-                {sessionUser && (
-                    <div className={styles.dContainer}>
-                        {/* <NavLink to="/drinks">
-                <DrinksFeed></DrinksFeed>
-              </NavLink> */}
-                        <NavLink to="/distilleries">Distilleries</NavLink>
+            )}
+            <div>
+                <SearchBar />
+            </div>
+            <div className={styles.navbarRight}>
+                {!user && (
+                    <>
+                        <NavLink
+                            className={styles.navLink}
+                            to="/login"
+                            exact={true}
+                            activeClassName={styles.active}>
+                            <LoginModal />
+                        </NavLink>
+                        <NavLink
+                            className={styles.navLink}
+                            to="/sign-up"
+                            exact={true}
+                            activeClassName={styles.active}>
+                            <SignUpFormModal />
+                        </NavLink>
+                    </>
+                )}
+                {user && (
+                    <div>
+                        <ProfileButton />
+                        <LogoutButton />
                     </div>
                 )}
-                <div>
-                    <SearchBar />
-                </div>
-                <div className={styles.navbarRight}>
-                    {!sessionUser && (
-                        <>
-                            <NavLink
-                                className={styles.navLink}
-                                to="/login"
-                                exact={true}
-                                activeClassName={styles.active}>
-                                <LoginModal />
-                            </NavLink>
-                            <NavLink
-                                className={styles.navLink}
-                                to="/sign-up"
-                                exact={true}
-                                activeClassName={styles.active}>
-                                <SignUpFormModal />
-                            </NavLink>
-                        </>
-                    )}
-                    {/* <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink> */}
-                    <LogoutButton />
-                </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
     );
 };
 

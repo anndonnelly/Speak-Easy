@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
-import { setModalMount } from "./store/modal";
 import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
@@ -17,33 +16,18 @@ import ProfilePage from "./components/Profile/ProfilePage";
 // import User from "./components/User";
 // import CreateDrink from "./components/CreateDrink";
 
-function App() {
+export default function App() {
     const dispatch = useDispatch();
 
-    const [loaded, setLoaded] = useState(false);
-
-    const sessionUser = useSelector((state) => state.session.user);
-
-    const modalMooringRef = useRef(null);
+    const user = useSelector((state) => state.session.user);
 
     useEffect(() => {
-        dispatch(setModalMount(modalMooringRef.current));
+        dispatch(authenticate());
     }, [dispatch]);
-
-    useEffect(() => {
-        (async () => {
-            await dispatch(authenticate());
-            setLoaded(true);
-        })();
-    }, [dispatch]);
-
-    if (!loaded) {
-        return null;
-    }
 
     return (
         <div>
-            <NavBar sessionUser={sessionUser} />
+            <NavBar sessionUser={user} />
             <Modal />
             <Switch>
                 <Route path="/login" exact={true}>
@@ -69,9 +53,6 @@ function App() {
                 </ProtectedRoute>
             </Switch>
             <Footer />
-            <div ref={modalMooringRef} className="modal"></div>
         </div>
     );
 }
-
-export default App;
