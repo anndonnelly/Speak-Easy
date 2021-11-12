@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
+
 import { createDistillery } from "../../store/distilleries";
 import { hideModal } from "../../store/modal";
+
 import styles from "./LoginForm.module.css";
 
 const DistillerySignUpForm = () => {
