@@ -1,11 +1,13 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { useState } from "react";
 import { hideModal } from "../../store/modal";
 import { createDistillery } from "../../store/distilleries";
 
 function CreateDistillery() {
     const dispatch = useDispatch();
+    const history = useHistory()
 
     const [errors, setErrors] = useState([]);
     const [distilleryName, setDistilleryName] = useState("");
@@ -15,7 +17,7 @@ function CreateDistillery() {
     const [logo, setLogo] = useState("");
 
 
-    const onSubmit = async (e) => {
+    const onSubmit =  (e) => {
         e.preventDefault();
 
         const newDistillery = {
@@ -25,12 +27,12 @@ function CreateDistillery() {
             state: state,
             logo: logo,
         };
-        console.log("newDistilllery???????", newDistillery)
-        let response = await dispatch(createDistillery(newDistillery));
-        if (response) {
-            setErrors(response);
+        let createdDistillery = dispatch(createDistillery(newDistillery));
+        console.log("newDistilllery???????", createDistillery)
+        if (createdDistillery) {
+            history.push(`/distilleries/${createdDistillery?.id}`)
+            setErrors(createdDistillery);
         }
-
         dispatch(hideModal());
     };
 

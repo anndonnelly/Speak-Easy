@@ -60,6 +60,7 @@ export const createDistillery = (distillery) => async (dispatch) => {
         console.log("hittttt", res)
         const distillery = await res.json();
         dispatch(create(distillery));
+        return distillery
     }
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-    
+
 import { showModal, setCurrentModal } from "../../store/modal";
 import { loadOneUser } from "../../store/users";
 import { loadDistilleries } from "../../store/distilleries";
@@ -41,9 +41,9 @@ const ProfilePage = () => {
 
 
     let distilleryCards;
-    if (ownedDistilleries) {
+    if (ownedDistilleries && distillery) {
         distilleryCards = Object.values(distilleries).map((distillery) => {
-            if (ownedDistilleries.includes(distillery.id)) {
+            if (ownedDistilleries?.includes(distillery?.id)) {
                 return (
                     <DistilleryCard
                         key={distillery.id}
@@ -51,7 +51,7 @@ const ProfilePage = () => {
                     />
                 );
             }
-            return null;
+            return;
         });
     }
 
