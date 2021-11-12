@@ -7,6 +7,7 @@ import styles from "./Distilleries.module.css";
 const Distilleries = () => {
     const dispatch = useDispatch();
     const distilleries = useSelector((state) => state.distilleries);
+    console.log(distilleries);
 
     useEffect(() => {
         dispatch(loadDistilleries());
