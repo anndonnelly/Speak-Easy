@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 import { login } from "../../store/session";
 import { hideModal } from "../../store/modal";
@@ -9,6 +9,7 @@ import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const user = useSelector((state) => state.session.user);
     const sessionLoaded = useSelector((state) => state.session.loaded);
@@ -21,7 +22,7 @@ const LoginForm = () => {
         e.preventDefault();
         dispatch(login(email, password)).catch((err) => setErrors(err.errors));
         dispatch(hideModal());
-        return <Redirect path="/users/:userId" />;
+        history.push("/");
     };
 
     const demoLogin = (e) => {
@@ -30,7 +31,7 @@ const LoginForm = () => {
         const password = "password";
         dispatch(login(email, password));
         dispatch(hideModal());
-        return <Redirect to="/" />;
+        history.push("/");
     };
 
     const updateEmail = (e) => {
@@ -42,7 +43,7 @@ const LoginForm = () => {
     };
 
     if (sessionLoaded && user) {
-        return <Redirect to="/" />;
+        history.push("/");
     }
 
     return (
