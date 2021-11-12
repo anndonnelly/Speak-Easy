@@ -45,7 +45,7 @@ const ProfilePage = () => {
                     />
                 );
             }
-            return;
+            return distilleryCards;
         });
     }
 
@@ -63,7 +63,7 @@ const ProfilePage = () => {
     }
 
     return (
-        <>
+        <main className={styles.profile}>
             <div>
                 <button onClick={createDistilleryModal}>
                     Start A Distillery
@@ -94,7 +94,7 @@ const ProfilePage = () => {
                     )}
                 </div>
             </div>
-        </>
+        </main>
     );
 };
 
