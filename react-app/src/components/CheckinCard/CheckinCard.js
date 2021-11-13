@@ -111,18 +111,18 @@ function CheckinCard({ checkin }) {
 
     return (
         <>
-            <div className="cardDiv">
-                <div className="cardHeader">
-                    <div className="cardHeaderContent">
+            <div className={styles.cardDiv}>
+                <div className={styles.cardHeader}>
+                    <div className={styles.cardHeaderContent}>
                         {checkin.user_name} is at
                         <br></br>
                         {checkin.location} drinking a<br></br>
                         {checkin.drink_name}
-                        <br className="cardReview"></br>
+                        <br className={styles.cardReview}></br>
                         {checkin.review}
                         <br></br>
                         <img
-                            className="checkinImage"
+                            className={styles.checkinImage}
                             src={checkin.image}
                             alt=""></img>
                         <br></br>
@@ -131,12 +131,12 @@ function CheckinCard({ checkin }) {
                         {checkin?.user_id === currentUserId ? (
                             <div>
                                 <button
-                                    className="checkinButtons"
+                                    className={styles.checkinButtons}
                                     onClick={() => setEdit(true)}>
                                     Edit
                                 </button>
                                 <button
-                                    className="checkinButtons"
+                                    className={styles.checkinButtons}
                                     onClick={deleteCheckin}>
                                     Delete
                                 </button>
