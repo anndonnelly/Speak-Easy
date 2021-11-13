@@ -25,7 +25,6 @@ export const loadSelectedDistillery = (id) => async (dispatch) => {
 
 const initialState = {};
 export default function selectedDistillery(state = initialState, action) {
-//   const newState = { ...state };
   switch (action.type) {
     case GET_SELECTED_DISTILLERY:
       return action.distillery;

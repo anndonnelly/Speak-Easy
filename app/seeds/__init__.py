@@ -18,8 +18,6 @@ def seed():
     seed_checkins()
 
 
-
-
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():

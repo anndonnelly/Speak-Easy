@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
-// import "../../index.css";
 import styles from "./CreateCheckin.module.css";
 
 function CreateCheckin() {
@@ -11,32 +10,13 @@ function CreateCheckin() {
     const [errors, setErrors] = useState([]);
     const [review, setReview] = useState("");
     const [rating, setRating] = useState();
-    const [checkinImage, setCheckinImage] = useState("");
-    //   const [location, setLocation] = useState("")
-    //   const [submitted, setSubmitted] = useState(false)
 
-    // const currentUser = useSelector((state) => state.session.user);
     const distillery = useSelector((state) => state?.selectedDistillery);
     const drink = useSelector((state) => state?.selectedDrink);
     const checkedInUser = useSelector((state) => state?.session.user);
-    // const checkins = useSelector((state) => Object.values(state?.checkins));
 
     const valErrors = [];
-    //     if (review.length > 1 && review.length < 5) {
-    //         valErrors.push("--Review must be at least 5 characters long--")
-    //         setErrors(valErrors);
-    //     };
 
-
-    // useEffect(() => {
-    //     if (review.length > 0 && review.length < 5)
-    //         valErrors.push("--Review must be at least 5 characters long--");
-
-    //     setErrors(valErrors);
-    //     console.log("ddddddd---->", errors);
-    //     console.log("REVIEW", review);
-    // }, [review]);
-  
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -46,22 +26,14 @@ function CreateCheckin() {
                 review: review,
                 rating: rating,
                 location: distillery.name,
-                image: checkinImage,
-                // user_id: currentUser.id,
+                
+                
                 drink_id: drink.id,
                 distillery_id: distillery.id,
                 drink_name: drink.name,
             };
 
             dispatch(createCheckinsThunk(checkin));
-            //   if (response) {
-            //     setErrors(response);
-            //   }
-
-            //   if (!response) {
-            //     setReview("");
-            //     setErrors([]);
-            //   }
         }
 
         dispatch(hideModal());
@@ -114,16 +86,6 @@ function CreateCheckin() {
               </select>
             </div>
           </div>
-          {/* <div className={styles.formSection}>
-            <label>Image</label>
-            <input
-              value={checkinImage}
-              type="text"
-              id="input"
-              multiple
-              onChange={(e) => setCheckinImage(e.target.value)}
-            ></input>
-          </div> */}
           <div className={styles.checkinButtonWrap}>
             <button
               disabled={errors.length > 0}

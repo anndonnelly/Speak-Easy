@@ -1,4 +1,3 @@
-// import { createSelector } from "@reduxjs/toolkit";
 /*-------------ACTION.TYPES-------------*/
 const LOAD_ONE_USER = "user/LOAD_ONE_USER";
 /*-------------ACTIONS-------------*/

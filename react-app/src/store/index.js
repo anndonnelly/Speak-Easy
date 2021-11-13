@@ -8,7 +8,6 @@ import distillery from "./distillery";
 import modal from "./modal";
 import selectedDistillery from "./checkinmodal";
 import selectedDrink from "./checkinmodal_pagetwo";
-import selectedUser from "./checkinmodal_user";
 import users from "./users";
 
 const rootReducer = combineReducers({
@@ -20,7 +19,6 @@ const rootReducer = combineReducers({
     distillery,
     selectedDistillery,
     selectedDrink,
-    selectedUser,
     users,
 });
 

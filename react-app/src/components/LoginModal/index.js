@@ -1,7 +1,5 @@
 import React from "react";
-// import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-// import { Modal } from "../../context/Modal";
+import { useDispatch } from "react-redux";
 import LoginForm from "../auth/LoginForm";
 import styles from "./LoginModal.module.css";
 import { showModal, setCurrentModal } from "../../store/modal";

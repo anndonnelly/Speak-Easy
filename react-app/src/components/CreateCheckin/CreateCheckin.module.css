@@ -1,23 +1,12 @@
-/* @import "../../index.css"; */
 .checkinModalTitle{
-    /* text-decoration: underline; */
     font-size: 24px;
     font-weight: 700;
     text-align: center;
-
-    
 }
-
-/* .checkinContainer{
-    background-color: coral;
-    padding: 32px;
-
-} */
 
 .checkinForm{
     width: 100%;
     margin-top: 16px;
-    /* font-family: sans-serif; */
 }
 
 /* css placeholder style !!*/
@@ -52,8 +41,6 @@
     transition: all 0.2s;
     border: 0;
     margin: 0;
-    /* font-family: sans-serif; */
-
 }
 
 .checkinButton:hover {
@@ -82,10 +69,4 @@
 
 .checkinLabelTwo{
     margin-right: 16px;
-    /* flex: 0 0 auto; */
-
-}
-
-.checkinSelect{
-    /* flex: 1 1 auto; */
 }

@@ -8,10 +8,7 @@ import { loadOneDistillery } from "../../store/distillery";
 
 function CreateDistillery() {
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user.id)
     const distilleryId = useSelector(state => state.distillery.id)
-    const history = useHistory()
-
     const [errors, setErrors] = useState([]);
     const [distilleryName, setDistilleryName] = useState("");
     const [street, setStreet] = useState("");
@@ -33,7 +30,7 @@ function CreateDistillery() {
         let createdDistillery = dispatch(updateDistillery(distilleryId, newDistillery)).then(() =>
             dispatch(loadOneDistillery(distilleryId))
         )
-        // console.log("newDistilllery???????", createDistillery)
+        
         if (createdDistillery) {
             setErrors(createdDistillery);
         }
@@ -52,7 +49,7 @@ function CreateDistillery() {
                     ))}
                 </ul>
                 <div>
-                    {/* <label>Name</label> */}
+                    
                     <input
                         type="text"
                         name="name"
@@ -101,7 +98,6 @@ function CreateDistillery() {
                             id="logo"
                             required
                             value={logo}
-                            placeholder="ABV"
                             onChange={(e) => setLogo(e.target.value)}
                             placeholder="Logo Image"
                         />

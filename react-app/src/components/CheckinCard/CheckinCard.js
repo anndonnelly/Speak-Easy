@@ -13,12 +13,9 @@ function CheckinCard({ checkin }) {
     const [edit, setEdit] = useState(false);
     const [editReview, setEditReview] = useState(checkin.review);
     const [editRating, setEditRating] = useState(checkin.rating);
-    const [editImage, setEditImage] = useState(checkin.image);
-    const [editDrinkId, setEditDrinkId] = useState(checkin.drink_id);
-
     const [errors, setErrors] = useState([]);
 
-    // const checkins = useSelector((state) => Object.values(state.checkins));
+    
     const checkinId = checkin.id;
     console.log("userID", checkin.user_id);
 
@@ -26,21 +23,12 @@ function CheckinCard({ checkin }) {
         e.preventDefault();
         const editedCheckin = {
             checkinId: checkin.id,
-            // editDrinkId,
-            image: editImage,
             review: editReview,
             rating: editRating,
-            //   location: location
+        
         };
-        console.log("*********", editedCheckin);
-        let response = dispatch(editCheckinsThunk(checkinId, editedCheckin));
-        if (response) {
-            setErrors(response);
-        }
-        if (!response) {
-            setEditReview("");
-            setErrors([]);
-        }
+        dispatch(editCheckinsThunk(checkinId, editedCheckin));
+
         setEdit(false);
     };
 
@@ -65,19 +53,6 @@ function CheckinCard({ checkin }) {
                             onChange={(e) => setEditReview(e.target.value)}
                         />
                     </div>
-                    {/* <div>
-                <label>Location</label>
-                <select
-                value={editLocation}
-                onChange={(e) => setEditLocation(e.target.value)}
-                >
-                {eventLocations.map((location) => (
-                    <option value={location.id} key={location.id}>
-                    {location.name}
-                    </option>
-                ))}
-                </select>
-            </div> */}
                     <div>
                         <label>Rating</label>
                         <select
@@ -95,14 +70,6 @@ function CheckinCard({ checkin }) {
                             <option value="5">5</option>
                         </select>
                     </div>
-                    {/* <div>
-                <label>Image</label>
-                <input
-                  name="image"
-                  value={editImage}
-                  onChange={(e) => setEditImage(e.target.value)}
-                />
-              </div> */}
                     <div>
                         <button>Update</button>
                     </div>

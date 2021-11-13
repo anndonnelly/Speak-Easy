@@ -1,7 +1,6 @@
 
 import React from 'react'
 import "./SplashPage.css"
-// import Search from '../Search/SearchBar/index'
 import Footer from "../Footer/index"
 
 

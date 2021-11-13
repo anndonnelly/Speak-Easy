@@ -32,7 +32,7 @@ function CreateDistillery() {
         let createdDistillery = dispatch(createDistillery(newDistillery)).then(() =>
             dispatch(loadOneUser(userId))
         )
-        // console.log("newDistilllery???????", createDistillery)
+        
         if (createdDistillery) {
             setErrors(createdDistillery);
         }
@@ -100,7 +100,6 @@ function CreateDistillery() {
                             id="logo"
                             required
                             value={logo}
-                            placeholder="ABV"
                             onChange={(e) => setLogo(e.target.value)}
                             placeholder="Logo Image"
                         />

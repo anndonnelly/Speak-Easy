@@ -31,7 +31,7 @@ def delete_user(id):
     db.session.commit()
     return "True", 201
 
-
+#  AWS
 # @user_routes.route('/<int:id>', methods=["POST"])
 # @login_required
 # def upload_file():
