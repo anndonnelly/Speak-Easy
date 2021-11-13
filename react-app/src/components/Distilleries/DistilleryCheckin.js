@@ -12,13 +12,13 @@ function DistilleryCheckin() {
     const [errors, setErrors] = useState([]);
     const [review, setReview] = useState("");
     const [rating, setRating] = useState();
-    const [checkinImage, setCheckinImage] = useState("");
+    // const [checkinImage, setCheckinImage] = useState("");
     // const [location, setLocation] = useState("");
     //   const { distilleryId } = useParams();
     //   console.log("USEPARAMS", distilleryId);
 
     //   const currentUser = useSelector((state) => state.session.user);
-    const distillery = useSelector((state) => state?.selectedDistillery);
+    const distillery = useSelector((state) => state?.distillery);
     const drink = useSelector((state) => state?.selectedDrink);
     //   const checkedInUser = useSelector((state) => state?.session.user);
     //   const checkins = useSelector((state) => Object.values(state?.checkins));
@@ -50,7 +50,7 @@ function DistilleryCheckin() {
                 review: review,
                 rating: rating,
                 location: distillery.name,
-                checkinImage: checkinImage,
+                // checkinImage: checkinImage,
                 // user_id: currentUser.id,
                 drink_id: drink.id,
                 distillery_id: distillery.id,
@@ -129,7 +129,7 @@ function DistilleryCheckin() {
             </select>
           </div> */}
                 </div>
-                <div className={styles.formSection}>
+                {/* <div className={styles.formSection}>
                     <input
                         value={checkinImage}
                         type="file"
@@ -138,7 +138,7 @@ function DistilleryCheckin() {
                         onChange={(e) =>
                             setCheckinImage(e.target.value)
                         }></input>
-                </div>
+                </div> */}
                 <div className={styles.checkinButtonWrap}>
                     <button
                         disabled={errors.length > 0}
