@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import CreateCheckin from "../../components/CreateCheckin/index";
 import { showModal, setCurrentModal } from "../../store/modal";
 import styles from "./DrinkCard.module.css";
 import DistilleryCheckin from "./DistilleryCheckin";
@@ -15,7 +14,6 @@ const DrinkCard = ({ drink }) => {
     const [edit, setEdit] = useState(false)
     const [editDrinkName, setEditDrinkName] = useState(drink.name)
     const [editDescription, setEditDescription] = useState(drink.description);
-    // const [editRating, setEditRating] = useState(drink.rating);
     const [editAbv, setEditAbv] = useState(drink.abv)
     const [editImage, setEditImage] = useState(drink.image);
     const [errors, setErrors] = useState([]);
@@ -38,7 +36,6 @@ const DrinkCard = ({ drink }) => {
         description: editDescription,
         image: editImage,
         abv: editAbv,
-        // rating: editRating,
         distillery_id: distillery.id
     };
     console.log("pre dispatch", editedDrink);
@@ -88,7 +85,6 @@ const DrinkCard = ({ drink }) => {
               value={editImage}
               type="text"
               id="text"
-            //   multiple
               onChange={(e) => setEditImage(e.target.value)}
             ></input>
           </div>
@@ -108,25 +104,6 @@ const DrinkCard = ({ drink }) => {
               <span>%</span>
             </label>
           </div>
-          {/* <div>
-            <label>Rating</label>
-            <select
-              name="rating"
-              required
-              value={editRating}
-              onChange={(e) => setEditRating(e.target.value)}
-            >
-              <option value="" disabled>
-                --Rating--
-              </option>
-              <option value={0}>0</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-          </div> */}
           <button>Update</button>
         </form>
       </div>
@@ -140,7 +117,6 @@ const DrinkCard = ({ drink }) => {
           <img className={styles.img} src={drink.image} alt="" />
         </div>
         <div className={styles.rating}>Description: {drink.description}</div>
-        {/* <div className={styles.rating}>Rating: {drink.rating}</div> */}
         <div className={styles.rating}>ABV: {drink.abv}</div>
 
         <div>

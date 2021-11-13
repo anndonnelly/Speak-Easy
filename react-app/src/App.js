@@ -4,17 +4,14 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/Navigation/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import { authenticate } from "./store/session";
-// import { Footer } from "./components/Footer";
 import SplashPage from "./components/SplashPage";
 import CheckinsFeed from "./components/CheckinFeed";
 import Modal from "./components/CheckinModal";
 import Distilleries from "./components/Distilleries";
 import SingleDistillery from "./components/Distilleries/SingleDistillery";
 import ProfilePage from "./components/Profile/ProfilePage";
-
 import styles from "./App.module.css";
-// import User from "./components/User";
-// import CreateDrink from "./components/CreateDrink";
+
 
 export default function App() {
     const dispatch = useDispatch();

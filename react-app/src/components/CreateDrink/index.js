@@ -4,7 +4,7 @@ import { useState } from "react";
 import { addADrinkThunk } from "../../store/drinks";
 import { hideModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distillery";
-// import { useParams } from "react-router";
+
 
 function CreateDrink() {
     const dispatch = useDispatch();
@@ -13,8 +13,8 @@ function CreateDrink() {
     const [description, setDescription] = useState("");
     const [drinkImage, setDrinkImage] = useState("");
     const [abv, setAbv] = useState("");
-    const [rating, setRating] = useState("");
-    //   const {distilleryId} = useParams()
+
+
 
     const currentDistillery = useSelector((state) => state.distillery);
 
@@ -27,7 +27,6 @@ function CreateDrink() {
             description: description,
             image: drinkImage,
             abv: abv,
-            // rating: rating,
             distillery_id: currentDistillery.id,
         };
         console.log(newDrink);
@@ -53,7 +52,6 @@ function CreateDrink() {
                     ))}
                 </ul> */}
                 <div>
-                    {/* <label>Name</label> */}
                     <input
                         type="text"
                         name="name"
@@ -64,7 +62,6 @@ function CreateDrink() {
                     />
                 </div>
                 <div>
-                    {/* <label>Description</label> */}
                     <textarea
                         type="text"
                         name="description"
@@ -99,24 +96,6 @@ function CreateDrink() {
                         <span>%</span>
                     </label>
                 </div>
-                {/* <div>
-                    <label>Rating</label>
-                    <select
-                        name="rating"
-                        required
-                        value={rating}
-                        onChange={(e) => setRating(e.target.value)}>
-                        <option value="" disabled>
-                            --Rating--
-                        </option>
-                        <option value={0}>0</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                    </select>
-                </div> */}
                 <button>Create</button>
             </form>
         </>

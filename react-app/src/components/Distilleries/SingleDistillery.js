@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-
-
 import { showModal, setCurrentModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distillery";
 import { getCheckinsThunk } from "../../store/checkins";
 import { loadAllDrinks } from "../../store/drinks";
-import { updateDistillery } from "../../store/distilleries";
 import CheckinCard from "../CheckinCard/CheckinCard";
 import { deleteDistillery } from "../../store/distilleries";
 import styles from "./SingleDistillery.module.css";
-// import DistilleryCheckin from "./DistilleryCheckin";
-
 import CreateDrink from "../CreateDrink";
 import DrinkCard from "./DrinkCard";
 import EditDistillery from "../EditDistillery"
