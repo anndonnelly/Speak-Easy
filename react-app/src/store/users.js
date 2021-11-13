@@ -1,12 +1,11 @@
+import { createSelector } from "@reduxjs/toolkit";
 /*-------------ACTION.TYPES-------------*/
-const LOAD_ONE_USER = "user/LOAD_ONE_USER"
+const LOAD_ONE_USER = "user/LOAD_ONE_USER";
 /*-------------ACTIONS-------------*/
 const loadOne = (user) => ({
     type: LOAD_ONE_USER,
-    user
-})
-
-
+    user,
+});
 /*-------------THUNK CREATORS-------------*/
 export const loadOneUser = (id) => async (dispatch) => {
     const res = await fetch(`/api/users/${id}`);
@@ -22,6 +21,11 @@ export const loadOneUser = (id) => async (dispatch) => {
         return ["An error occurred. Please try again."];
     }
 };
+/*-------------MEMOIZED SELECTORS-------------*/
+export const getUserDistilleries = createSelector(
+    (state) => state.user.distilleries,
+    (state) => Object.values(state.distilleries)
+);
 /*-------------REDUCER-------------*/
 const initialState = {};
 
@@ -32,7 +36,7 @@ const users = (state = initialState, action) => {
                 ...state,
                 ...action.user,
             };
-        
+
         default:
             return state;
     }

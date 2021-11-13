@@ -24,7 +24,7 @@ function CheckinsFeed() {
     };
 
     return (
-        <>
+        <div className={styles.feedWrapper}>
             <div>
                 <button
                     className={styles.checkinModalButton}
@@ -37,8 +37,8 @@ function CheckinsFeed() {
                     <CheckinCard key={checkin.id} checkin={checkin} />
                 ))
                 .reverse()}
-                <InternalFooter/>
-        </>
+            <InternalFooter />
+        </div>
     );
 }
 

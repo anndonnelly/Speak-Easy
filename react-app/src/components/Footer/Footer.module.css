@@ -1,32 +1,28 @@
 .footerDiv {
-  display: flex;
-  /* margin-left: 20px; */
-  justify-content: space-around;
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  background: transparent;
-  /* margin-top: 50px; */
-  /* height: 50px; */
-  padding: 16px 0;
-color:white;
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background: transparent;
+    padding: 16px 0;
+    color: white;
 }
 
 .footerDiv a img {
-  width: 100%;
-  height: 20px;
+    width: 100%;
+    height: 20px;
 }
 
 .socialMedia {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-.col{
-  display: flex;
-  align-items: center;
-  gap: 5px
+.col {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }

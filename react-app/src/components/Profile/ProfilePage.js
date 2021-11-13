@@ -20,6 +20,7 @@ const ProfilePage = () => {
     const distillery = useSelector((state) => state.distilleries);
     const distilleries = useSelector((state) => state.distilleries);
     const ownedDistilleries = useSelector((state) => state.users.distilleries);
+    console.log(ownedDistilleries, "#################");
     const userCheckins = useSelector((state) => state.users.checkin_ids);
 
     const [selection, setSelection] = useState(false);
