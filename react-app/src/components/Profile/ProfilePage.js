@@ -9,10 +9,8 @@ import { getCheckinsThunk } from "../../store/checkins";
 import DistilleryCard from "../Distilleries/DistilleryCard";
 import CheckinCard from "../CheckinCard/CheckinCard";
 import CreateDistillery from "../CreateDistillery";
-import styles from "./ProfilePage.module.css"
-
-
-
+import styles from "./ProfilePage.module.css";
+import InternalFooter from "../Footer/InternalFooter";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
@@ -22,9 +20,8 @@ const ProfilePage = () => {
     const distillery = useSelector((state) => state.distilleries);
     const distilleries = useSelector((state) => state.distilleries);
     const ownedDistilleries = useSelector((state) => state.users.distilleries);
-    const userCheckins = useSelector(state => state.users.checkin_ids)
+    const userCheckins = useSelector((state) => state.users.checkin_ids);
     const [selection, setSelection] = useState(false);
-
 
     useEffect(() => {
         dispatch(loadOneUser(user.id));
@@ -32,13 +29,11 @@ const ProfilePage = () => {
         dispatch(loadDistilleries());
     }, [dispatch, user.id]);
 
-
     const createDistilleryModal = (e) => {
         e.preventDefault();
         dispatch(setCurrentModal(CreateDistillery));
         dispatch(showModal());
     };
-
 
     let distilleryCards;
     if (ownedDistilleries && distillery) {
@@ -51,7 +46,7 @@ const ProfilePage = () => {
                     />
                 );
             }
-            return;
+            return distilleryCards;
         });
     }
 
@@ -68,43 +63,40 @@ const ProfilePage = () => {
             .reverse();
     }
 
-
     return (
-        <>
+        <main className={styles.profile}>
             <div>
-                <button onClick={createDistilleryModal}>Start A Distillery</button>
+                <button onClick={createDistilleryModal}>
+                    Start A Distillery
+                </button>
             </div>
             <h1>{user.username}</h1>
-            <div className={styles.feedToggle}>
-                {selection ? (
-                    <button
-                        className={styles.button}
-                        onClick={() => setSelection(!selection)}>
-                        Distilleries
-                    </button>
-                ) : (
-                    <button
-                        className={styles.button}
-                        onClick={() => setSelection(!selection)}>
-                        Checkins
-                    </button>
-                )}
-            </div>
             <div className={styles.feedContainer}>
-                <div className={styles.titleContainer}>
-                    <div className={styles.title}>
-                        {selection ? <div>Checkins</div> : <div>Distilleries You Own</div>}
-                    </div>
+                <div className={styles.feedToggle}>
+                    {selection ? (
+                        <button
+                            className={styles.button}
+                            onClick={() => setSelection(!selection)}>
+                            Distilleries
+                        </button>
+                    ) : (
+                        <button
+                            className={styles.button}
+                            onClick={() => setSelection(!selection)}>
+                            Checkins
+                        </button>
+                    )}
                 </div>
                 <div className={styles.feed}>
                     {selection ? (
-                        <div className={styles.card}>{checkinCards}</div>
-                    ) : (
                         <div className={styles.card}>{distilleryCards}</div>
+                    ) : (
+                        <div className={styles.card}>{checkinCards}</div>
                     )}
                 </div>
             </div>
-        </>
+            <InternalFooter />
+        </main>
     );
 };
 
