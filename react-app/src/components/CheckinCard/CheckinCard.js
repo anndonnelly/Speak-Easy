@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./CheckinCard.module.css";
 import { editCheckinsThunk } from "../../store/checkins";
 import { deleteCheckinsThunk } from "../../store/checkins";
-import { NavLink} from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
 function CheckinCard({ checkin }) {
     const dispatch = useDispatch();
@@ -15,21 +15,26 @@ function CheckinCard({ checkin }) {
     const [editRating, setEditRating] = useState(checkin.rating);
     const [errors, setErrors] = useState([]);
 
-    
     const checkinId = checkin.id;
 
-
-    const handleEdit = async (e) => {
+    const handleEdit = (e) => {
         e.preventDefault();
-        const editedCheckin = {
-            checkinId: checkin.id,
-            review: editReview,
-            rating: editRating,
-        
-        };
-        dispatch(editCheckinsThunk(checkinId, editedCheckin));
+        const err = [];
 
-        setEdit(false);
+        if (editReview.length < 2) {
+            const error = "Your review must be at least 2 characters long";
+            err.push(error);
+        }
+        if (errors.length === 0) {
+            const editedCheckin = {
+                checkinId: checkin.id,
+                review: editReview,
+                rating: editRating,
+            };
+            dispatch(editCheckinsThunk(checkinId, editedCheckin));
+            setEdit(false);
+        }
+        setErrors(err);
     };
 
     const deleteCheckin = () => {
@@ -40,11 +45,11 @@ function CheckinCard({ checkin }) {
         return (
             <div className={styles.editCard}>
                 <form onSubmit={handleEdit}>
-                    {/* <ul>
-                {errors.map((error) => (
-                <li key={error}>{error}</li>
-                ))}
-            </ul> */}
+                    <ul>
+                        {errors.map((error) => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
                     <div>
                         <label>Review</label>
                         <textarea
@@ -79,43 +84,56 @@ function CheckinCard({ checkin }) {
     }
 
     return (
-        <>
-            <div className={styles.cardDiv}>
-                <div className={styles.cardHeader}>
-                    <div className={styles.cardHeaderContent}>
-                        <NavLink to={`/users/${checkin.user_id}`}>
-                        {checkin.user_name} </NavLink> is at
-                        <br></br>
-                        {checkin.location} drinking a<br></br>
+        <div className={styles.cardDiv}>
+            <div className={styles.cardHeaderContent}>
+                <div className={styles.headerFirst}>
+                    <NavLink
+                        className={styles.userName}
+                        to={`/users/${checkin.user_id}`}>
+                        {checkin.user_name}
+                    </NavLink>
+                    <span className={styles.isAt}> is at: </span>
+                    <span className={styles.location}>{checkin.location}</span>
+                </div>
+                <div className={styles.headerSecond}>
+                    <span className={styles.drinking}>Drinking a: </span>
+                    <span className={styles.drinkName}>
                         {checkin.drink_name}
-                        <br className={styles.cardReview}></br>
-                        {checkin.review}
-                        <br></br>
-                        <img
-                            className={styles.checkinImage}
-                            src={checkin.image}
-                            alt=""></img>
-                        <br></br>
-                        {checkin.rating}
-                        <br></br>
-                        {checkin?.user_id === currentUserId ? (
-                            <div>
-                                <button
-                                    className={styles.checkinButtons}
-                                    onClick={() => setEdit(true)}>
-                                    Edit
-                                </button>
-                                <button
-                                    className={styles.checkinButtons}
-                                    onClick={deleteCheckin}>
-                                    Delete
-                                </button>
-                            </div>
-                        ) : null}
-                    </div>
+                    </span>
+                </div>
+                <div className={styles.headerThird}>
+                    <span className={styles.review}>Review: </span>
+                    <span className={styles.userReview}>{checkin.review}</span>
+                </div>
+                <div className={styles.headerFourth}>
+                    <span className={styles.rating}>Rating: </span>
+                    <span className={styles.userRating}>{checkin.rating}</span>
+                </div>
+                <div className={styles.userFx}>
+                    {checkin?.user_id === currentUserId ? (
+                        <div className={styles.buttonWrapper}>
+                            <button
+                                className={styles.checkinButtons}
+                                onClick={() => setEdit(true)}>
+                                Edit
+                            </button>
+                            <button
+                                className={styles.checkinButtons}
+                                onClick={deleteCheckin}>
+                                Delete
+                            </button>
+                        </div>
+                    ) : null}
                 </div>
             </div>
-        </>
+            <div className={styles.imgWrapper}>
+                <img
+                    className={styles.checkinImage}
+                    src={checkin.image}
+                    alt=""
+                />
+            </div>
+        </div>
     );
 }
 
