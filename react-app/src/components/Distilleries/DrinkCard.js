@@ -37,13 +37,15 @@ const DrinkCard = ({ drink }) => {
         image: editImage,
         abv: editAbv,
         // rating: editRating,
+        distillery_id: distillery.id
     };
-
+    console.log("pre dispatch", editedDrink);
     dispatch(updateDrinkThunk(drink.id, editedDrink));
     setEdit(false);
   };
 
   const deleteDrink = () => {
+
     dispatch(removeDrinkThunk(drink.id));
   };
 
@@ -149,9 +151,3 @@ const DrinkCard = ({ drink }) => {
 };
 
 export default DrinkCard;
-
-
-
-
-
-

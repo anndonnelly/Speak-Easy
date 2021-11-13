@@ -14,8 +14,8 @@ function CreateDrink() {
     const [abv, setAbv] = useState("");
     const [rating, setRating] = useState("");
     //   const {distilleryId} = useParams()
-  
-    const currentDistillery = useSelector((state) => state.distilleries);
+
+    const currentDistillery = useSelector((state) => state.distillery);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +29,8 @@ function CreateDrink() {
             // rating: rating,
             distillery_id: currentDistillery.id,
         };
-        let response = await dispatch(addADrinkThunk(newDrink));
+        console.log(newDrink);
+        let response =  dispatch(addADrinkThunk(newDrink));
         if (response) {
             setErrors(response);
         }
