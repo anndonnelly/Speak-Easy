@@ -7,6 +7,7 @@ import { showModal, setCurrentModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distillery";
 import { getCheckinsThunk } from "../../store/checkins";
 import { loadAllDrinks } from "../../store/drinks";
+import { updateDistillery } from "../../store/distilleries";
 import CheckinCard from "../CheckinCard/CheckinCard";
 import { deleteDistillery } from "../../store/distilleries";
 import styles from "./SingleDistillery.module.css";
@@ -14,6 +15,7 @@ import styles from "./SingleDistillery.module.css";
 
 import CreateDrink from "../CreateDrink";
 import DrinkCard from "./DrinkCard";
+import EditDistillery from "../EditDistillery"
 
 const SingleDistillery = () => {
     const dispatch = useDispatch();
@@ -59,7 +61,8 @@ const SingleDistillery = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault()
-        // dispatch(updateDistillery(distilleryId))
+        dispatch(setCurrentModal(EditDistillery));
+        dispatch(showModal());
     }
 
 
@@ -83,6 +86,11 @@ const SingleDistillery = () => {
                     <div>
                         <button onClick={handleDelete}>Delete Distillery</button>
                     </div>
+
+                    <div>
+                        <button onClick={handleUpdate}>Edit Distillery</button>
+                    </div>
+
                 </>
             ) : null}
             <div className={styles.singleDistillContainer}>
