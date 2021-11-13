@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadDistilleries } from "../../store/distilleries";
+import InternalFooter from "../Footer/InternalFooter";
 import DistilleryCard from "./DistilleryCard";
 import styles from "./Distilleries.module.css";
 
@@ -28,6 +29,7 @@ const Distilleries = () => {
                         />
                     </div>
                 ))}
+            <InternalFooter />
         </div>
     );
 };

@@ -1,8 +1,7 @@
-
 .header {
     width: 100%;
     height: 72px;
-    background-color: rgb(44 28 20);
+    background-color: #100c08;
 }
 .nav {
     min-width: 100%;
@@ -12,6 +11,7 @@
     justify-content: space-between;
     align-items: center;
     padding-right: 32px;
+    background-color: #100c08;
     /* background-color: #404040; */
 }
 

@@ -12,6 +12,7 @@ import Distilleries from "./components/Distilleries";
 import SingleDistillery from "./components/Distilleries/SingleDistillery";
 import ProfilePage from "./components/Profile/ProfilePage";
 
+import styles from "./App.module.css";
 // import User from "./components/User";
 // import CreateDrink from "./components/CreateDrink";
 
@@ -23,7 +24,7 @@ export default function App() {
     }, [dispatch]);
 
     return (
-        <>
+        <div className={styles.appWrapper}>
             <NavBar />
             <Modal />
             <Switch>
@@ -46,6 +47,6 @@ export default function App() {
                     <SingleDistillery />
                 </ProtectedRoute>
             </Switch>
-        </>
+        </div>
     );
 }
