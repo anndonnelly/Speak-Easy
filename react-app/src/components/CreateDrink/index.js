@@ -29,7 +29,7 @@ function CreateDrink() {
             abv: abv,
             distillery_id: currentDistillery.id,
         };
-        console.log(newDrink);
+    
         let response =  dispatch(addADrinkThunk(newDrink)).then(() =>
             dispatch(loadOneDistillery(currentDistillery.id))
         );

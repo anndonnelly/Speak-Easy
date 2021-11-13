@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
 import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
+import loadOneDistillery from "../../store/distillery";
 
 
 function DistilleryCheckin() {

@@ -17,9 +17,6 @@ const DrinkCard = ({ drink }) => {
     const [editAbv, setEditAbv] = useState(drink.abv)
     const [editImage, setEditImage] = useState(drink.image);
     const [errors, setErrors] = useState([]);
-    const drinkId = drink.id
-    console.log("DRINK ID", drinkId)
-
 
     const checkin = (e) => {
         e.preventDefault();
@@ -38,7 +35,7 @@ const DrinkCard = ({ drink }) => {
         abv: editAbv,
         distillery_id: distillery.id
     };
-    console.log("pre dispatch", editedDrink);
+   
     dispatch(updateDrinkThunk(drink.id, editedDrink));
     setEdit(false);
   };
