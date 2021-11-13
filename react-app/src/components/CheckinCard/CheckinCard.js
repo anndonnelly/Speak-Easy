@@ -93,14 +93,14 @@ function CheckinCard({ checkin }) {
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <div>
-                        <label>Image</label>
-                        <input
-                            name="image"
-                            value={editImage}
-                            onChange={(e) => setEditImage(e.target.value)}
-                        />
-                    </div>
+                    {/* <div>
+                <label>Image</label>
+                <input
+                  name="image"
+                  value={editImage}
+                  onChange={(e) => setEditImage(e.target.value)}
+                />
+              </div> */}
                     <div>
                         <button>Update</button>
                     </div>
