@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
+
+
 import { showModal, setCurrentModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distillery";
 import { getCheckinsThunk } from "../../store/checkins";
 import { loadAllDrinks } from "../../store/drinks";
-import { useParams } from "react-router-dom";
-import styles from "./SingleDistillery.module.css";
 import CheckinCard from "../CheckinCard/CheckinCard";
+import { deleteDistillery } from "../../store/distilleries";
+import styles from "./SingleDistillery.module.css";
 // import DistilleryCheckin from "./DistilleryCheckin";
 
 import CreateDrink from "../CreateDrink";
 import DrinkCard from "./DrinkCard";
 
 const SingleDistillery = () => {
+    const dispatch = useDispatch();
+    const history = useHistory()
     const { distilleryId } = useParams();
 
-    const dispatch = useDispatch();
     const [selection, setSelection] = useState(false);
 
     const distillery = useSelector((state) => state.distillery);
@@ -47,6 +51,14 @@ const SingleDistillery = () => {
         dispatch(showModal());
     };
 
+    const handleDelete = (e) => {
+        e.preventDefault()
+        dispatch(deleteDistillery(distilleryId))
+        history.push("/distilleries")
+    }
+
+
+
     let drinkCards;
     if (drinks && distillery) {
         drinkCards = Object.values(drinks).map((drink) => {
@@ -59,9 +71,14 @@ const SingleDistillery = () => {
     return (
         <div>
             {currentUser.id === distillery.owner_id ? (
-                <div>
-                    <button onClick={createDrinkModal}>Add a Drink</button>
-                </div>
+                <>
+                    <div>
+                        <button onClick={createDrinkModal}>Add a Drink</button>
+                    </div>
+                    <div>
+                        <button onClick={handleDelete}>Delete Distillery</button>
+                    </div>
+                </>
             ) : null}
             <div className={styles.singleDistillContainer}>
                 <div>
