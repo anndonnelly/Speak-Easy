@@ -21,7 +21,16 @@ const ProfilePage = () => {
     const distilleries = useSelector((state) => state.distilleries);
     const ownedDistilleries = useSelector((state) => state.users.distilleries);
     const userCheckins = useSelector((state) => state.users.checkin_ids);
+
     const [selection, setSelection] = useState(false);
+    let [count, setCount] = useState(Object.values(distilleries).length)
+
+    const distilleriesArr = Object.values(distilleries)
+    console.log("this da fooking array", distilleriesArr)
+
+    // if (distilleriesArr.length > count){
+    //     setCount(count+=1)
+    // }
 
     useEffect(() => {
         dispatch(loadOneUser(user.id));
