@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./CheckinCard.module.css";
 import { editCheckinsThunk } from "../../store/checkins";
 import { deleteCheckinsThunk } from "../../store/checkins";
-import { NavLink} from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
 function CheckinCard({ checkin }) {
     const dispatch = useDispatch();
@@ -15,21 +15,26 @@ function CheckinCard({ checkin }) {
     const [editRating, setEditRating] = useState(checkin.rating);
     const [errors, setErrors] = useState([]);
 
-    
     const checkinId = checkin.id;
 
-
-    const handleEdit = async (e) => {
+    const handleEdit = (e) => {
         e.preventDefault();
-        const editedCheckin = {
-            checkinId: checkin.id,
-            review: editReview,
-            rating: editRating,
-        
-        };
-        dispatch(editCheckinsThunk(checkinId, editedCheckin));
+        const err = [];
 
-        setEdit(false);
+        if (editReview.length < 2) {
+            const error = "Your review must be at least 2 characters long";
+            err.push(error);
+        }
+        if (errors.length === 0) {
+            const editedCheckin = {
+                checkinId: checkin.id,
+                review: editReview,
+                rating: editRating,
+            };
+            dispatch(editCheckinsThunk(checkinId, editedCheckin));
+            setEdit(false);
+        }
+        setErrors(err);
     };
 
     const deleteCheckin = () => {
@@ -40,11 +45,11 @@ function CheckinCard({ checkin }) {
         return (
             <div className={styles.editCard}>
                 <form onSubmit={handleEdit}>
-                    {/* <ul>
-                {errors.map((error) => (
-                <li key={error}>{error}</li>
-                ))}
-            </ul> */}
+                    <ul>
+                        {errors.map((error) => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
                     <div>
                         <label>Review</label>
                         <textarea
@@ -84,7 +89,9 @@ function CheckinCard({ checkin }) {
                 <div className={styles.cardHeader}>
                     <div className={styles.cardHeaderContent}>
                         <NavLink to={`/users/${checkin.user_id}`}>
-                        {checkin.user_name} </NavLink> is at
+                            {checkin.user_name}{" "}
+                        </NavLink>{" "}
+                        is at
                         <br></br>
                         {checkin.location} drinking a<br></br>
                         {checkin.drink_name}

@@ -1,17 +1,17 @@
 import React from "react";
-import "./Search.css";
+import styles from "./Search.module.css";
 
 export default function SearchBar() {
-  return (
-    <div className="search-wrapper">
-      <form>
-        <input
-          placeholder="Search for a drink or distillery"
-          className="search-input"
-        />
-        <button className="search-button">Search</button>
-      </form>
-    </div>
-  );
+    return (
+        <div className={styles.searchWrapper}>
+            <form>
+                <input
+                    placeholder="Search for a drink or distillery"
+                    className={styles.searchInput}
+                />
+                <button className={styles.searchButton}>Search</button>
+            </form>
+        </div>
+    );
 }
-// 
+//

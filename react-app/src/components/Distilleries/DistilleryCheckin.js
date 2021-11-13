@@ -6,18 +6,16 @@ import { hideModal } from "../../store/modal";
 import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
 import loadOneDistillery from "../../store/distillery";
 
-
 function DistilleryCheckin() {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
     const [review, setReview] = useState("");
     const [rating, setRating] = useState();
-    const distillery = useSelector((state) => state?.distillery);
-    const drink = useSelector((state) => state?.selectedDrink);
+    const distillery = useSelector((state) => state.distillery);
+    const drink = useSelector((state) => state.selectedDrink);
 
-
-    const valErrors = [];
     useEffect(() => {
+        const valErrors = [];
         if (review.length > 0 && review.length < 5)
             valErrors.push("--Review must be at least 5 characters long--");
 
@@ -44,10 +42,9 @@ function DistilleryCheckin() {
                 drink_name: drink.name,
             };
 
-            dispatch(createCheckinsThunk(checkin)).then(() =>
+            dispatch(createCheckinsThunk(checkin)).then(
                 dispatch(loadOneDistillery(distillery.id))
             );
-
         }
         dispatch(hideModal());
     };
@@ -55,10 +52,7 @@ function DistilleryCheckin() {
     return (
         <div className={styles.checkinContainer}>
             <div className={styles.checkinFormHeader}>
-                <h1 className={styles.checkinModalTitle}>
-                    {" "}
-                    Distillery Checkin
-                </h1>
+                <h1 className={styles.checkinModalTitle}>Distillery Checkin</h1>
             </div>
             <form className={styles.checkinForm} onSubmit={onSubmit}>
                 <ul>
