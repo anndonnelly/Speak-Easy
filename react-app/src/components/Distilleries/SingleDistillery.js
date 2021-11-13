@@ -83,9 +83,6 @@ const SingleDistillery = () => {
                     <div>
                         <button onClick={handleDelete}>Delete Distillery</button>
                     </div>
-                    <div>
-                        <button onClick={handleDelete}>Delete Distillery</button>
-                    </div>
                 </>
             ) : null}
             <div className={styles.singleDistillContainer}>
