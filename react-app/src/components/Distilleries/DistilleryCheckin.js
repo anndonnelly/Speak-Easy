@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
 import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
-import loadOneDistillery from "../../store/distillery";
+import {loadOneDistillery} from "../../store/distillery";
 
 function DistilleryCheckin() {
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function DistilleryCheckin() {
         setErrors(valErrors);
     }, [review]);
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
 
         if (review && rating) {

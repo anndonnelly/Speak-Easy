@@ -10,7 +10,7 @@ import { removeDrinkThunk } from "../../store/drinks";
 
 const DrinkCard = ({ drink }) => {
     const dispatch = useDispatch();
-    const distillery = useSelector((state) => state?.distilleries);
+    const distillery = useSelector((state) => state?.distillery);
     const [edit, setEdit] = useState(false)
     const [editDrinkName, setEditDrinkName] = useState(drink.name)
     const [editDescription, setEditDescription] = useState(drink.description);
@@ -35,7 +35,7 @@ const DrinkCard = ({ drink }) => {
         abv: editAbv,
         distillery_id: distillery.id
     };
-   
+
     dispatch(updateDrinkThunk(drink.id, editedDrink));
     setEdit(false);
   };
