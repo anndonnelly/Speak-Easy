@@ -46,6 +46,8 @@ export default function PickDistillery() {
                         {distillery.name}
                     </option>
                 ))}
+                {/* // <option value="">Home</option>
+                // <option value="">Other</option> */}
             </select>
         </>
     );

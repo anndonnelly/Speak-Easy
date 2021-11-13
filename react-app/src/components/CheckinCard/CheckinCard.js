@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./CheckinCard.module.css";
 import { editCheckinsThunk } from "../../store/checkins";
 import { deleteCheckinsThunk } from "../../store/checkins";
+import { NavLink} from 'react-router-dom'
 
 function CheckinCard({ checkin }) {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function CheckinCard({ checkin }) {
 
     // const checkins = useSelector((state) => Object.values(state.checkins));
     const checkinId = checkin.id;
+    console.log("userID", checkin.user_id);
 
     const handleEdit = async (e) => {
         e.preventDefault();
@@ -114,7 +116,8 @@ function CheckinCard({ checkin }) {
             <div className={styles.cardDiv}>
                 <div className={styles.cardHeader}>
                     <div className={styles.cardHeaderContent}>
-                        {checkin.user_name} is at
+                        <NavLink to={`/users/${checkin.user_id}`}>
+                        {checkin.user_name} </NavLink> is at
                         <br></br>
                         {checkin.location} drinking a<br></br>
                         {checkin.drink_name}
