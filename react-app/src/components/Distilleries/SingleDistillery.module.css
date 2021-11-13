@@ -36,5 +36,9 @@
 .button {
     font-size: 25px;
     width: 150px;
+    border-radius: 4px;
     background-color: #b78727;
+}
+.button:hover {
+    background-color: #e1ad21;
 }
