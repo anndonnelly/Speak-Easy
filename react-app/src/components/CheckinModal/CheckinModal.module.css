@@ -13,7 +13,7 @@
 }
 
 .modalContent {
-    max-width: 50%;
+    min-width: 50%;
     background-color: lightgray;
     position: fixed;
     top: 30%;
