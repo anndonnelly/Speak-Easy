@@ -72,6 +72,7 @@ export const deleteDistillery = (distilleryId) => async (dispatch) => {
     });
     if (res.ok) {
         const distillery = await res.json();
+        console.log(distillery)
         dispatch(remove(distillery));
     }
 };

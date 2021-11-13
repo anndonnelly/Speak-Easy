@@ -27,7 +27,6 @@ const SingleDistillery = () => {
     const drinks = useSelector((state) => state.drinks);
     const currentUser = useSelector((state) => state.session.user);
 
-
     useEffect(() => {
         dispatch(loadOneDistillery(distilleryId));
         dispatch(getCheckinsThunk());
@@ -55,7 +54,7 @@ const SingleDistillery = () => {
     const handleDelete = (e) => {
         e.preventDefault()
         dispatch(deleteDistillery(distilleryId))
-        // history.push("/distilleries")
+        history.push("/distilleries")
     }
 
 
