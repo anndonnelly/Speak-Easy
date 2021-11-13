@@ -1,0 +1,15 @@
+.checkin,
+.editCard {
+    max-height: fit-content;
+    max-width: 860px;
+    border: 2px solid #a1a1a1;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
