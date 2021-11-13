@@ -13,7 +13,7 @@
 }
 
 .modalContent {
-    min-width: 50%;
+    min-width: fit-content;
     background-color: lightgray;
     position: fixed;
     top: 30%;
