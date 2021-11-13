@@ -17,7 +17,7 @@ function CheckinCard({ checkin }) {
 
     
     const checkinId = checkin.id;
-    console.log("userID", checkin.user_id);
+
 
     const handleEdit = async (e) => {
         e.preventDefault();

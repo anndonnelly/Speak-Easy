@@ -85,7 +85,7 @@ export const updateDrinkThunk = (drinkId, payload) => async (dispatch) => {
     });
     if (res.ok) {
         const drink = await res.json();
-        console.log(drink);
+    
         dispatch(updateDrink(drink));
     } else if (res.status < 500) {
         const data = await res.json();
