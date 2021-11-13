@@ -15,8 +15,6 @@ function CreateCheckin() {
     const drink = useSelector((state) => state?.selectedDrink);
     const checkedInUser = useSelector((state) => state?.session.user);
 
-    const valErrors = [];
-
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -26,8 +24,6 @@ function CreateCheckin() {
                 review: review,
                 rating: rating,
                 location: distillery.name,
-                
-                
                 drink_id: drink.id,
                 distillery_id: distillery.id,
                 drink_name: drink.name,
