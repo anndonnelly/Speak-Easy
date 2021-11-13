@@ -13,3 +13,36 @@
     border-radius: 5px !important;
 }
 
+
+.checkinImage {
+  height: 200px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+.checkinButtons {
+border-style: none;
+  background-color: transparent;
+  color: teal;
+  font-size: 16px;
+  font-weight: bold;
+} 
+
+
+.cardDiv {
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  flex-direction: column;
+}
+
+.cardDiv:hover {
+  box-shadow: 0 16px 64px -16px rgb(46 55 77 / 10%);
+}
+
+.cardDivContent {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 50%;
+}
