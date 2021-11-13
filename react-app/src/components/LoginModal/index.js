@@ -16,11 +16,9 @@ function LoginFormModal() {
     };
 
     return (
-        <>
-            <button className={styles.navButton} onClick={handleLogin}>
-                Log In
-            </button>
-        </>
+        <button className={styles.navButton} onClick={handleLogin}>
+            Log In
+        </button>
     );
 }
 
