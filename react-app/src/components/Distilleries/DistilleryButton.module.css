@@ -9,6 +9,7 @@
     border: 2px solid #fff;
     color: white;
     text-decoration: none;
+    margin-right: 24px;
 }
 .navButton:hover {
     background: white;
