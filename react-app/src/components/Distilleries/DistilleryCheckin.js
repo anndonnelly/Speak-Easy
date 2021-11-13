@@ -43,8 +43,10 @@ function DistilleryCheckin() {
                 drink_name: drink.name,
             };
 
-            dispatch(createCheckinsThunk(checkin));
-            
+            dispatch(createCheckinsThunk(checkin)).then(() =>
+                dispatch(loadOneDistillery(distillery.id))
+            );
+
         }
         dispatch(hideModal());
     };
