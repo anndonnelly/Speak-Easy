@@ -15,7 +15,7 @@ const DrinkCard = ({ drink }) => {
     const [edit, setEdit] = useState(false)
     const [editDrinkName, setEditDrinkName] = useState(drink.name)
     const [editDescription, setEditDescription] = useState(drink.description);
-    const [editRating, setEditRating] = useState(drink.rating);
+    // const [editRating, setEditRating] = useState(drink.rating);
     const [editAbv, setEditAbv] = useState(drink.abv)
     const [editImage, setEditImage] = useState(drink.image);
     const [errors, setErrors] = useState([]);
@@ -86,7 +86,7 @@ const DrinkCard = ({ drink }) => {
               value={editImage}
               type="text"
               id="text"
-              multiple
+            //   multiple
               onChange={(e) => setEditImage(e.target.value)}
             ></input>
           </div>

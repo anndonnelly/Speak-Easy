@@ -30,7 +30,7 @@ function Footer () {
           </a>
           <a href="https://www.linkedin.com/in/brandon-mohan-ba3282212/">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
+              src="https://res.cloudinary.com/dis83syog/image/upload/v1636761524/SpeakEasy/forAnn_nv1lpr.png"
               alt="linkedInLogo"
             />
           </a>
@@ -45,7 +45,7 @@ function Footer () {
           </a>
           <a href="https://www.linkedin.com/in/james-thompson-60174394/">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
+              src="https://res.cloudinary.com/dis83syog/image/upload/v1636761524/SpeakEasy/forAnn_nv1lpr.png"
               alt="linkedInLogo"
             />
           </a>
@@ -60,7 +60,7 @@ function Footer () {
           </a>
           <a href="https://www.linkedin.com/in/robert-kauth-043370133/">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
+              src="https://res.cloudinary.com/dis83syog/image/upload/v1636761524/SpeakEasy/forAnn_nv1lpr.png"
               alt="linkedInLogo"
             />
           </a>

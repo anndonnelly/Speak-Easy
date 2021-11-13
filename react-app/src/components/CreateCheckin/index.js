@@ -114,7 +114,7 @@ function CreateCheckin() {
               </select>
             </div>
           </div>
-          <div className={styles.formSection}>
+          {/* <div className={styles.formSection}>
             <label>Image</label>
             <input
               value={checkinImage}
@@ -123,7 +123,7 @@ function CreateCheckin() {
               multiple
               onChange={(e) => setCheckinImage(e.target.value)}
             ></input>
-          </div>
+          </div> */}
           <div className={styles.checkinButtonWrap}>
             <button
               disabled={errors.length > 0}

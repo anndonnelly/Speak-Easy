@@ -49,7 +49,7 @@ export const createCheckinsThunk = (checkin) => async (dispatch) => {
     const formData = new FormData()
     formData.append("review", checkin.review)
     formData.append("rating", checkin.rating)
-    formData.append("image", checkin.image)
+    // formData.append("image", checkin.image)
     formData.append("location", checkin.location);
     formData.append("drink_name", checkin.drink_name);
     formData.append("drink_id", checkin.drink_id)
