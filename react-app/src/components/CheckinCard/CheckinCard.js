@@ -111,24 +111,39 @@ function CheckinCard({ checkin }) {
 
     return (
         <>
-            <div className={styles.checkin}>
-                {checkin.user_name} is at
-                <br></br>
-                {checkin.location} drinking a<br></br>
-                {checkin.drink_name}
-                <br></br>
-                {checkin.review}
-                <br></br>
-                <img src={checkin.image} alt=""></img>
-                <br></br>
-                {checkin.rating}
-                <br></br>
-                {checkin?.user_id === currentUserId ? (
-                    <div>
-                        <button onClick={() => setEdit(true)}>Edit</button>
-                        <button onClick={deleteCheckin}>Delete</button>
+            <div className="cardDiv">
+                <div className="cardHeader">
+                    <div className="cardHeaderContent">
+                        {checkin.user_name} is at
+                        <br></br>
+                        {checkin.location} drinking a<br></br>
+                        {checkin.drink_name}
+                        <br className="cardReview"></br>
+                        {checkin.review}
+                        <br></br>
+                        <img
+                            className="checkinImage"
+                            src={checkin.image}
+                            alt=""></img>
+                        <br></br>
+                        {checkin.rating}
+                        <br></br>
+                        {checkin?.user_id === currentUserId ? (
+                            <div>
+                                <button
+                                    className="checkinButtons"
+                                    onClick={() => setEdit(true)}>
+                                    Edit
+                                </button>
+                                <button
+                                    className="checkinButtons"
+                                    onClick={deleteCheckin}>
+                                    Delete
+                                </button>
+                            </div>
+                        ) : null}
                     </div>
-                ) : null}
+                </div>
             </div>
         </>
     );

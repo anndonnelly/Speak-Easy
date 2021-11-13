@@ -31,12 +31,12 @@ const initialState = {};
 
 const users = (state = initialState, action) => {
     switch (action.type) {
-        case LOAD_ONE_USER: {
+        case LOAD_ONE_USER:
             return {
                 ...state,
                 ...action.user,
             };
-        }
+
         default:
             return state;
     }
