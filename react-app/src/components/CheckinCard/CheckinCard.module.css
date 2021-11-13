@@ -20,7 +20,7 @@
 }
 
 .checkinButtons {
-    border: 2px solid #00009c;
+    border: 2px solid #77593b;
     background-color: #404040;
     color: lightgrey;
     font-size: 18px;
@@ -38,7 +38,7 @@
     justify-content: center;
     background-color: transparent;
     box-shadow: 0 16px 64px -16px rgb(46 55 77 / 10%);
-    border: 3px solid #ffcc33;
+    border: 3px solid #100c08;
     margin: 5px 50px;
     max-width: 80%;
 }
@@ -56,7 +56,7 @@
 }
 
 .userName {
-    color: #00009c;
+    color: #77593b;
     font-size: 28px;
     font-weight: bold;
 }
