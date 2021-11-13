@@ -1,4 +1,4 @@
-.checkin{
+.checkin {
     height: fit-content !important;
     width: 860px !important;
     border: 2px solid #a1a1a1 !important;
@@ -11,4 +11,13 @@
     margin-top: 20px !important;
     background-color: white !important;
     border-radius: 5px !important;
+}
+
+.feedWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 0 90px 0;
+    background-color: #404040;
 }
