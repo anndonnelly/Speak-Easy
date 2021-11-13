@@ -60,6 +60,7 @@ export const createCheckinsThunk = (checkin) => async (dispatch) => {
     if (res.ok) {
         let newCheckin = await res.json();
         dispatch(addCheckinAction(newCheckin));
+        return newCheckin
         // getting all actions and turning it into a payload
     } else {
         //handle errors
