@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { addADrinkThunk } from "../../store/drinks";
 import { hideModal } from "../../store/modal";
+import { loadOneDistillery } from "../../store/distillery";
 // import { useParams } from "react-router";
 
 function CreateDrink() {
@@ -30,7 +31,9 @@ function CreateDrink() {
             distillery_id: currentDistillery.id,
         };
         console.log(newDrink);
-        let response =  dispatch(addADrinkThunk(newDrink));
+        let response =  dispatch(addADrinkThunk(newDrink)).then(() =>
+            dispatch(loadOneDistillery(currentDistillery.id))
+        );
         if (response) {
             setErrors(response);
         }

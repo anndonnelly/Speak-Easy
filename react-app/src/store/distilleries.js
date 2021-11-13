@@ -45,8 +45,8 @@ export const createDistillery = (distillery) => async (dispatch) => {
         body: JSON.stringify(distillery),
     });
     if (res.ok) {
-        console.log("hittttt", res);
         const distillery = await res.json();
+        // console.log("hittttt", distillery);
         dispatch(create(distillery));
         return distillery;
     }
