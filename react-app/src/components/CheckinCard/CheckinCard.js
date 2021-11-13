@@ -92,7 +92,7 @@ function CheckinCard({ checkin }) {
                         to={`/users/${checkin.user_id}`}>
                         {checkin.user_name}
                     </NavLink>
-                    <span className={styles.isAt}>is at: </span>
+                    <span className={styles.isAt}> is at: </span>
                     <span className={styles.location}>{checkin.location}</span>
                 </div>
                 <div className={styles.headerSecond}>
