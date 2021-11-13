@@ -1,4 +1,4 @@
-import { createSelector } from "@reduxjs/toolkit";
+// import { createSelector } from "@reduxjs/toolkit";
 /*-------------ACTION.TYPES-------------*/
 const LOAD_ONE_USER = "user/LOAD_ONE_USER";
 /*-------------ACTIONS-------------*/
@@ -21,11 +21,6 @@ export const loadOneUser = (id) => async (dispatch) => {
         return ["An error occurred. Please try again."];
     }
 };
-/*-------------MEMOIZED SELECTORS-------------*/
-export const getUserDistilleries = createSelector(
-    (state) => state.user.distilleries,
-    (state) => Object.values(state.distilleries)
-);
 /*-------------REDUCER-------------*/
 const initialState = {};
 

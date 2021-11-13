@@ -38,7 +38,7 @@ const SingleDistillery = () => {
         checkinCards = Object.values(checkins)
             .map((checkin) => {
                 if (distillery.checkin_ids?.includes(checkin.id)) {
-                    return <CheckinCard checkin={checkin} />;
+                    return <CheckinCard key={checkin.id}    checkin={checkin}/>;
                 }
                 return null;
             })
@@ -55,6 +55,11 @@ const SingleDistillery = () => {
         e.preventDefault()
         dispatch(deleteDistillery(distilleryId))
         history.push("/distilleries")
+    }
+
+    const handleUpdate = (e) => {
+        e.preventDefault()
+        // dispatch(updateDistillery(distilleryId))
     }
 
 
@@ -74,6 +79,9 @@ const SingleDistillery = () => {
                 <>
                     <div>
                         <button onClick={createDrinkModal}>Add a Drink</button>
+                    </div>
+                    <div>
+                        <button onClick={handleDelete}>Delete Distillery</button>
                     </div>
                     <div>
                         <button onClick={handleDelete}>Delete Distillery</button>
@@ -98,13 +106,13 @@ const SingleDistillery = () => {
                             <button
                                 className={styles.button}
                                 onClick={() => setSelection(!selection)}>
-                                Checkins
+                                Drinks
                             </button>
                         ) : (
                             <button
                                 className={styles.button}
                                 onClick={() => setSelection(!selection)}>
-                                Drinks
+                                Checkins
                             </button>
                         )}
                     </div>

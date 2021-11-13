@@ -52,13 +52,13 @@ export const createDistillery = (distillery) => async (dispatch) => {
     }
 };
 
-export const updateDistillery = (distillery) => async (dispatch) => {
-    const res = await fetch(`/api/distilleries/${distillery.id}`, {
+export const updateDistillery = (distilleryId) => async (dispatch) => {
+    const res = await fetch(`/api/distilleries/${distilleryId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(distillery),
+        body: JSON.stringify(distilleryId),
     });
     if (res.ok) {
         const distillery = await res.json();

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
+import { loadOneDistillery } from "../../store/distillery";
 // import "../../index.css";
 import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
 // import { useParams } from "react-router-dom";
@@ -35,7 +36,7 @@ function DistilleryCheckin() {
         console.log("ddddddd---->", errors);
         console.log("REVIEW", review);
     }, [review]);
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
 
         if (review && rating) {
@@ -57,15 +58,10 @@ function DistilleryCheckin() {
                 drink_name: drink.name,
             };
 
-            let response = await dispatch(createCheckinsThunk(checkin));
-            if (response) {
-                setErrors(response);
-            }
+            dispatch(createCheckinsThunk(checkin)).then(() =>
+                dispatch(loadOneDistillery(distillery.id))
+            );
 
-            if (!response) {
-                setReview("");
-                setErrors([]);
-            }
         }
         dispatch(hideModal());
     };

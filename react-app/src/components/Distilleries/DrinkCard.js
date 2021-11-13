@@ -21,6 +21,8 @@ const DrinkCard = ({ drink }) => {
     const [errors, setErrors] = useState([]);
     const drinkId = drink.id
     console.log("DRINK ID", drinkId)
+
+
     const checkin = (e) => {
         e.preventDefault();
         dispatch(loadSelectedDistillery(distillery.id));
