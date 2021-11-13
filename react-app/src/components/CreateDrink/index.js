@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { addADrinkThunk } from "../../store/drinks";
 import { hideModal } from "../../store/modal";
+import { loadOneDistillery } from "../../store/distillery";
 // import { useParams } from "react-router";
 
 function CreateDrink() {
@@ -14,8 +15,8 @@ function CreateDrink() {
     const [abv, setAbv] = useState("");
     const [rating, setRating] = useState("");
     //   const {distilleryId} = useParams()
-  
-    const currentDistillery = useSelector((state) => state.distilleries);
+
+    const currentDistillery = useSelector((state) => state.distillery);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +30,10 @@ function CreateDrink() {
             // rating: rating,
             distillery_id: currentDistillery.id,
         };
-        let response = await dispatch(addADrinkThunk(newDrink));
+        console.log(newDrink);
+        let response =  dispatch(addADrinkThunk(newDrink)).then(() =>
+            dispatch(loadOneDistillery(currentDistillery.id))
+        );
         if (response) {
             setErrors(response);
         }

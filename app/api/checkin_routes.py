@@ -4,6 +4,7 @@ from flask import Blueprint, request, redirect
 from flask_login import login_required, current_user
 from app.forms.checkin_form import CheckinForm
 from app.models.checkin import Checkin, db
+from app.models.drink import Drink
 from app.config import Config
 from app.aws_s3 import *
 from sqlalchemy import desc
@@ -40,7 +41,7 @@ def checkin():
             rating=data["rating"],
             location=data["location"],
             drink_name=data["drink_name"],
-            image=data["image"],
+            # image=data["image"],
             user_id= userid,
             drink_id=data["drink_id"],
             distillery_id=data["distillery_id"])
@@ -56,10 +57,12 @@ def checkin_edit(id):
     form = CheckinForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        # edit_drink = Drink.query.get(form.data["drink_id"])
+        # print("EDIT DRINK", edit_drink)
         edit_checkin= Checkin.query.get(id)
         edit_checkin.review = form.data["review"]
         edit_checkin.rating = form.data["rating"]
-        edit_checkin.image = form.data["image"]
+        # edit_checkin.image = form.data["image"]
         db.session.commit()
         # return redirect("/")
         return edit_checkin.to_dict()

@@ -15,12 +15,14 @@ const DrinkCard = ({ drink }) => {
     const [edit, setEdit] = useState(false)
     const [editDrinkName, setEditDrinkName] = useState(drink.name)
     const [editDescription, setEditDescription] = useState(drink.description);
-    const [editRating, setEditRating] = useState(drink.rating);
+    // const [editRating, setEditRating] = useState(drink.rating);
     const [editAbv, setEditAbv] = useState(drink.abv)
     const [editImage, setEditImage] = useState(drink.image);
     const [errors, setErrors] = useState([]);
     const drinkId = drink.id
     console.log("DRINK ID", drinkId)
+
+
     const checkin = (e) => {
         e.preventDefault();
         dispatch(loadSelectedDistillery(distillery.id));
@@ -37,13 +39,15 @@ const DrinkCard = ({ drink }) => {
         image: editImage,
         abv: editAbv,
         // rating: editRating,
+        distillery_id: distillery.id
     };
-
+    console.log("pre dispatch", editedDrink);
     dispatch(updateDrinkThunk(drink.id, editedDrink));
     setEdit(false);
   };
 
   const deleteDrink = () => {
+
     dispatch(removeDrinkThunk(drink.id));
   };
 
@@ -84,7 +88,7 @@ const DrinkCard = ({ drink }) => {
               value={editImage}
               type="text"
               id="text"
-              multiple
+            //   multiple
               onChange={(e) => setEditImage(e.target.value)}
             ></input>
           </div>
@@ -149,9 +153,3 @@ const DrinkCard = ({ drink }) => {
 };
 
 export default DrinkCard;
-
-
-
-
-
-

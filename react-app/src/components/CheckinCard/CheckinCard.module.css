@@ -1,0 +1,46 @@
+.checkin,
+.editCard {
+    max-height: fit-content;
+    max-width: 860px;
+    border: 2px solid #a1a1a1;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+.checkinImage {
+    height: 200px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+.checkinButtons {
+    border-style: none;
+    background-color: transparent;
+    color: teal;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.cardDiv {
+    display: flex;
+    width: 100%;
+    margin-bottom: 30px;
+    flex-direction: column;
+}
+
+.cardDiv:hover {
+    box-shadow: 0 16px 64px -16px rgb(46 55 77 / 10%);
+}
+
+.cardDivContent {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-width: 50%;
+}

@@ -17,6 +17,7 @@ def load_drinks():
     form = DrinkForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print(f'\n\n\n\n{"falskdjfdsklf"}\n\n\n\n')
         data = form.data
         new_drink = Drink(
             name=data["name"],
@@ -33,16 +34,18 @@ def load_drinks():
     return {drink.id: drink.to_dict() for drink in Drink.query.all()}
 
 
-@drink_routes.route("/<int:id>", methods=["GET", "PUT"])
+@drink_routes.route("/<int:id>", methods=["GET", "PATCH"])
 def one_drink(id):
     drink = Drink.query.get(id)
+    print(f'\n\n\n\n{drink.to_dict()}\n\n\n\n')
     form = DrinkForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("in drink route")
         drink.name = form.data['name']
         drink.description = form.data['description']
         drink.image = form.data['image']
-        # drink.rating = form.data['rating']
+        drink.distillery_id = drink.distillery_id
         drink.abv = form.data['abv']
         db.session.commit()
         return drink.to_dict()

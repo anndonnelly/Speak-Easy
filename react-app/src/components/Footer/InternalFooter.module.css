@@ -1,0 +1,42 @@
+.internalFooterDiv {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: black;
+    background-color: white;
+    padding: 32px 0;
+}
+
+.internalFooterDiv a img {
+    width: 100%;
+    height: 20px;
+}
+.footerDiv {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background: transparent;
+    padding: 16px 0;
+    color: white;
+}
+
+.footerDiv a img {
+    width: 100%;
+    height: 20px;
+}
+
+.socialMedia {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

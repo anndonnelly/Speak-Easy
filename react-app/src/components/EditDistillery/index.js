@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useState } from "react";
 import { hideModal } from "../../store/modal";
-import { createDistillery } from "../../store/distilleries";
-import { loadOneUser } from "../../store/users";
+import {updateDistillery} from "../../store/distilleries"
+import { loadOneDistillery } from "../../store/distillery";
 
 function CreateDistillery() {
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user.id)
+    const distilleryId = useSelector(state => state.distillery.id)
     const history = useHistory()
 
     const [errors, setErrors] = useState([]);
@@ -29,8 +30,8 @@ function CreateDistillery() {
             state: state,
             logo: logo,
         };
-        let createdDistillery = dispatch(createDistillery(newDistillery)).then(() =>
-            dispatch(loadOneUser(userId))
+        let createdDistillery = dispatch(updateDistillery(distilleryId, newDistillery)).then(() =>
+            dispatch(loadOneDistillery(distilleryId))
         )
         // console.log("newDistilllery???????", createDistillery)
         if (createdDistillery) {
@@ -42,7 +43,7 @@ function CreateDistillery() {
     return (
         <>
             <div>
-                <h1>Start a Distillery</h1>
+                <h1>Edit Your Distillery</h1>
             </div>
             <form onSubmit={onSubmit}>
                 <ul>

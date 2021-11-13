@@ -8,4 +8,4 @@ class DrinkForm(FlaskForm):
     image = StringField('image')
     abv = IntegerField('abv')
     # rating = IntegerField('rating')
-    distillery_id = IntegerField('distillery_id', validators=[DataRequired()])
+    distillery_id = IntegerField('distillery_id')

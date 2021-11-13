@@ -45,20 +45,20 @@ export const createDistillery = (distillery) => async (dispatch) => {
         body: JSON.stringify(distillery),
     });
     if (res.ok) {
-        console.log("hittttt", res);
         const distillery = await res.json();
+        // console.log("hittttt", distillery);
         dispatch(create(distillery));
         return distillery;
     }
 };
 
-export const updateDistillery = (distillery) => async (dispatch) => {
-    const res = await fetch(`/api/distilleries/${distillery.id}`, {
+export const updateDistillery = (distilleryId, payload) => async (dispatch) => {
+    const res = await fetch(`/api/distilleries/${distilleryId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(distillery),
+        body: JSON.stringify(payload),
     });
     if (res.ok) {
         const distillery = await res.json();
@@ -66,12 +66,13 @@ export const updateDistillery = (distillery) => async (dispatch) => {
     }
 };
 
-export const deleteDistillery = (distillery) => async (dispatch) => {
-    const res = await fetch(`/api/distilleries/${distillery.id}`, {
+export const deleteDistillery = (distilleryId) => async (dispatch) => {
+    const res = await fetch(`/api/distilleries/${distilleryId}`, {
         method: "DELETE",
     });
     if (res.ok) {
         const distillery = await res.json();
+        console.log(distillery)
         dispatch(remove(distillery));
     }
 };

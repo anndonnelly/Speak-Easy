@@ -1,10 +1,11 @@
+// import { createSelector } from "@reduxjs/toolkit";
 /*-------------ACTION.TYPES-------------*/
-const LOAD_ONE_USER = "user/LOAD_ONE_USER"
+const LOAD_ONE_USER = "user/LOAD_ONE_USER";
 /*-------------ACTIONS-------------*/
 const loadOne = (user) => ({
     type: LOAD_ONE_USER,
-    user
-})
+    user,
+});
 /*-------------THUNK CREATORS-------------*/
 export const loadOneUser = (id) => async (dispatch) => {
     const res = await fetch(`/api/users/${id}`);
@@ -25,12 +26,12 @@ const initialState = {};
 
 const users = (state = initialState, action) => {
     switch (action.type) {
-        case LOAD_ONE_USER: {
+        case LOAD_ONE_USER:
             return {
                 ...state,
                 ...action.user,
             };
-        }
+
         default:
             return state;
     }

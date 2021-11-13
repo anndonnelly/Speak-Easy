@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
+
+
 import { showModal, setCurrentModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distillery";
 import { getCheckinsThunk } from "../../store/checkins";
 import { loadAllDrinks } from "../../store/drinks";
-import { useParams } from "react-router-dom";
-import styles from "./SingleDistillery.module.css";
+import { updateDistillery } from "../../store/distilleries";
 import CheckinCard from "../CheckinCard/CheckinCard";
+import { deleteDistillery } from "../../store/distilleries";
+import styles from "./SingleDistillery.module.css";
 // import DistilleryCheckin from "./DistilleryCheckin";
 
 import CreateDrink from "../CreateDrink";
 import DrinkCard from "./DrinkCard";
+import EditDistillery from "../EditDistillery"
 
 const SingleDistillery = () => {
+    const dispatch = useDispatch();
+    const history = useHistory()
     const { distilleryId } = useParams();
 
-    const dispatch = useDispatch();
     const [selection, setSelection] = useState(false);
 
     const distillery = useSelector((state) => state.distillery);
@@ -34,7 +40,7 @@ const SingleDistillery = () => {
         checkinCards = Object.values(checkins)
             .map((checkin) => {
                 if (distillery.checkin_ids?.includes(checkin.id)) {
-                    return <CheckinCard checkin={checkin} />;
+                    return <CheckinCard key={checkin.id}    checkin={checkin}/>;
                 }
                 return null;
             })
@@ -46,6 +52,20 @@ const SingleDistillery = () => {
         dispatch(setCurrentModal(CreateDrink));
         dispatch(showModal());
     };
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        dispatch(deleteDistillery(distilleryId))
+        history.push("/distilleries")
+    }
+
+    const handleUpdate = (e) => {
+        e.preventDefault()
+        dispatch(setCurrentModal(EditDistillery));
+        dispatch(showModal());
+    }
+
+
 
     let drinkCards;
     if (drinks && distillery) {
@@ -59,9 +79,19 @@ const SingleDistillery = () => {
     return (
         <div>
             {currentUser.id === distillery.owner_id ? (
-                <div>
-                    <button onClick={createDrinkModal}>Add a Drink</button>
-                </div>
+                <>
+                    <div>
+                        <button onClick={createDrinkModal}>Add a Drink</button>
+                    </div>
+                    <div>
+                        <button onClick={handleDelete}>Delete Distillery</button>
+                    </div>
+
+                    <div>
+                        <button onClick={handleUpdate}>Edit Distillery</button>
+                    </div>
+
+                </>
             ) : null}
             <div className={styles.singleDistillContainer}>
                 <div>
@@ -81,13 +111,13 @@ const SingleDistillery = () => {
                             <button
                                 className={styles.button}
                                 onClick={() => setSelection(!selection)}>
-                                Checkins
+                                Drinks
                             </button>
                         ) : (
                             <button
                                 className={styles.button}
                                 onClick={() => setSelection(!selection)}>
-                                Drinks
+                                Checkins
                             </button>
                         )}
                     </div>
