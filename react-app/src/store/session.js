@@ -53,7 +53,6 @@ export const signUp = (username, email, password) => async (dispatch) => {
         }),
     });
     const user = await response.json();
-    console.log(user.errors, "useeeeeeeeer.errorrrs");
     if (user.errors) {
         return user.errors;
     } else dispatch(createSession(user));

@@ -25,13 +25,13 @@ const SignUpForm = () => {
 
         if (password === repeatPassword) {
             const data = await dispatch(signUp(username, email, password));
-            console.log(data, "daaaaaaaaaaaaaaaaaaaata");
             if (data) {
                 setErrors(data);
             }
-        } else {
             dispatch(hideModal());
             history.push("/");
+        } else {
+            setErrors(["Passwords don't match"])
         }
     };
 
