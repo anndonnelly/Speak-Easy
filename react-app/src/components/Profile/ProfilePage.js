@@ -19,6 +19,7 @@ const ProfilePage = () => {
 
     return (
         <main className={styles.profile}>
+            <div className={styles.userName}>{user.username}</div>
             <div className={styles.btnWrapper}>
                 <button
                     className={styles.start}
@@ -26,7 +27,6 @@ const ProfilePage = () => {
                     Start A Distillery
                 </button>
             </div>
-            <div className={styles.userName}>{user.username}</div>
             <ProfileFeedSelection />
             <InternalFooter />
         </main>
