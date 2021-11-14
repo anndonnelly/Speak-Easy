@@ -19,12 +19,14 @@ const ProfilePage = () => {
 
     return (
         <main className={styles.profile}>
-            <div>
-                <button onClick={createDistilleryModal}>
+            <div className={styles.btnWrapper}>
+                <button
+                    className={styles.start}
+                    onClick={createDistilleryModal}>
                     Start A Distillery
                 </button>
             </div>
-            <h1>{user.username}</h1>
+            <div className={styles.userName}>{user.username}</div>
             <ProfileFeedSelection />
             <InternalFooter />
         </main>
