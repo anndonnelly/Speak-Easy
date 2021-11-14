@@ -18,23 +18,24 @@ const LoginForm = () => {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const onLogin = (e) => {
+    const onLogin = async (e) => {
         e.preventDefault();
-        dispatch(login(email, password)).catch((err) => setErrors(err.errors));
-        dispatch(hideModal());
-        history.push("/");
-
+        const data = await dispatch(login(email, password));
+        if (data) {
+            setErrors(data);
+        } else {
+            dispatch(hideModal());
+            history.push("/");
+        }
     };
 
     const demoLogin = (e) => {
         e.preventDefault();
         const email = "demo@aa.io";
         const password = "password";
-        dispatch(login(email, password)).catch((err) => setErrors(err.errors));
-        if (errors.length === 0) {
-            dispatch(hideModal());
-            history.push("/");
-        }
+        dispatch(login(email, password));
+        dispatch(hideModal());
+        history.push("/");
     };
 
     const updateEmail = (e) => {
@@ -53,7 +54,7 @@ const LoginForm = () => {
         <form className={styles.loginModal}>
             <h2>User Login</h2>
             <ul className={styles.errors}>
-                {errors.map((error, idx) => (
+                {errors?.map((error, idx) => (
                     <li className={styles.error} key={idx}>
                         {error}
                     </li>
