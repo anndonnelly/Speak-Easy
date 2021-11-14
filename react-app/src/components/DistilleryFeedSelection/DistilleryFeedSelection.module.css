@@ -1,0 +1,50 @@
+.buttonContainer {
+    display: flex;
+    justify-content: flex-start;
+    box-shadow: 0 5px 2px lightgray;
+    margin: 0;
+    width: 100%;
+}
+
+.btnWrapper {
+    display: flex;
+    align-items: center;
+    font-size: 75px;
+    max-width: fit-content;
+    margin: 0 100px;
+}
+
+.feedTitle {
+    font-size: 100px;
+}
+
+.feedContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feed {
+    width: 100%;
+    background-color: #404040;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    font-size: 25px;
+    max-width: 200px;
+    max-height: 100px;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: #b78727;
+}
+.button:hover {
+    background-color: #e1ad21;
+}
