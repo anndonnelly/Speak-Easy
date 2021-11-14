@@ -34,4 +34,5 @@
 .btnWrapper {
     display: flex;
     width: 60%;
+    justify-content: flex-start;
 }
