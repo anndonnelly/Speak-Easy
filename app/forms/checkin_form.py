@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, IntegerField, StringField, FileField
+from wtforms import TextAreaField, IntegerField, StringField
 from wtforms.validators import DataRequired, NumberRange
 from app.models import User
 
@@ -12,5 +12,3 @@ class CheckinForm(FlaskForm):
     distillery_id = IntegerField('distillery_id',)
     location = StringField('location')
     drink_name = StringField('drink_name')
-
-
