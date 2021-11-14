@@ -26,6 +26,10 @@ const SignUpForm = () => {
             dispatch(signUp(username, email, password)).catch((err) =>
                 setErrors(err.errors)
             );
+            if (errors.length === 0) {
+                dispatch(hideModal());
+                history.push("/");
+            }
         }
     };
 
@@ -46,7 +50,6 @@ const SignUpForm = () => {
     };
 
     if (sessionLoaded && user) {
-        dispatch(hideModal());
         history.push("/");
     }
 
