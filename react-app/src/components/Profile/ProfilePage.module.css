@@ -5,7 +5,8 @@
 
 .userName {
     display: flex;
-
+    color: #b78727;
+    font-size: 40px;
     flex-direction: column;
     align-items: center;
 }

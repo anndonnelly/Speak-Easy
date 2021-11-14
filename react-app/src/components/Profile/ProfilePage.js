@@ -19,7 +19,6 @@ const ProfilePage = () => {
 
     return (
         <main className={styles.profile}>
-
             <div className={styles.userName}>{user.username}</div>
             <div className={styles.btnWrapper}>
                 <button
