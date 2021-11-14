@@ -5,6 +5,7 @@ const loadOne = (distillery) => ({
     type: LOAD_ONE_DISTILLERY,
     distillery,
 });
+
 /*-------------THUNK CREATORS-------------*/
 export const loadOneDistillery = (id) => async (dispatch) => {
     const res = await fetch(`/api/distilleries/${id}`);
