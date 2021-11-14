@@ -87,11 +87,11 @@ function CheckinCard({ checkin }) {
         <div className={styles.cardDiv}>
             <div className={styles.cardHeaderContent}>
                 <div className={styles.headerFirst}>
-                    <NavLink
+                    {/* <NavLink
                         className={styles.userName}
-                        to={`/users/${checkin.user_id}`}>
+                        to={`/users/${checkin.user_id}`}> */}
                         {checkin.user_name}
-                    </NavLink>
+                    {/* </NavLink> */}
                     <span className={styles.isAt}> is at: </span>
                     <span className={styles.location}>{checkin.location}</span>
                 </div>
