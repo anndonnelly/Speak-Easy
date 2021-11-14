@@ -8,9 +8,9 @@ import { loadAllDrinks } from "../../store/drinks";
 import CheckinCard from "../CheckinCard/CheckinCard";
 import DrinkCard from "../Distilleries/DrinkCard";
 
-import styles from "./FeedSelection.module.css";
+import styles from "./DistilleryFeedSelection.module.css";
 
-export default function FeedSelection({ distilleryId }) {
+export default function DistilleryFeedSelection({ distilleryId }) {
     const dispatch = useDispatch();
 
     const distillery = useSelector((state) => state.distillery);
@@ -72,8 +72,8 @@ export default function FeedSelection({ distilleryId }) {
 
     return (
         <div className={styles.feedContainer}>
-            <div className={styles.titleContainer}>
-                <div className={styles.title}>
+            <div className={styles.buttonContainer}>
+                <div className={styles.btnWrapper}>
                     {selection.drinks ? (
                         <button
                             className={styles.button}
@@ -95,6 +95,11 @@ export default function FeedSelection({ distilleryId }) {
                     )}
                 </div>
             </div>
+            {selection.drinks ? (
+                <div className={styles.feedTitle}> Drinks </div>
+            ) : (
+                <div className={styles.feedTitle}> Checkins </div>
+            )}
             <div className={styles.feed}>
                 {selection.checkins ? (
                     <div className={styles.card}>{checkinCards}</div>

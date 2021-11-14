@@ -1,14 +1,21 @@
-.titleContainer {
+.buttonContainer {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     box-shadow: 0 5px 2px lightgray;
-    margin: 8px 0;
+    margin: 0;
     width: 100%;
 }
 
-.title {
+.btnWrapper {
+    display: flex;
+    align-items: center;
     font-size: 75px;
     max-width: fit-content;
+    margin: 0 100px;
+}
+
+.feedTitle {
+    font-size: 100px;
 }
 
 .feedContainer {

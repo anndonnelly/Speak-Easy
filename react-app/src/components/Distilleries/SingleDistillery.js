@@ -7,7 +7,7 @@ import { getCheckinsThunk } from "../../store/checkins";
 import { loadAllDrinks } from "../../store/drinks";
 import { deleteDistillery } from "../../store/distilleries";
 
-import FeedSelection from "../SetFeedSelection";
+import DistilleryFeedSelection from "../DistilleryFeedSelection";
 import CreateDrink from "../CreateDrink";
 import EditDistillery from "../EditDistillery";
 
@@ -72,7 +72,7 @@ const SingleDistillery = () => {
                 <div>{distillery.state}</div>
                 <div>{distillery.drink_ids}</div>
             </div>
-            <FeedSelection distillerId={distilleryId} />
+            <DistilleryFeedSelection distillerId={distilleryId} />
         </div>
     );
 };
