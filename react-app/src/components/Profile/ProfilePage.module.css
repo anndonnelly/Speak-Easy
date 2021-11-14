@@ -2,3 +2,33 @@
     min-height: 90vh;
     background-color: #404040;
 }
+
+.userName {
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+    margin: 0 10px;
+    color: #b78727;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.start {
+    border: 3px solid #b78727;
+    background-color: #404040;
+    color: lightgrey;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin: 10px;
+}
+
+.start:hover {
+    color: #e1ad21;
+    box-shadow: 0 0 3px 4px lightgrey;
+}
+
+.btnWrapper {
+    display: flex;
+    padding: 0 0 0 90px;
+}

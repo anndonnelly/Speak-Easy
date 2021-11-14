@@ -48,4 +48,5 @@
 }
 .button:hover {
     background-color: #e1ad21;
+    box-shadow: 0 0 3px 4px lightgrey;
 }

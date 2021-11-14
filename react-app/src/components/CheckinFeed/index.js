@@ -23,7 +23,7 @@ function CheckinsFeed() {
 
     return (
         <div className={styles.feedWrapper}>
-            <div>
+            <div className={styles.btnWrapper}>
                 <button
                     className={styles.checkinModalButton}
                     onClick={showCheckinModal}>
