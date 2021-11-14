@@ -20,6 +20,6 @@ const useLocalStorageState = (key, defaultValue) => {
         window.localStorage.setItem(key, JSON.stringify(state));
     }, [state, key]);
 
-    return [state];
+    return [state, toggle];
 };
 export default useLocalStorageState;
