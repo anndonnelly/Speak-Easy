@@ -34,7 +34,6 @@ function CreateDrink() {
         if (!isValidURL(drinkImage)) {
             errs.push("Please provide a valid URL");
         }
-        console.log(errors.length, "errrrrrrorrs length");
         setErrors(errs);
         return errs;
     };
@@ -42,7 +41,6 @@ function CreateDrink() {
     const onSubmit = (e) => {
         e.preventDefault();
         const errs = validateDrink();
-        console.log(errs, "#########");
         if (!errs.length) {
             const newDrink = {
                 name: drinkName,
