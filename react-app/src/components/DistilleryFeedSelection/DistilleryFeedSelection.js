@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import { loadOneDistillery } from "../../store/distillery";
 import { getCheckinsThunk } from "../../store/checkins";
@@ -10,25 +11,31 @@ import DrinkCard from "../Distilleries/DrinkCard";
 
 import styles from "./DistilleryFeedSelection.module.css";
 
-export default function DistilleryFeedSelection({ distilleryId }) {
+export default function DistilleryFeedSelection() {
     const dispatch = useDispatch();
+    const { distilleryId } = useParams();
 
     const distillery = useSelector((state) => state.distillery);
     const checkins = useSelector((state) => state.checkins);
     const drinks = useSelector((state) => state.drinks);
 
-    const [selection, setSelection] = useState({
+    const [distillerySelection, setDistillerySelection] = useState({
         drinks: true,
         checkins: false,
     });
 
     useEffect(() => {
-        setSelection(JSON.parse(window.localStorage.getItem("selection")));
+        setDistillerySelection(
+            JSON.parse(window.localStorage.getItem("distillerySelection"))
+        );
     }, []);
 
     useEffect(() => {
-        window.localStorage.setItem("selection", JSON.stringify(selection));
-    }, [selection]);
+        window.localStorage.setItem(
+            "distillerySelection",
+            JSON.stringify(distillerySelection)
+        );
+    }, [distillerySelection]);
 
     useEffect(() => {
         dispatch(loadOneDistillery(distilleryId));
@@ -37,11 +44,11 @@ export default function DistilleryFeedSelection({ distilleryId }) {
     }, [dispatch, distilleryId]);
 
     const setDrinksSelection = () => {
-        setSelection({ drinks: true, checkins: false });
+        setDistillerySelection({ drinks: true, checkins: false });
     };
 
     const setCheckinsSelection = () => {
-        setSelection({ drinks: false, checkins: true });
+        setDistillerySelection({ drinks: false, checkins: true });
     };
 
     let checkinCards;
@@ -51,7 +58,7 @@ export default function DistilleryFeedSelection({ distilleryId }) {
                 if (distillery.checkin_ids?.includes(checkin.id)) {
                     return <CheckinCard key={checkin.id} checkin={checkin} />;
                 }
-                return null;
+                return checkinCards;
             })
             .reverse();
     }
@@ -66,7 +73,7 @@ export default function DistilleryFeedSelection({ distilleryId }) {
         });
     }
 
-    if (!drinks && !checkins) {
+    if (!drinks || !checkins) {
         return null;
     }
 
@@ -74,13 +81,13 @@ export default function DistilleryFeedSelection({ distilleryId }) {
         <div className={styles.feedContainer}>
             <div className={styles.buttonContainer}>
                 <div className={styles.btnWrapper}>
-                    {selection.drinks ? (
+                    {distillerySelection && distillerySelection.drinks ? (
                         <button
                             className={styles.button}
                             onClick={setCheckinsSelection}>
                             View Checkins
                         </button>
-                    ) : selection.checkins ? (
+                    ) : distillerySelection && distillerySelection.checkins ? (
                         <button
                             className={styles.button}
                             onClick={setDrinksSelection}>
@@ -95,15 +102,15 @@ export default function DistilleryFeedSelection({ distilleryId }) {
                     )}
                 </div>
             </div>
-            {selection.drinks ? (
+            {distillerySelection && distillerySelection.drinks ? (
                 <div className={styles.feedTitle}> Drinks </div>
             ) : (
                 <div className={styles.feedTitle}> Checkins </div>
             )}
             <div className={styles.feed}>
-                {selection.checkins ? (
+                {distillerySelection && distillerySelection.checkins ? (
                     <div className={styles.card}>{checkinCards}</div>
-                ) : selection.drinks ? (
+                ) : distillerySelection && distillerySelection.drinks ? (
                     <div className={styles.card}>{drinkCards}</div>
                 ) : (
                     <div className={styles.card}>{checkinCards}</div>

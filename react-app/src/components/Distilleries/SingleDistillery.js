@@ -7,6 +7,7 @@ import { getCheckinsThunk } from "../../store/checkins";
 import { loadAllDrinks } from "../../store/drinks";
 import { deleteDistillery } from "../../store/distilleries";
 
+import InternalFooter from "../Footer/InternalFooter";
 import DistilleryFeedSelection from "../DistilleryFeedSelection";
 import CreateDrink from "../CreateDrink";
 import EditDistillery from "../EditDistillery";
@@ -48,31 +49,41 @@ const SingleDistillery = () => {
     return (
         <div>
             {currentUser.id === distillery.owner_id ? (
-                <>
-                    <div>
-                        <button onClick={createDrinkModal}>Add a Drink</button>
+                <div className={styles.btnWrapper}>
+                    <div className={styles.buttonDiv}>
+                        <button
+                            className={styles.button}
+                            onClick={createDrinkModal}>
+                            Add a Drink
+                        </button>
                     </div>
-                    <div>
-                        <button onClick={handleDelete}>
+                    <div className={styles.buttonDiv}>
+                        <button
+                            className={styles.button}
+                            onClick={handleDelete}>
                             Delete Distillery
                         </button>
                     </div>
-                    <div>
-                        <button onClick={handleUpdate}>Edit Distillery</button>
+                    <div className={styles.buttonDiv}>
+                        <button
+                            className={styles.button}
+                            onClick={handleUpdate}>
+                            Edit Distillery
+                        </button>
                     </div>
-                </>
+                </div>
             ) : null}
             <div className={styles.singleDistillContainer}>
                 <div>
                     <img src={distillery.logo} alt="Distillery Logo" />
                 </div>
-                <h1>{distillery.name}</h1>
-                <div>{distillery.street}</div>
-                <div>{distillery.city}</div>
-                <div>{distillery.state}</div>
-                <div>{distillery.drink_ids}</div>
+                <div className={styles.name}>{distillery.name}</div>
+                <div className={styles.street}>{distillery.street}</div>
+                <div className={styles.city}>{distillery.city}</div>
+                <div className={styles.state}>{distillery.state}</div>
             </div>
             <DistilleryFeedSelection distillerId={distilleryId} />
+            <InternalFooter />
         </div>
     );
 };

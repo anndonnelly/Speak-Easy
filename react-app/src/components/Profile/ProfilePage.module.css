@@ -3,8 +3,9 @@
     background-color: #404040;
 }
 
-.singleDistillContainer {
+.userName {
     display: flex;
+
     flex-direction: column;
     align-items: center;
 }
@@ -27,30 +28,33 @@
 .feedContainer {
     display: flex;
     flex-direction: column;
+
     justify-content: center;
-    align-items: center;
+    padding: 2px;
+    margin: 0 10px;
+    color: #b78727;
+    font-size: 40px;
+    font-weight: bold;
 }
-.feed {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 0 0 90px 0;
+
+.start {
+    border: 3px solid #b78727;
     background-color: #404040;
+    color: lightgrey;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin: 10px;
 }
-.card {
+
+.start:hover {
+    color: #e1ad21;
+    box-shadow: 0 0 3px 4px lightgrey;
+}
+
+.btnWrapper {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.button {
-    font-size: 25px;
-    width: 150px;
-    border-radius: 4px;
-    background-color: #b78727;
-}
-.button:hover {
-    background-color: #e1ad21;
+    padding: 0 0 0 90px;
 }
 
 .name {

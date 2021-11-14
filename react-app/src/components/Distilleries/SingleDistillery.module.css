@@ -3,3 +3,48 @@
     flex-direction: column;
     align-items: center;
 }
+.btnWrapper {
+    display: flex;
+    margin: 0 5px;
+    gap: 10px;
+}
+
+.button {
+    font-size: 25px;
+    max-width: 200px;
+    max-height: 100px;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: #b78727;
+}
+.button:hover {
+    background-color: #e1ad21;
+}
+.logo {
+    max-height: 500px;
+    max-width: 500px;
+}
+.name {
+    font-size: 50px;
+    margin: 5px;
+    color: lightgray;
+}
+
+.street {
+    font-size: 25px;
+    margin: 2px;
+    color: lightgray;
+}
+
+.city {
+    font-size: 25px;
+    margin: 2px;
+    color: lightgray;
+}
+
+.state {
+    font-size: 25px;
+    margin: 2px;
+    color: lightgray;
+}

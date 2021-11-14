@@ -21,6 +21,9 @@ const LoginForm = () => {
     const onLogin = (e) => {
         e.preventDefault();
         dispatch(login(email, password)).catch((err) => setErrors(err.errors));
+        dispatch(hideModal());
+        history.push("/");
+
     };
 
     const demoLogin = (e) => {
@@ -28,6 +31,10 @@ const LoginForm = () => {
         const email = "demo@aa.io";
         const password = "password";
         dispatch(login(email, password)).catch((err) => setErrors(err.errors));
+        if (errors.length === 0) {
+            dispatch(hideModal());
+            history.push("/");
+        }
     };
 
     const updateEmail = (e) => {
@@ -39,7 +46,6 @@ const LoginForm = () => {
     };
 
     if (sessionLoaded && user) {
-        dispatch(hideModal());
         history.push("/");
     }
 

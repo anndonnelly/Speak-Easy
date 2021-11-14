@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
 import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
-import {loadOneDistillery} from "../../store/distillery";
+import { loadOneDistillery } from "../../store/distillery";
 
 function DistilleryCheckin() {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function DistilleryCheckin() {
     useEffect(() => {
         const valErrors = [];
         if (review.length > 0 && review.length < 5)
-            valErrors.push("--Review must be at least 5 characters long--");
+            valErrors.push("Review must be at least 5 characters long");
 
         setErrors(valErrors);
     }, [review]);
@@ -55,9 +55,11 @@ function DistilleryCheckin() {
                 <h1 className={styles.checkinModalTitle}>Distillery Checkin</h1>
             </div>
             <form className={styles.checkinForm} onSubmit={onSubmit}>
-                <ul>
+                <ul className={styles.errors}>
                     {errors.map((error) => (
-                        <li key={error}>{error}</li>
+                        <li className={styles.error} key={error}>
+                            {error}
+                        </li>
                     ))}
                 </ul>
                 <div className={styles.formSection}>
