@@ -21,6 +21,9 @@ const LoginForm = () => {
     const onLogin = (e) => {
         e.preventDefault();
         dispatch(login(email, password)).catch((err) => setErrors(err.errors));
+        dispatch(hideModal());
+        history.push("/");
+
     };
 
     const demoLogin = (e) => {
