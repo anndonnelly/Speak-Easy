@@ -22,10 +22,21 @@ const SignUpForm = () => {
 
     const onSignUp = (e) => {
         e.preventDefault();
-        if (password === repeatPassword) {
+        const err = [];
+        if (username.length < 4) {
+            const errmsg = "Username must be longer then 4 characters";
+            err.push(errmsg);
+        }
+        setErrors(err);
+
+        if (password === repeatPassword && errors.length === 0) {
             dispatch(signUp(username, email, password)).catch((err) =>
                 setErrors(err.errors)
             );
+        }
+        if (errors.length === 0) {
+            dispatch(hideModal());
+            history.push("/");
         }
     };
 
@@ -46,7 +57,6 @@ const SignUpForm = () => {
     };
 
     if (sessionLoaded && user) {
-        dispatch(hideModal());
         history.push("/");
     }
 

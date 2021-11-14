@@ -12,6 +12,7 @@ const LogoutButton = () => {
 
     const onLogout = () => {
         dispatch(logout());
+        window.localStorage.clear();
         history.push("/login");
     };
 
