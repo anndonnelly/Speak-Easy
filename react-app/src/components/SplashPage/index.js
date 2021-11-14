@@ -14,8 +14,8 @@ export default function SplashPage() {
                 <div className={styles.imageOverlay}></div>
                 <div className={styles.splashText}>
                     <h1 className={styles.splashTitle}>
-                        Booze For All The{" "}
                         <span className={styles.splashSpan}>Speakeasy</span>{" "}
+                        Booze For All The{" "}
                         Working Stiffs
                     </h1>
                 </div>
