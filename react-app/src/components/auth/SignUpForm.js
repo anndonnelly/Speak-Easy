@@ -20,21 +20,16 @@ const SignUpForm = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
-    const onSignUp = (e) => {
+    const onSignUp = async (e) => {
         e.preventDefault();
-        const err = [];
-        if (username.length < 4) {
-            const errmsg = "Username must be longer then 4 characters";
-            err.push(errmsg);
-        }
-        setErrors(err);
 
-        if (password === repeatPassword && errors.length === 0) {
-            dispatch(signUp(username, email, password)).catch((err) =>
-                setErrors(err.errors)
-            );
-        }
-        if (errors.length === 0) {
+        if (password === repeatPassword) {
+            const data = await dispatch(signUp(username, email, password));
+            console.log(data, "daaaaaaaaaaaaaaaaaaaata");
+            if (data) {
+                setErrors(data);
+            }
+        } else {
             dispatch(hideModal());
             history.push("/");
         }
