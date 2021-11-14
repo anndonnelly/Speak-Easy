@@ -5,6 +5,7 @@ import { useState } from "react";
 import { hideModal } from "../../store/modal";
 import { createDistillery } from "../../store/distilleries";
 import { loadOneUser } from "../../store/users";
+import styles from "./CreateDistillery.module.css";
 
 function CreateDistillery() {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function CreateDistillery() {
         let createdDistillery = dispatch(createDistillery(newDistillery)).then(() =>
             dispatch(loadOneUser(userId))
         )
-        
+
         if (createdDistillery) {
             setErrors(createdDistillery);
         }
@@ -53,6 +54,7 @@ function CreateDistillery() {
                 <div>
                     {/* <label>Name</label> */}
                     <input
+                        className={styles.name_input}
                         type="text"
                         name="name"
                         value={distilleryName}
