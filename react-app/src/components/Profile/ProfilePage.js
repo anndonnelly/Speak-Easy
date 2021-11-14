@@ -66,25 +66,28 @@ const ProfilePage = () => {
 
     return (
         <main className={styles.profile}>
-            <div>
-                <button onClick={createDistilleryModal}>
-                    Start A Distillery
-                </button>
-            </div>
-            <h1>{user.username}</h1>
+
             <div className={styles.feedContainer}>
                 <div className={styles.feedToggle}>
+                <h1 className={styles.name}>Hello {user.username}!</h1>
                     {selection ? (
-                        <button
-                            className={styles.button}
-                            onClick={() => setSelection(!selection)}>
-                            Distilleries
-                        </button>
-                    ) : (
+                        <>
                         <button
                             className={styles.button}
                             onClick={() => setSelection(!selection)}>
                             Checkins
+                        </button>
+                        <div>
+                            <button className={styles.button} onClick={createDistilleryModal}>
+                                Start A Distillery
+                            </button>
+                        </div>
+                        </>
+                    ) : (
+                        <button
+                            className={styles.button}
+                            onClick={() => setSelection(!selection)}>
+                            Distilleries
                         </button>
                     )}
                 </div>

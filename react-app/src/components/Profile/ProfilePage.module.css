@@ -11,6 +11,7 @@
 
 .feedToggle {
     display: flex;
+    flex-direction: column;
     margin: 5px 225px;
 }
 .titleContainer {
@@ -50,4 +51,8 @@
 }
 .button:hover {
     background-color: #e1ad21;
+}
+
+.name {
+    font-size: xx-large;
 }
