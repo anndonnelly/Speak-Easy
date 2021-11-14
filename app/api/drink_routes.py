@@ -17,7 +17,6 @@ def load_drinks():
     form = DrinkForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print(f'\n\n\n\n{"falskdjfdsklf"}\n\n\n\n')
         data = form.data
         new_drink = Drink(
             name=data["name"],
@@ -25,23 +24,19 @@ def load_drinks():
             image=data["image"],
             abv=data["abv"],
             distillery_id=data["distillery_id"],
-            # rating=data["rating"]
         )
         db.session.add(new_drink)
         db.session.commit()
         return new_drink.to_dict()
-    print(form.errors)
     return {drink.id: drink.to_dict() for drink in Drink.query.all()}
 
 
 @drink_routes.route("/<int:id>", methods=["GET", "PATCH"])
 def one_drink(id):
     drink = Drink.query.get(id)
-    print(f'\n\n\n\n{drink.to_dict()}\n\n\n\n')
     form = DrinkForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("in drink route")
         drink.name = form.data['name']
         drink.description = form.data['description']
         drink.image = form.data['image']
@@ -59,6 +54,7 @@ def delete_drink(id):
     db.session.commit()
     return "True", 201
 
+# AWS
 # @drink_routes.route('/<int:id>', methods=["POST"])
 # # @login_required
 # def upload_file():

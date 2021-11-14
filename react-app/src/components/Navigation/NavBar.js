@@ -17,48 +17,43 @@ const NavBar = () => {
     const sessionLoaded = useSelector((state) => state.session.loaded);
 
     return (
-        <header className={styles.header}>
-            <nav className={styles.nav}>
-                <div className={styles.navbarLeft}>
-                    <NavLink
-                        to="/"
-                        exact={true}
-                        activeClassName={styles.active}>
-                        <img
-                            className={styles.logo}
-                            src="https://res.cloudinary.com/dis83syog/image/upload/v1636326107/SpeakEasy/android-chrome-512x512_w7x1ff.png"
-                            alt="logo"></img>
-                    </NavLink>
-                </div>
-                <div className={styles.navbarRight}>
-                    {!user && (
-                        <>
-                            <NavLink
-                                className={styles.navLink}
-                                to="/login"
-                                exact={true}
-                                activeClassName={styles.active}>
-                                <LoginModal />
-                            </NavLink>
-                            <NavLink
-                                className={styles.navLink}
-                                to="/sign-up"
-                                exact={true}
-                                activeClassName={styles.active}>
-                                <SignUpFormModal />
-                            </NavLink>
-                        </>
-                    )}
-                    {user && sessionLoaded && (
-                        <div className={styles.navRightButtons}>
-                            <DistilleryButton />
-                            <ProfileButton />
-                            <LogoutButton />
-                        </div>
-                    )}
-                </div>
-            </nav>
-        </header>
+        <nav className={styles.nav}>
+            <div className={styles.navbarLeft}>
+                <NavLink to="/" exact={true} activeClassName={styles.active}>
+                    <img
+                        className={styles.logo}
+                        src="https://res.cloudinary.com/dis83syog/image/upload/v1636326107/SpeakEasy/android-chrome-512x512_w7x1ff.png"
+                        alt="logo"></img>
+                </NavLink>
+            </div>
+            <div className={styles.navbarRight}>
+                {!user && (
+                    <>
+                        <NavLink
+                            className={styles.navLink}
+                            to="/login"
+                            exact={true}
+                            activeClassName={styles.active}>
+                            <LoginModal />
+                        </NavLink>
+                        <NavLink
+                            className={styles.navLink}
+                            to="/sign-up"
+                            exact={true}
+                            activeClassName={styles.active}>
+                            <SignUpFormModal />
+                        </NavLink>
+                    </>
+                )}
+                {user && sessionLoaded && (
+                    <div className={styles.navRightButtons}>
+                        <DistilleryButton />
+                        <ProfileButton />
+                        <LogoutButton />
+                    </div>
+                )}
+            </div>
+        </nav>
     );
 };
 

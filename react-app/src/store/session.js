@@ -36,9 +36,7 @@ export const login = (email, password) => async (dispatch) => {
     });
     const user = await response.json();
     if (user.errors) {
-        const err = new Error("Unauthorized");
-        err.errors = user.errors;
-        throw err;
+        return user.errors;
     } else dispatch(createSession(user));
 };
 
@@ -56,9 +54,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     });
     const user = await response.json();
     if (user.errors) {
-        const err = new Error("Unauthorized");
-        err.errors = user.errors;
-        throw err;
+        return user.errors;
     } else dispatch(createSession(user));
 };
 

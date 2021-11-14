@@ -1,48 +1,37 @@
-/* @import "../../index.css"; */
-.checkinModalTitle{
-    /* text-decoration: underline; */
+.checkinModalTitle {
     font-size: 24px;
     font-weight: 700;
     text-align: center;
-
-    
 }
 
-/* .checkinContainer{
-    background-color: coral;
-    padding: 32px;
-
-} */
-
-.checkinForm{
+.checkinForm {
     width: 100%;
     margin-top: 16px;
-    /* font-family: sans-serif; */
 }
 
 /* css placeholder style !!*/
-.checkinFormHeader{
+.checkinFormHeader {
     width: 100%;
     padding: 16px 0;
     border-bottom: 2px solid black;
 }
 
-.checkinLabel{
+.checkinLabel {
     display: block;
     margin-bottom: 4px;
 }
 
-.checkinText{
+.checkinText {
     width: 100%;
     border-radius: 4px;
 }
 
-.checkinButtonWrap{
+.checkinButtonWrap {
     display: flex;
     flex-direction: row-reverse;
 }
 
-.checkinButton{
+.checkinButton {
     padding: 8px 24px;
     font-size: 16px;
     font-weight: 700;
@@ -52,20 +41,17 @@
     transition: all 0.2s;
     border: 0;
     margin: 0;
-    /* font-family: sans-serif; */
-
 }
 
 .checkinButton:hover {
     transform: scale(1.1);
-
 }
 
-.formSection{
+.formSection {
     margin-bottom: 8px;
 }
 
-.formSectionFlex{
+.formSectionFlex {
     margin-bottom: 8px;
     width: 100%;
     display: flex;
@@ -80,12 +66,16 @@
     margin-bottom: 4px;
 }
 
-.checkinLabelTwo{
+.checkinLabelTwo {
     margin-right: 16px;
-    /* flex: 0 0 auto; */
-
 }
-
-.checkinSelect{
-    /* flex: 1 1 auto; */
+.errors {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+.error {
+    color: red;
+    padding: 2px;
 }

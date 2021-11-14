@@ -1,15 +1,8 @@
-// import ReactDOM from "react-dom";
 import { useSelector, useDispatch } from "react-redux";
-
 import { setCurrentModal } from "../../store/modal";
-// import { showModal, setCurrentModal } from "../../store/modal";
-
-// import { hideModal } from "../../store/modal";
-// import DistilleryCard from "../Distilleries/DistilleryCard";
 import CreateCheckin from "./index";
 import { loadAllDrinks } from "../../store/drinks";
 import { useEffect } from "react";
-// import { loadDistilleries } from "../../store/distilleries";
 import { loadSelectedDrink } from "../../store/checkinmodal_pagetwo";
 
 export default function PickDrink() {
@@ -21,7 +14,6 @@ export default function PickDrink() {
 
     useEffect(() => {
         dispatch(loadAllDrinks());
-        // dispatch(loadDistilleries());
     }, [dispatch]);
 
     const handlePickDrink = (e) => {

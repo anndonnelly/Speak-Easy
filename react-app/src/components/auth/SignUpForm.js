@@ -20,12 +20,18 @@ const SignUpForm = () => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
-    const onSignUp = (e) => {
+    const onSignUp = async (e) => {
         e.preventDefault();
+
         if (password === repeatPassword) {
-            dispatch(signUp(username, email, password)).catch((err) =>
-                setErrors(err.errors)
-            );
+            const data = await dispatch(signUp(username, email, password));
+            if (data) {
+                setErrors(data);
+            }
+            dispatch(hideModal());
+            history.push("/");
+        } else {
+            setErrors(["Passwords don't match"])
         }
     };
 
@@ -46,7 +52,6 @@ const SignUpForm = () => {
     };
 
     if (sessionLoaded && user) {
-        dispatch(hideModal());
         history.push("/");
     }
 

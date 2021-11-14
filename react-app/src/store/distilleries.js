@@ -1,5 +1,3 @@
-// import { createSelector } from "@reduxjs/toolkit";
-
 /*-------------ACTION.TYPES-------------*/
 const LOAD_DISTILLERIES = "distillery/LOAD_DISTILLERIES";
 const CREATE_DISTILLERY = "distillery/CREATE_DISTILLERY";
@@ -25,7 +23,6 @@ const remove = (distillery) => ({
     type: REMOVE_DISTILLERY,
     distillery,
 });
-/*-------------MEMOIZED SELECTORS-------------*/
 
 /*-------------THUNK CREATORS-------------*/
 export const loadDistilleries = () => async (dispatch) => {
@@ -46,7 +43,6 @@ export const createDistillery = (distillery) => async (dispatch) => {
     });
     if (res.ok) {
         const distillery = await res.json();
-        // console.log("hittttt", distillery);
         dispatch(create(distillery));
         return distillery;
     }
@@ -72,7 +68,7 @@ export const deleteDistillery = (distilleryId) => async (dispatch) => {
     });
     if (res.ok) {
         const distillery = await res.json();
-        console.log(distillery)
+    
         dispatch(remove(distillery));
     }
 };

@@ -57,7 +57,6 @@ export const addADrinkThunk = (drink) => async (dispatch) => {
     formData.append("description", drink.description);
     formData.append("image", drink.image);
     formData.append("abv", drink.abv);
-    // formData.append("rating", drink.rating);
     formData.append("distillery_id", drink.distillery_id);
     const res = await fetch("/api/drinks", {
         method: "POST",
@@ -86,7 +85,7 @@ export const updateDrinkThunk = (drinkId, payload) => async (dispatch) => {
     });
     if (res.ok) {
         const drink = await res.json();
-        console.log(drink);
+    
         dispatch(updateDrink(drink));
     } else if (res.status < 500) {
         const data = await res.json();
@@ -103,17 +102,8 @@ export const removeDrinkThunk = (drinkId) => async (dispatch) => {
     method: "DELETE",
   });
   if (res.ok) {
-    // const drinkId = await res.json();
     dispatch(removeDrink(drinkId));
   }
-//   } else if (res.status < 500) {
-//     const data = await res.json();
-//     if (data.errors) {
-//       return data.errors;
-//     }
-//   } else {
-//     return "Sorry, but an Error occured. Please try again.";
-//   }
 };
 
 /*-------------REDUCER-------------*/

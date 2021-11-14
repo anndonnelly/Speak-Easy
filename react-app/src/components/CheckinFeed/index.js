@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import React, { useEffect, useState } from "react";
 import { getCheckinsThunk } from "../../store/checkins";
 import { useDispatch, useSelector } from "react-redux";
 import CheckinCard from "../CheckinCard/CheckinCard";
@@ -19,13 +18,12 @@ function CheckinsFeed() {
 
     const showCheckinModal = () => {
         dispatch(setCurrentModal(PickDistillery));
-        // dispatch(setCurrentModal(CreateCheckin));
         dispatch(showModal());
     };
 
     return (
         <div className={styles.feedWrapper}>
-            <div>
+            <div className={styles.btnWrapper}>
                 <button
                     className={styles.checkinModalButton}
                     onClick={showCheckinModal}>

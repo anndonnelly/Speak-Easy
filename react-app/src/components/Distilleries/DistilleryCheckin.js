@@ -3,39 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { createCheckinsThunk } from "../../store/checkins";
 import { hideModal } from "../../store/modal";
-import { loadOneDistillery } from "../../store/distillery";
-// import "../../index.css";
 import styles from "../../components/CreateCheckin/CreateCheckin.module.css";
-// import { useParams } from "react-router-dom";
+import { loadOneDistillery } from "../../store/distillery";
 
 function DistilleryCheckin() {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
     const [review, setReview] = useState("");
     const [rating, setRating] = useState();
-    // const [checkinImage, setCheckinImage] = useState("");
-    // const [location, setLocation] = useState("");
-    //   const { distilleryId } = useParams();
-    //   console.log("USEPARAMS", distilleryId);
+    const distillery = useSelector((state) => state.distillery);
+    const drink = useSelector((state) => state.selectedDrink);
 
-    //   const currentUser = useSelector((state) => state.session.user);
-    const distillery = useSelector((state) => state?.distillery);
-    const drink = useSelector((state) => state?.selectedDrink);
-    //   const checkedInUser = useSelector((state) => state?.session.user);
-    //   const checkins = useSelector((state) => Object.values(state?.checkins));
-    //   const checkinLocations = checkins
-    // console.log("DRINK", drink.id)
-    // console.log("DISTILLERY", distillery);
-
-    const valErrors = [];
     useEffect(() => {
+        const valErrors = [];
         if (review.length > 0 && review.length < 5)
-            valErrors.push("--Review must be at least 5 characters long--");
+            valErrors.push("Review must be at least 5 characters long");
 
         setErrors(valErrors);
-        console.log("ddddddd---->", errors);
-        console.log("REVIEW", review);
     }, [review]);
+
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -51,17 +37,14 @@ function DistilleryCheckin() {
                 review: review,
                 rating: rating,
                 location: distillery.name,
-                // checkinImage: checkinImage,
-                // user_id: currentUser.id,
                 drink_id: drink.id,
                 distillery_id: distillery.id,
                 drink_name: drink.name,
             };
 
-            dispatch(createCheckinsThunk(checkin)).then(() =>
+            dispatch(createCheckinsThunk(checkin)).then(
                 dispatch(loadOneDistillery(distillery.id))
             );
-
         }
         dispatch(hideModal());
     };
@@ -69,15 +52,14 @@ function DistilleryCheckin() {
     return (
         <div className={styles.checkinContainer}>
             <div className={styles.checkinFormHeader}>
-                <h1 className={styles.checkinModalTitle}>
-                    {" "}
-                    Distillery Checkin
-                </h1>
+                <h1 className={styles.checkinModalTitle}>Distillery Checkin</h1>
             </div>
             <form className={styles.checkinForm} onSubmit={onSubmit}>
-                <ul>
+                <ul className={styles.errors}>
                     {errors.map((error) => (
-                        <li key={error}>{error}</li>
+                        <li className={styles.error} key={error}>
+                            {error}
+                        </li>
                     ))}
                 </ul>
                 <div className={styles.formSection}>
@@ -110,31 +92,7 @@ function DistilleryCheckin() {
                             <option value={5}>5</option>
                         </select>
                     </div>
-                    {/* <div>
-            <label className={styles.checkinLabelTwo}>Location</label>
-            <select
-              className={styles.checkinSelect}
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            >
-              {checkins.map((checkin) => (
-                <option value={checkin.location} key={checkin.id}>
-                  {checkin.location}
-                </option>
-              ))}
-            </select>
-          </div> */}
                 </div>
-                {/* <div className={styles.formSection}>
-                    <input
-                        value={checkinImage}
-                        type="file"
-                        id="input"
-                        multiple
-                        onChange={(e) =>
-                            setCheckinImage(e.target.value)
-                        }></input>
-                </div> */}
                 <div className={styles.checkinButtonWrap}>
                     <button
                         disabled={errors.length > 0}

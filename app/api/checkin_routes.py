@@ -34,7 +34,7 @@ def checkin():
     userid = current_user.get_id()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("validated------>")
+   
         data = form.data
         new_checkin = Checkin(
             review=data["review"],
@@ -57,14 +57,10 @@ def checkin_edit(id):
     form = CheckinForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # edit_drink = Drink.query.get(form.data["drink_id"])
-        # print("EDIT DRINK", edit_drink)
         edit_checkin= Checkin.query.get(id)
         edit_checkin.review = form.data["review"]
         edit_checkin.rating = form.data["rating"]
-        # edit_checkin.image = form.data["image"]
         db.session.commit()
-        # return redirect("/")
         return edit_checkin.to_dict()
     else:
         return form.errors

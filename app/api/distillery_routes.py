@@ -30,7 +30,6 @@ def distilleries_cards():
         db.session.add(distillery)
         db.session.commit()
         return distillery.to_dict()
-    print("hittttttt", form.errors)
     return {distillery.id: distillery.to_card_dict() for distillery
             in Distillery.query.all()}
 
@@ -67,7 +66,7 @@ def delete_distillery(id):
     db.session.commit()
     return "True", 201
 
-
+# AWS
 # @user_routes.route('/<int:id>', methods=["POST"])
 # @login_required
 # def upload_file():

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { addADrinkThunk } from "../../store/drinks";
 import { hideModal } from "../../store/modal";
 import { loadOneDistillery } from "../../store/distillery";
-// import { useParams } from "react-router";
 
 function CreateDrink() {
     const dispatch = useDispatch();
@@ -13,32 +12,49 @@ function CreateDrink() {
     const [description, setDescription] = useState("");
     const [drinkImage, setDrinkImage] = useState("");
     const [abv, setAbv] = useState("");
-    const [rating, setRating] = useState("");
-    //   const {distilleryId} = useParams()
 
     const currentDistillery = useSelector((state) => state.distillery);
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-
-        const newDrink = {
-            name: drinkName,
-            //   name matches what is on WTF form
-            description: description,
-            image: drinkImage,
-            abv: abv,
-            // rating: rating,
-            distillery_id: currentDistillery.id,
-        };
-        console.log(newDrink);
-        let response =  dispatch(addADrinkThunk(newDrink)).then(() =>
-            dispatch(loadOneDistillery(currentDistillery.id))
+    function isValidURL(string) {
+        let res = string.match(
+            /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
         );
-        if (response) {
-            setErrors(response);
+        return res !== null;
+    }
+
+    const validateDrink = () => {
+        const errs = [];
+        if (drinkName.length < 2) {
+            errs.push("DrinkName must be more than 2 characters");
+        }
+        if (description.length <= 5) {
+            errs.push("Description must be more then 5 characters");
         }
 
-        dispatch(hideModal());
+        if (!isValidURL(drinkImage)) {
+            errs.push("Please provide a valid URL");
+        }
+        setErrors(errs);
+        return errs;
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const errs = validateDrink();
+        if (!errs.length) {
+            const newDrink = {
+                name: drinkName,
+                //   name matches what is on WTF form
+                description: description,
+                image: drinkImage,
+                abv: abv,
+                distillery_id: currentDistillery.id,
+            };
+            dispatch(addADrinkThunk(newDrink)).then(() =>
+                dispatch(loadOneDistillery(currentDistillery.id))
+            );
+            dispatch(hideModal());
+        }
     };
 
     return (
@@ -47,13 +63,12 @@ function CreateDrink() {
                 <h1>Add a Drink</h1>
             </div>
             <form onSubmit={onSubmit}>
-                {/* <ul>
+                <ul>
                     {errors.map((error) => (
                         <li key={error}>{error}</li>
                     ))}
-                </ul> */}
+                </ul>
                 <div>
-                    {/* <label>Name</label> */}
                     <input
                         type="text"
                         name="name"
@@ -64,7 +79,6 @@ function CreateDrink() {
                     />
                 </div>
                 <div>
-                    {/* <label>Description</label> */}
                     <textarea
                         type="text"
                         name="description"
@@ -75,12 +89,13 @@ function CreateDrink() {
                     />
                 </div>
                 <div>
-                    <label>Image</label>
+                    <label htmlFor="image">Image</label>
                     <input
                         value={drinkImage}
-                        type="text"
-                        id="text"
+                        type="url"
+                        name="image"
                         multiple
+                        required
                         onChange={(e) => setDrinkImage(e.target.value)}></input>
                 </div>
                 <div>
@@ -99,24 +114,6 @@ function CreateDrink() {
                         <span>%</span>
                     </label>
                 </div>
-                {/* <div>
-                    <label>Rating</label>
-                    <select
-                        name="rating"
-                        required
-                        value={rating}
-                        onChange={(e) => setRating(e.target.value)}>
-                        <option value="" disabled>
-                            --Rating--
-                        </option>
-                        <option value={0}>0</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                    </select>
-                </div> */}
                 <button>Create</button>
             </form>
         </>
